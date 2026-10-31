@@ -8,6 +8,7 @@ and copied compose.REFERENCE.html to <work>/compose.html.
 
 It never touches the video-ad-editor skill itself, so skill updates can't undo it.
 - theme.json: classic captions, still captions, brand font, light colours, handle.
+- sfx.json: "outro": 0 (no end card). Re-run after the skill writes sfx.json (step 8).
 - compose.html: adds the "classic" caption style (medium white text, black outline).
 """
 import json, sys
@@ -35,6 +36,11 @@ def main():
     t["pace"] = "calm"
     t["grade"] = False
     t.setdefault("hookZoom", 0)
+    t.pop("outro", None)                     # no end card / follow-me CTA
+    sp = work / "sfx.json"                   # the skill reads the end-card length from sfx.json
+    sx = json.loads(sp.read_text(encoding="utf-8")) if sp.exists() else {}
+    sx["outro"] = 0
+    sp.write_text(json.dumps(sx, ensure_ascii=False, indent=1), encoding="utf-8")
     tp.write_text(json.dumps(t, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"theme.json: capStyle=classic, capStill, font={t['font']}, pace=calm")
 

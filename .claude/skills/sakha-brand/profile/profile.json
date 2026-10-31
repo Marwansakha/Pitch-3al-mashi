@@ -15,9 +15,17 @@
   "bgAudio": "none",
   "sfx": "on",
   "length": "full",
-  "platforms": ["instagram"],
+  "platforms": [
+    "instagram"
+  ],
   "orientation": "9:16",
-  "content": { "type": "talking", "person": "with" },
-  "endCard": { "on": true, "handle": "@sakhamarwan", "cta": "تابعني" },
-  "note": "Brand: Marwan Sakha (@sakhamarwan). Light theme from the Pitch على الماشي landing page. Captions: classic medium white text with black outline (applied by sakha-brand/scripts/apply_brand.py). No background music. Calm pace. Jordanian dialect."
+  "content": {
+    "type": "talking",
+    "person": "with"
+  },
+  "endCard": {
+    "on": false,
+    "handle": "@sakhamarwan"
+  },
+  "note": "Brand: Marwan Sakha (@sakhamarwan). Light theme from the Pitch على الماشي landing page. Captions: classic medium white text with black outline (applied by sakha-brand/scripts/apply_brand.py). No background music. No end card or follow-me CTA. Calm pace. Jordanian dialect."
 }

@@ -25,7 +25,7 @@ It never edits those skills, so their updates can't undo it.
    export VAE_HOME="$CLAUDE_SKILL_DIR/profile"   # holds profile.json
    ```
    With that set, `00_onboard.py show` prints the profile, so skip the onboarding page and
-   the colour question. Say one line: "ماشي على هويتك: خلفية فاتحة، كابشن أبيض بحد أسود، بلا موسيقى."
+   the colour question. Say one line: "ماشي على هويتك: خلفية فاتحة، كابشن أبيض بحد أسود، بلا موسيقى ولا كرت نهاية."
 2. Run the skill's normal steps. After `00_onboard.py theme <work>` and after copying
    `compose.REFERENCE.html` to `<work>/compose.html`, run:
    ```bash
@@ -59,7 +59,8 @@ It never edits those skills, so their updates can't undo it.
 - **Music:** none. Voice only, always clear. Subtle whoosh or click sounds on cuts to the screen
   are fine (`sfx: on`).
 - **Colour:** natural. No heavy filters or grading.
-- **Ending:** when he says "follow me" or "تابعني", show a small "تابعني" cue and @sakhamarwan.
+- **Ending:** no end card and no "تابعني" / follow-me cue or button, even if he says it on camera.
+  Keep `"outro": 0` in `sfx.json` (apply_brand.py sets it; re-run it after step 8 writes sfx.json).
 - **Format:** 1080x1920, 30fps, H.264 MP4, usually 30 seconds or less.
 - **Screen visuals:** prefer his real screen recordings and screenshots, with Ken Burns zooms,
   picture-in-picture or split screen, and a subtle highlight on the key line. Blur emails, card
