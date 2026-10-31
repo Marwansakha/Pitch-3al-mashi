@@ -1,0 +1,23 @@
+{
+  "identity": {
+    "mode": "custom",
+    "colors": {
+      "bg": "#F8F6F1",
+      "ink": "#0D0D0D",
+      "acc": "#B8842C",
+      "clay": "#D9603A",
+      "mut": "#7A7670"
+    }
+  },
+  "font": "IBM Plex Sans Arabic",
+  "capStyle": "shadow",
+  "pace": "calm",
+  "bgAudio": "none",
+  "sfx": "on",
+  "length": "full",
+  "platforms": ["instagram"],
+  "orientation": "9:16",
+  "content": { "type": "talking", "person": "with" },
+  "endCard": { "on": true, "handle": "@sakhamarwan", "cta": "تابعني" },
+  "note": "Brand: Marwan Sakha (@sakhamarwan). Light theme from the Pitch على الماشي landing page. Captions: classic medium white text with black outline (applied by sakha-brand/scripts/apply_brand.py). No background music. Calm pace. Jordanian dialect."
+}
