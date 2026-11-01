@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Pitch على الماشي">
+  <rect width="32" height="32" rx="8" fill="#0D0D0D"/>
+  <!-- cabin + body -->
+  <path fill="#F8F6F1" d="M9.2 15.2 12.1 10.4c.35-.58.98-.94 1.66-.94h5.35c.7 0 1.34.38 1.68.98l2.55 4.76H25.4c1.16 0 2.1.94 2.1 2.1v2.15c0 .66-.54 1.2-1.2 1.2H7.15c-.66 0-1.2-.54-1.2-1.2v-2.15c0-1.16.94-2.1 2.1-2.1h1.15z"/>
+  <!-- window -->
+  <path fill="#0D0D0D" d="M12.55 14.35 14.35 11.2h4.55l1.85 3.15z"/>
+  <!-- headlight, sitting on the nose -->
+  <circle cx="25.55" cy="16.55" r="1.05" fill="#E0A540"/>
+  <!-- wheels -->
+  <g fill="#F8F6F1">
+    <circle cx="11.15" cy="20.55" r="3.05"/>
+    <circle cx="21.7" cy="20.55" r="3.05"/>
+  </g>
+  <g fill="#0D0D0D">
+    <circle cx="11.15" cy="20.55" r="1.85"/>
+    <circle cx="21.7" cy="20.55" r="1.85"/>
+  </g>
+  <g fill="#E0A540">
+    <circle cx="11.15" cy="20.55" r=".72"/>
+    <circle cx="21.7" cy="20.55" r=".72"/>
+  </g>
+</svg>

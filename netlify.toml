@@ -1,0 +1,28 @@
+# Send traffic on the production Netlify subdomain to the custom domain.
+# The hostname is matched exactly, so deploy previews
+# (deploy-preview-<id>--loquacious-cobbler-451547.netlify.app)
+# and branch deploys (<branch>--loquacious-cobbler-451547.netlify.app)
+# are left alone.
+[[redirects]]
+  from = "https://loquacious-cobbler-451547.netlify.app/*"
+  to = "https://marwandoesai.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://loquacious-cobbler-451547.netlify.app/*"
+  to = "https://marwandoesai.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://loquacious-cobbler-451547.netlify.app"
+  to = "https://marwandoesai.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://loquacious-cobbler-451547.netlify.app"
+  to = "https://marwandoesai.com/"
+  status = 301
+  force = true
