@@ -946,14 +946,19 @@ footer a:hover{color:var(--ink)}
         if (!Array.isArray(v.tags)) v.tags = v.tags ? [String(v.tags)] : [];
         v.tags = v.tags.map(function (tag) { return String(tag).trim(); }).filter(Boolean);
       });
-      videos.sort(function (a, b) {
-        var da = a.date || "";
-        var db = b.date || "";
-        if (da === db) return 0;
-        if (!da) return 1;
-        if (!db) return -1;
-        return da < db ? 1 : -1;
-      });
+      function postedTime(v) {
+        var raw = v.postedAt || v.posted_at || "";
+        if (raw) {
+          var full = Date.parse(raw);
+          if (!isNaN(full)) return full;
+        }
+        if (v.date) {
+          var day = Date.parse(String(v.date).slice(0, 10) + "T00:00:00");
+          if (!isNaN(day)) return day;
+        }
+        return 0;
+      }
+      videos.sort(function (a, b) { return postedTime(b) - postedTime(a); });
       state.videos = videos;
       paintProfile();
       paintChips();
