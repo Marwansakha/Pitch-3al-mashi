@@ -26,3 +26,27 @@
   to = "https://marwandoesai.com/"
   status = 301
   force = true
+
+# Link-in-bio. /bio is the short path for an Instagram or TikTok bio.
+# A video slug (/links/video-slug or /bio/video-slug) rewrites to the page
+# so the link is shareable. These rules are not forced, so real files
+# such as /links/thumbs/* are still served.
+[[redirects]]
+  from = "/bio"
+  to = "/links/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bio/"
+  to = "/links/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bio/*"
+  to = "/links/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/links/*"
+  to = "/links/index.html"
+  status = 200
