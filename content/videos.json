@@ -1,0 +1,481 @@
+{
+  "profile": {
+    "nameAr": "مروان أبو سخا",
+    "nameEn": "Marwan Abu Sakha",
+    "handle": "@sakhamarwan",
+    "handleUrl": "https://www.instagram.com/sakhamarwan/",
+    "photo": "/links/avatar.svg",
+    "bioAr": "فيديوهات قصيرة عن الذكاء الاصطناعي، البيزنس، وريادة الأعمال.",
+    "bioEn": "Short videos on AI, business, and entrepreneurship."
+  },
+  "videos": [
+    {
+      "slug": "google-maps-leads",
+      "title": "أحسن طريقة تلاقي فيها عملاء جداد إذا عندك بزنس",
+      "titleEn": "The best way to find new clients for your business",
+      "thumbnail": "/links/thumbs/google-maps-leads.jpg",
+      "date": "2026-11-10",
+      "postedAt": "2026-11-10T19:41:13+03:00",
+      "tags": [
+        "AI",
+        "Leads",
+        "Claude Code"
+      ],
+      "description": "سكيل لـ Claude Code أو Codex بتطلعلك قائمة عملاء من Google Maps: اسم البزنس، الموقع، الرقم، الإيميل والتقييم، وبتصدّرها CSV جاهزة.",
+      "descriptionEn": "A Claude Code / Codex skill that pulls a list of local businesses from Google Maps (name, website, phone, email, rating) and exports it as a ready CSV.",
+      "url": "https://localprospects.ai/",
+      "links": [
+        {
+          "label": "طريقة التركيب",
+          "labelEn": "How to set it up",
+          "url": "https://localprospects.ai/blog/claude-code-codex-google-maps-leads"
+        }
+      ],
+      "prompt": "Use the LocalProspects skill.\n\nFind dentists in Colorado.\nUse major cities and towns only.\nLimit this test to 2 searches.\nExport the final results as a CSV.",
+      "videoUrl": "https://www.instagram.com/reel/DfkWzpPRMPt/"
+    },
+    {
+      "slug": "zain-al-mubadara-zinc",
+      "title": "من افضل المبادرة اللي تدعم رواد الأعمال في الأردن 🫡",
+      "titleEn": "ZINC's Zain Al Mubadara: startup grants in Jordan",
+      "thumbnail": "/links/thumbs/zain-al-mubadara-zinc.jpg",
+      "date": "2026-10-22",
+      "postedAt": "2026-10-22T18:02:03+03:00",
+      "tags": [
+        "Startups",
+        "Funding",
+        "Jordan"
+      ],
+      "description": "برنامج زين المبادرة من منصة زين للإبداع (ZINC): منح للشركات الناشئة والأفكار الريادية بالأردن بدون حصة.",
+      "descriptionEn": "ZINC's Zain Al Mubadara program: equity-free grants for Jordanian startups and ideas.",
+      "url": "https://services.jo.zain.com/ZainAlMubadara6",
+      "videoUrl": "https://www.instagram.com/reel/DezQWvQssny/"
+    },
+    {
+      "slug": "higgsfield-character-swap",
+      "title": "بدّل شخصية فيديو ترند بـ Higgsfield",
+      "titleEn": "Swap the character in a trending video with Higgsfield",
+      "thumbnail": "/links/thumbs/higgsfield-character-swap.jpg",
+      "date": "2026-10-10",
+      "postedAt": "2026-10-10T12:14:57+03:00",
+      "tags": [
+        "AI tools",
+        "AI video",
+        "Ads"
+      ],
+      "description": "كيف تبدّل الشخصية بفيديو ترند بـ Higgsfield وتستخدمها بإعلانات لبراندك.",
+      "descriptionEn": "How to swap the character in a trending video with Higgsfield and use it for brand ads.",
+      "url": "https://higgsfield.ai/",
+      "videoUrl": "https://www.instagram.com/reel/DeTvDyRsFTb/"
+    },
+    {
+      "slug": "osiris-world-map",
+      "title": "العالم من مكان واحد؟",
+      "titleEn": "See the whole world from one map (OSIRIS)",
+      "thumbnail": "/links/thumbs/osiris-world-map.jpg",
+      "date": "2026-10-09",
+      "postedAt": "2026-10-09T13:52:42+03:00",
+      "tags": [
+        "AI tools",
+        "OSINT",
+        "Maps"
+      ],
+      "description": "منصة خريطة بتعرض أحداث العالم والكاميرات والطيارات والسفن من مكان واحد.",
+      "descriptionEn": "A live 3D map of world events, cameras, flights and ships in one place.",
+      "url": "https://www.osirisai.live/",
+      "videoUrl": "https://www.instagram.com/reel/DeRVgj4hfwH/"
+    },
+    {
+      "slug": "fellow-meeting-notes",
+      "title": "بوت ياخد نوتس الاجتماعات",
+      "titleEn": "An AI bot that takes your meeting notes (Fellow)",
+      "thumbnail": "/links/thumbs/fellow-meeting-notes.jpg",
+      "date": "2026-10-08",
+      "postedAt": "2026-10-08T18:14:45+03:00",
+      "tags": [
+        "AI tools",
+        "Meetings",
+        "Productivity"
+      ],
+      "description": "تطبيق Fellow بياخد نوتس الاجتماعات ونقاط العمل وببعتها للكل بكبسة.",
+      "descriptionEn": "Fellow takes your meeting notes and action items and shares them in one click.",
+      "url": "https://fellow.ai/",
+      "videoUrl": "https://www.instagram.com/reel/DePOmCpgQs_/"
+    },
+    {
+      "slug": "chatgpt-video-editing",
+      "title": "ChatGPT بقدر يعدل فيديوهاتك",
+      "titleEn": "ChatGPT can edit your videos",
+      "thumbnail": "/links/thumbs/chatgpt-video-editing.jpg",
+      "date": "2026-09-29",
+      "postedAt": "2026-09-29T18:14:02+03:00",
+      "tags": [
+        "AI tools",
+        "ChatGPT",
+        "Video editing"
+      ],
+      "description": "كيف تستخدم ChatGPT لتعديل فيديوهاتك: نص، انتقالات، ألوان وقص.",
+      "descriptionEn": "Use ChatGPT for quick video edits: text, transitions, colour and trimming.",
+      "url": "https://chatgpt.com/",
+      "videoUrl": "https://www.instagram.com/reel/Dd4De-GMlMY/"
+    },
+    {
+      "slug": "chatgpt-bank-statement",
+      "title": "استخدم ChatGPT على كشف حسابك",
+      "titleEn": "Use ChatGPT on your bank statement to cut spending",
+      "thumbnail": "/links/thumbs/chatgpt-bank-statement.jpg",
+      "date": "2026-09-20",
+      "postedAt": "2026-09-20T19:19:17+03:00",
+      "tags": [
+        "AI tools",
+        "ChatGPT",
+        "Personal finance"
+      ],
+      "description": "نزّل كشف حسابك وخلي ChatGPT يحلل مصاريفك ويساعدك توفّر.",
+      "descriptionEn": "Upload your bank statement and let ChatGPT show where your money goes.",
+      "url": "https://chatgpt.com/",
+      "videoUrl": "https://www.instagram.com/reel/Ddg_wHtBZ8d/"
+    },
+    {
+      "slug": "claude-dispatch-phone",
+      "title": "تحكم بـ Claude من تلفونك",
+      "titleEn": "Control Claude on your computer from your phone",
+      "thumbnail": "/links/thumbs/claude-dispatch-phone.jpg",
+      "date": "2026-08-09",
+      "postedAt": "2026-08-09T20:02:54+03:00",
+      "tags": [
+        "AI tools",
+        "Claude",
+        "Productivity"
+      ],
+      "description": "كيف تتحكم بـ Claude على جهازك من تلفونك عن طريق Dispatch.",
+      "descriptionEn": "Control Claude on your computer from your phone with Dispatch.",
+      "url": "https://claude.com/download",
+      "videoUrl": "https://www.instagram.com/reel/Db07RXusWIB/",
+      "links": [
+        {
+          "url": "https://support.claude.com/en/articles/13947068-assign-tasks-from-anywhere-in-claude-cowork",
+          "label": "طريقة الإعداد",
+          "labelEn": "How to set it up"
+        }
+      ]
+    },
+    {
+      "slug": "claude-dispatch-commands",
+      "title": "أوامر لجهازك من التلفون",
+      "titleEn": "Give your computer commands from your phone (Claude Dispatch)",
+      "thumbnail": "/links/thumbs/claude-dispatch-commands.jpg",
+      "date": "2026-08-07",
+      "postedAt": "2026-08-07T19:32:19+03:00",
+      "tags": [
+        "AI tools",
+        "Claude",
+        "Productivity"
+      ],
+      "description": "Claude Dispatch: اعطِ أوامر لجهازك وانت بعيد عنه.",
+      "descriptionEn": "Claude Dispatch: give your computer tasks while you're away from it.",
+      "url": "https://claude.com/download",
+      "videoUrl": "https://www.instagram.com/reel/DbvuDZBs0Ge/",
+      "links": [
+        {
+          "url": "https://support.claude.com/en/articles/13947068-assign-tasks-from-anywhere-in-claude-cowork",
+          "label": "طريقة الإعداد",
+          "labelEn": "How to set it up"
+        }
+      ]
+    },
+    {
+      "slug": "broccoli-farmer-codex",
+      "title": "مزارع بروكولي استخدم الذكاء الاصطناعي",
+      "titleEn": "A broccoli farmer who built his own farm system with AI",
+      "thumbnail": "/links/thumbs/broccoli-farmer-codex.jpg",
+      "date": "2026-07-30",
+      "postedAt": "2026-07-30T19:29:47+03:00",
+      "tags": [
+        "AI stories",
+        "Codex",
+        "Farming"
+      ],
+      "description": "مزارع بروكولي ياباني برمج نظام كامل لمزرعته بـ Codex بدون خبرة برمجة.",
+      "descriptionEn": "A Japanese broccoli farmer built a full farm-management system with Codex.",
+      "url": "https://openai.com/codex/",
+      "videoUrl": "https://www.instagram.com/reel/DbbHk0LMGCV/"
+    },
+    {
+      "slug": "jordan-create",
+      "title": "منصة إبداعية للمجتمع الأردني 💯",
+      "titleEn": "Jordan Create: a platform for Jordan's creative community",
+      "thumbnail": "/links/thumbs/jordan-create.jpg",
+      "date": "2026-07-23",
+      "postedAt": "2026-07-23T15:10:05+03:00",
+      "tags": [
+        "Pitch 3al Mashi",
+        "Creators",
+        "Jordan"
+      ],
+      "description": "حلقة بتستثمر ولا ما بتستثمر؟ مع مؤسس Jordan Create، أكبر تجمع لصناع المحتوى بالأردن.",
+      "descriptionEn": "Pitch 3al Mashi with the founder of Jordan Create, Jordan's biggest creator gathering.",
+      "url": "https://www.jordancreate.com/",
+      "videoUrl": "https://www.instagram.com/reel/DbIoEMmMORY/"
+    },
+    {
+      "slug": "perplexity-research",
+      "title": "ابحث عن أي قرار بـ Perplexity",
+      "titleEn": "Research any decision with Perplexity",
+      "thumbnail": "/links/thumbs/perplexity-research.jpg",
+      "date": "2026-07-20",
+      "postedAt": "2026-07-20T20:56:25+03:00",
+      "tags": [
+        "AI tools",
+        "Perplexity",
+        "Research"
+      ],
+      "description": "كيف تستخدم Perplexity تبحث أي قرار وتجيب تقرير كامل عن خياراتك.",
+      "descriptionEn": "Use Perplexity to research any decision and get a full report on your options.",
+      "url": "https://www.perplexity.ai/",
+      "videoUrl": "https://www.instagram.com/reel/DbBhV4tsXao/"
+    },
+    {
+      "slug": "yc-requests-for-startups",
+      "title": "بدك تفتح مشروع بس ما عندك فكرة؟ 💡 (YC RFS)",
+      "titleEn": "No startup idea? Y Combinator's Requests for Startups",
+      "thumbnail": "/links/thumbs/yc-requests-for-startups.jpg",
+      "date": "2026-07-10",
+      "postedAt": "2026-07-10T12:49:22+03:00",
+      "tags": [
+        "Startups",
+        "Ideas",
+        "Y Combinator"
+      ],
+      "description": "قائمة Y Combinator للمشاكل اللي بدها شركات تحلها: مكان ممتاز تلاقي فكرة مشروع.",
+      "descriptionEn": "Y Combinator's list of problems it wants startups to solve: a great place to find an idea.",
+      "url": "https://www.ycombinator.com/rfs",
+      "videoUrl": "https://www.instagram.com/reel/Dam547EMc3V/"
+    },
+    {
+      "slug": "loopcv-job-applications",
+      "title": "كيف تلاقي فرص إذا انت بمرحلة انتقالية؟ (LoopCV)",
+      "titleEn": "Apply to 1,000 jobs a week with LoopCV",
+      "thumbnail": "/links/thumbs/loopcv-job-applications.jpg",
+      "date": "2026-05-04",
+      "postedAt": "2026-05-04T19:42:44+03:00",
+      "tags": [
+        "AI tools",
+        "Jobs",
+        "Careers"
+      ],
+      "description": "LoopCV بيقدّم عنك تلقائياً على مئات الوظائف بالأسبوع حسب اللي بدك ياه.",
+      "descriptionEn": "LoopCV auto-applies to hundreds of jobs a week for you, based on your criteria.",
+      "url": "https://www.loopcv.pro/",
+      "videoUrl": "https://www.instagram.com/reel/DX7HeXQsY1n/"
+    },
+    {
+      "slug": "claude-design-tutorial",
+      "title": "٦٠ ثانية لتعرف تستخدم المنصة (Claude Design)",
+      "titleEn": "Learn Claude Design in 60 seconds",
+      "thumbnail": "/links/thumbs/claude-design-tutorial.jpg",
+      "date": "2026-04-28",
+      "postedAt": "2026-04-28T19:33:12+03:00",
+      "tags": [
+        "AI tools",
+        "Claude",
+        "Presentations"
+      ],
+      "description": "شرح سريع كيف تعمل برزنتيشن بـ Claude Design بدل باوربوينت وكانفا.",
+      "descriptionEn": "A quick walkthrough of making a presentation in Claude Design instead of PowerPoint or Canva.",
+      "url": "https://claude.com/product/design",
+      "videoUrl": "https://www.instagram.com/reel/DXrp9G9DBHC/",
+      "links": [
+        {
+          "url": "https://academy.claude.com/tutorials/using-claude-design-for-presentations-and-slide-decks",
+          "label": "طريقة الإعداد",
+          "labelEn": "How to set it up"
+        }
+      ]
+    },
+    {
+      "slug": "claude-design-launch",
+      "title": "ما تضيع وقتك Presentation (Claude Design)",
+      "titleEn": "Stop wasting time on presentations: Claude Design",
+      "thumbnail": "/links/thumbs/claude-design-launch.jpg",
+      "date": "2026-04-21",
+      "postedAt": "2026-04-21T19:55:02+03:00",
+      "tags": [
+        "AI tools",
+        "Claude",
+        "Presentations"
+      ],
+      "description": "Claude Design بيعملك أي عرض تقديمي بخطوة وحدة بدل باوربوينت وكانفا.",
+      "descriptionEn": "Claude Design builds a whole presentation for you in one step.",
+      "url": "https://claude.com/product/design",
+      "videoUrl": "https://www.instagram.com/reel/DXZq4EJDOlG/",
+      "links": [
+        {
+          "url": "https://www.anthropic.com/news/claude-design-anthropic-labs",
+          "label": "الإعلان الرسمي",
+          "labelEn": "Official announcement"
+        }
+      ]
+    },
+    {
+      "slug": "build-an-app-with-ai",
+      "title": "مو تقني؟ ابنِ تطبيق بالذكاء الاصطناعي",
+      "titleEn": "Not technical? Build your own goals app with AI",
+      "thumbnail": "/links/thumbs/build-an-app-with-ai.jpg",
+      "date": "2026-04-10",
+      "postedAt": "2026-04-10T12:42:28+03:00",
+      "tags": [
+        "AI tools",
+        "ChatGPT",
+        "Vibe coding"
+      ],
+      "description": "اكتب أهدافك لـ ChatGPT أو Claude مع البرومت وبطلعلك تطبيق يساعدك تلتزم فيها.",
+      "descriptionEn": "Give ChatGPT or Claude your goals plus a prompt and get your own habit-tracking app.",
+      "url": "https://chatgpt.com/",
+      "videoUrl": "https://www.instagram.com/reel/DW8kzKTkZ35/",
+      "links": [
+        {
+          "url": "https://www.netlify.com/",
+          "label": "نزّله على تلفونك مع Netlify",
+          "labelEn": "Put it on your phone with Netlify"
+        }
+      ]
+    },
+    {
+      "slug": "whoop-review",
+      "title": "هل Whoop مستاهلة؟",
+      "titleEn": "Is Whoop worth it?",
+      "thumbnail": "/links/thumbs/whoop-review.jpg",
+      "date": "2026-04-01",
+      "postedAt": "2026-04-01T18:01:47+03:00",
+      "tags": [
+        "Wearables",
+        "Health",
+        "Reviews"
+      ],
+      "description": "مراجعة سوار Whoop: هل اشتراكه السنوي مستاهل؟",
+      "descriptionEn": "A Whoop band review: is the yearly subscription worth it?",
+      "url": "https://www.whoop.com/",
+      "videoUrl": "https://www.instagram.com/reel/DWl-KjjDORf/"
+    },
+    {
+      "slug": "no-hello",
+      "title": "اشرح شو بدك بأول رسالة",
+      "titleEn": "Say what you want in your first message (no hello)",
+      "thumbnail": "/links/thumbs/no-hello.jpg",
+      "date": "2026-03-15",
+      "postedAt": "2026-03-15T20:25:35+03:00",
+      "tags": [
+        "Communication",
+        "Networking",
+        "Founder tips"
+      ],
+      "description": "لما تراسل حدا، اشرح شو بدك من أول رسالة بدل «مرحبا» وبس.",
+      "descriptionEn": "When you message someone, say what you need in the first message, not just 'hello'.",
+      "url": "https://nohello.net/",
+      "videoUrl": "https://www.instagram.com/reel/DV6ci8pjL7j/"
+    },
+    {
+      "slug": "notion-data-room",
+      "title": "غرفة البيانات: سهّل على المستثمر تصفح ملفاتك",
+      "titleEn": "Build an investor data room in Notion",
+      "thumbnail": "/links/thumbs/notion-data-room.jpg",
+      "date": "2026-03-11",
+      "postedAt": "2026-03-11T20:27:35+03:00",
+      "tags": [
+        "Fundraising",
+        "Notion",
+        "Startups"
+      ],
+      "description": "اعمل غرفة بيانات للمستثمرين على Notion على شكل موقع سهل التصفح.",
+      "descriptionEn": "Build an easy-to-browse investor data room as a Notion site.",
+      "url": "https://www.notion.com/",
+      "videoUrl": "https://www.instagram.com/reel/DVwJ8sUDOJ-/"
+    },
+    {
+      "slug": "best-pitch-deck",
+      "title": "ابدء من حيث انتهى الآخرون.",
+      "titleEn": "See the pitch decks top startups raised with",
+      "thumbnail": "/links/thumbs/best-pitch-deck.jpg",
+      "date": "2026-02-04",
+      "postedAt": "2026-02-04T18:17:38+03:00",
+      "tags": [
+        "Fundraising",
+        "Pitch decks",
+        "Startups"
+      ],
+      "description": "موقع بيجمع العروض التقديمية اللي جمعت فيها أنجح الشركات أول جولة استثمار.",
+      "descriptionEn": "A site collecting the pitch decks top startups used to raise their first round.",
+      "url": "https://bestpitchdeck.com/",
+      "videoUrl": "https://www.instagram.com/reel/DUVzfoODDTh/"
+    },
+    {
+      "slug": "linkedin-find-investors",
+      "title": "ابنِ حساب لينكد إن قوي",
+      "titleEn": "Find investors on LinkedIn",
+      "thumbnail": "/links/thumbs/linkedin-find-investors.jpg",
+      "date": "2026-01-23",
+      "postedAt": "2026-01-23T14:37:22+03:00",
+      "tags": [
+        "Fundraising",
+        "LinkedIn",
+        "Networking"
+      ],
+      "description": "كيف تدور على مستثمرين على لينكد إن بالكلمات المفتاحية والفلاتر.",
+      "descriptionEn": "How to search LinkedIn for investors using keywords and filters.",
+      "url": "https://www.linkedin.com/",
+      "videoUrl": "https://www.instagram.com/reel/DT2guagjG2D/"
+    },
+    {
+      "slug": "angellist-investors",
+      "title": "منصة بتجمع كل المستثمرين فمكان واحد (AngelList)",
+      "titleEn": "AngelList: investors from around the world in one place",
+      "thumbnail": "/links/thumbs/angellist-investors.jpg",
+      "date": "2026-01-21",
+      "postedAt": "2026-01-21T18:43:06+03:00",
+      "tags": [
+        "Fundraising",
+        "Investors",
+        "Startups"
+      ],
+      "description": "AngelList: منصة فيها آلاف المستثمرين المهتمين بالشركات الناشئة.",
+      "descriptionEn": "AngelList: a platform with thousands of investors looking for startups.",
+      "url": "https://www.angellist.com/",
+      "videoUrl": "https://www.instagram.com/reel/DTxzFKkDBMp/"
+    },
+    {
+      "slug": "crunchbase-investors",
+      "title": "Crunchbase من احلا المنصات لتتعرف على البيئة الريادية في المكان اللي انتا موجود فيه!",
+      "titleEn": "Find who invests in your space with Crunchbase",
+      "thumbnail": "/links/thumbs/crunchbase-investors.jpg",
+      "date": "2026-01-18",
+      "postedAt": "2026-01-18T18:45:00+03:00",
+      "tags": [
+        "Fundraising",
+        "Investors",
+        "Research"
+      ],
+      "description": "Crunchbase بيفرجيك الشركات بمجالك ومين استثمر فيها.",
+      "descriptionEn": "Crunchbase shows the companies in your space and who invested in them.",
+      "url": "https://www.crunchbase.com/",
+      "videoUrl": "https://www.instagram.com/reel/DTqFRp3kW5S/"
+    },
+    {
+      "slug": "linkedin-find-cofounder",
+      "title": "كيف تلاقي شريك من لينكد إن والتواصل الاجتماعي",
+      "titleEn": "Find a co-founder on LinkedIn",
+      "thumbnail": "/links/thumbs/linkedin-find-cofounder.jpg",
+      "date": "2025-11-21",
+      "postedAt": "2025-11-21T11:21:08+03:00",
+      "tags": [
+        "Co-founders",
+        "LinkedIn",
+        "Startups"
+      ],
+      "description": "كيف تلاقي شريك مؤسس عن طريق البحث على لينكد إن.",
+      "descriptionEn": "How to find a co-founder by searching LinkedIn.",
+      "url": "https://www.linkedin.com/",
+      "videoUrl": "https://www.instagram.com/reel/DRT78qmjHRB/"
+    }
+  ]
+}
