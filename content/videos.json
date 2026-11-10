@@ -10,60 +10,24 @@
   },
   "videos": [
     {
-      "slug": "example-open-link",
-      "example": true,
-      "title": "مثال: افتح الرابط",
-      "titleEn": "EXAMPLE: open the link",
-      "thumbnail": "/links/thumbs/example-open-link.svg",
-      "date": "2026-11-09",
-      "tags": ["example", "tools"],
-      "description": "مثال فقط، مش فيديو حقيقي. هون بنحط جملة أو جملتين عن شو الفيديو بيحكي. هذا العنصر بيفتح رابط خارجي بس.",
-      "descriptionEn": "EXAMPLE only, not a real video. Replace this with one or two sentences about the video. This item only opens an external link.",
-      "url": "https://example.com/tool",
-      "prompt": "",
-      "videoUrl": ""
-    },
-    {
-      "slug": "example-copy-prompt",
-      "example": true,
-      "title": "مثال: انسخ البرومبت",
-      "titleEn": "EXAMPLE: copy the prompt",
-      "thumbnail": "/links/thumbs/example-copy-prompt.svg",
-      "date": "2026-11-04",
-      "tags": ["example", "prompt", "ai"],
-      "description": "مثال فقط. الزر بينسخ نص البرومبت تحت، من غير ما يفتح موقع.",
-      "descriptionEn": "EXAMPLE only. The button copies the prompt below and does not open a website.",
-      "url": "",
-      "prompt": "مثال — استبدل هذا النص بالبرومبت الحقيقي من الفيديو.\n\nأنت مستشار أعمال. اقرأ الفكرة التالية ولخّصها بثلاث جمل: المشكلة، الحل، والخطوة الجاية.\nالفكرة: [اكتب الفكرة هون]",
-      "videoUrl": ""
-    },
-    {
-      "slug": "example-everything",
-      "example": true,
-      "title": "مثال: رابط وبرومبت وفيديو",
-      "titleEn": "EXAMPLE: link, prompt, and video",
-      "thumbnail": "/links/thumbs/example-everything.svg",
-      "date": "2026-10-22",
-      "tags": ["example", "business", "ai"],
-      "description": "مثال فقط. هذا العنصر فيه كل الأنواع مع بعض: رابط خارجي، نص بينتنسخ، ورابط للفيديو الأصلي.",
-      "descriptionEn": "EXAMPLE only. This item has every action together: an external link, text to copy, and a link to the original video.",
-      "url": "https://example.com/business-tool",
-      "prompt": "مثال — برومبت قصير تستبدله.\n\nاكتب لي ٣ أفكار لمحتوى عن ريادة الأعمال، كل فكرة بجملة واحدة.",
-      "videoUrl": "https://example.com/watch/original"
-    },
-    {
-      "slug": "example-original-video",
-      "example": true,
-      "title": "مثال: شاهد الفيديو",
-      "titleEn": "EXAMPLE: watch the video",
-      "thumbnail": "/links/thumbs/example-original-video.svg",
-      "date": "2026-10-02",
-      "tags": ["example", "business"],
-      "description": "مثال فقط. هذا العنصر بيرجع المشاهد للفيديو الأصلي، من غير رابط أداة ومن غير برومبت.",
-      "descriptionEn": "EXAMPLE only. This item sends the viewer back to the original video, with no tool link and no prompt.",
-      "url": "",
-      "prompt": "",
-      "videoUrl": "https://example.com/watch/episode"
+      "slug": "google-maps-leads",
+      "title": "أحسن طريقة تلاقي فيها عملاء جداد إذا عندك بزنس",
+      "titleEn": "The best way to find new clients for your business",
+      "thumbnail": "/links/thumbs/google-maps-leads.jpg",
+      "date": "2026-11-10",
+      "tags": ["AI", "Leads", "Claude Code"],
+      "description": "سكيل لـ Claude Code أو Codex بتطلعلك قائمة عملاء من Google Maps: اسم البزنس، الموقع، الرقم، الإيميل والتقييم، وبتصدّرها CSV جاهزة.",
+      "descriptionEn": "A Claude Code / Codex skill that pulls a list of local businesses from Google Maps (name, website, phone, email, rating) and exports it as a ready CSV.",
+      "url": "https://localprospects.ai/",
+      "links": [
+        {
+          "label": "طريقة التركيب",
+          "labelEn": "How to set it up",
+          "url": "https://localprospects.ai/blog/claude-code-codex-google-maps-leads"
+        }
+      ],
+      "prompt": "Use the LocalProspects skill.\n\nFind dentists in Colorado.\nUse major cities and towns only.\nLimit this test to 2 searches.\nExport the final results as a CSV.",
+      "videoUrl": "https://www.instagram.com/reel/DfkWzpPRMPt/"
     }
   ]
 }

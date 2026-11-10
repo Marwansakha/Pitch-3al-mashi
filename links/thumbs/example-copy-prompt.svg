@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Example cover">
-  <rect width="800" height="800" fill="#0D0D0D"/>
-  <rect x="150" y="160" width="400" height="26" fill="#F8F6F1"/>
-  <rect x="150" y="220" width="500" height="26" fill="#EFE6D4"/>
-  <rect x="150" y="280" width="320" height="26" fill="#F8F6F1"/>
-  <rect x="150" y="340" width="220" height="26" fill="#B8842C"/>
-  <rect x="150" y="410" width="16" height="56" fill="#E0A540"/>
-</svg>

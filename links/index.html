@@ -123,8 +123,8 @@ html[lang="en"] .profile h1{letter-spacing:-.03em;font-weight:800}
 .grid-wrap{margin:18px -20px 0}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;padding-top:6px}
 .tile{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:start;cursor:pointer;border-radius:2px;animation:tile-in .42s var(--ease) both;animation-delay:calc(var(--i,0) * 40ms)}
-.tile-media{position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#E7E1D6;border-radius:2px}
-.tile img{width:100%;height:100%;object-fit:cover;transition:transform .35s var(--ease)}
+.tile-media{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#E7E1D6;border-radius:2px}
+.tile img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .35s var(--ease)}
 .tile-cap{position:absolute;inset-inline:0;bottom:0;display:flex;flex-direction:column;gap:2px;padding:28px 8px 8px;background:linear-gradient(to top,rgba(13,13,13,.78),rgba(13,13,13,0));color:var(--on-ink);pointer-events:none}
 .tile-title{font-size:12px;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tile-meta{font-size:10px;line-height:1.3;color:#F3EDE3;font-variant-numeric:tabular-nums}
@@ -139,35 +139,34 @@ html[lang="en"] .profile h1{letter-spacing:-.03em;font-weight:800}
 .tile:active{transform:translateY(0) scale(.985)}
 @keyframes tile-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-.skel{aspect-ratio:1;background:linear-gradient(100deg,#E7E1D6 30%,#F8F6F1 50%,#E7E1D6 70%);background-size:200% 100%;animation:shimmer 1.1s linear infinite}
+.skel{aspect-ratio:3/4;background:linear-gradient(100deg,#E7E1D6 30%,#F8F6F1 50%,#E7E1D6 70%);background-size:200% 100%;animation:shimmer 1.1s linear infinite}
 @keyframes shimmer{to{background-position:-200% 0}}
 .empty{margin:28px 0;color:var(--ink2)}
 .err{margin:20px 0;padding:14px;border:1px solid var(--rule);border-radius:14px;background:var(--card)}
 
-dialog.sheet{border:0;padding:0;background:transparent;color:var(--ink);width:min(440px,calc(100vw - 32px));max-height:min(720px,calc(100vh - 64px));max-height:min(720px,calc(100dvh - 64px));margin:auto}
+dialog.sheet{border:0;padding:0;background:transparent;color:var(--ink);width:min(480px,calc(100vw - 32px));max-height:min(880px,calc(100vh - 32px));max-height:min(880px,calc(100dvh - 32px));margin:auto}
 dialog.sheet[open]{display:flex;flex-direction:column}
 dialog.sheet::backdrop{background:rgba(13,13,13,.48)}
 dialog.sheet[open]::backdrop{animation:fade .24s var(--ease)}
-.sheet-card{background:var(--card);border-radius:24px;box-shadow:0 24px 60px rgba(13,13,13,.28);width:100%;max-height:min(720px,calc(100vh - 64px));max-height:min(720px,calc(100dvh - 64px));min-height:0;display:flex;flex-direction:column;overflow:hidden;position:relative;animation:rise .28s var(--ease)}
+.sheet-card{background:var(--card);border-radius:24px;box-shadow:0 24px 60px rgba(13,13,13,.28);width:100%;max-height:min(880px,calc(100vh - 32px));max-height:min(880px,calc(100dvh - 32px));min-height:0;display:flex;flex-direction:column;overflow:hidden;position:relative;animation:rise .28s var(--ease)}
 .sheet-body{flex:1 1 auto;overflow:auto;overscroll-behavior:contain;padding:18px 18px 8px;min-height:0}
 .sheet-close{position:absolute;z-index:2;top:12px;inset-inline-end:12px;width:44px;height:44px;border-radius:50%;border:0;background:var(--bg);color:var(--ink);box-shadow:0 6px 18px rgba(13,13,13,.16);cursor:pointer;display:grid;place-items:center}
 .sheet-close:hover{background:#fff}
-.sheet-head{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:12px}
+.sheet-head{display:grid;grid-template-columns:128px 1fr;gap:12px;align-items:center;margin-bottom:12px}
 .sheet-head > div{width:100%;min-width:0}
-.sheet-img{display:block;width:136px;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:16px;margin:0;background:#E7E1D6}
+.sheet-img{display:block;width:128px;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:16px;margin:0;background:#E7E1D6}
 .sheet h2{font-size:clamp(24px,4vw,32px);line-height:1.25;margin:0 0 8px;font-weight:700;text-wrap:balance}
 .sheet-meta{margin:0 0 10px;color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
 .sheet-tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0 0 12px;padding:0}
 .sheet-tags li{font-size:13px;font-weight:500;background:var(--amber-soft);color:#6E4C14;border-radius:999px;padding:3px 10px}
-.sheet-desc{margin:0 0 16px;color:var(--ink2)}
+.sheet-desc{margin:0 0 10px;color:var(--ink2)}
 .prompt-label{margin:0 0 6px;font-size:14px;font-weight:700}
-.prompt{margin:0 0 16px;padding:12px 14px;background:var(--bg);border:1px solid var(--rule);border-radius:14px;white-space:pre-wrap;font:inherit;font-size:15px;line-height:1.65}
+.prompt{margin:0 0 8px;padding:10px 14px;background:var(--bg);border:1px solid var(--rule);border-radius:14px;white-space:pre-wrap;font:inherit;font-size:15px;line-height:1.55}
 .actions{display:flex;flex-direction:column;gap:8px;flex:none;padding:12px 18px 16px;border-top:1px solid var(--rule);background:var(--card)}
 .actions .btn{width:100%;min-height:48px}
 .action-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .action-row.single{grid-template-columns:1fr}
 .action-row .btn{padding-inline:12px;font-size:15px}
-.prompt{max-height:7.5em;overflow:auto}
 .example-note{margin:0 0 8px;font-size:13px;font-weight:500;color:#6E4C14}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -189,7 +188,10 @@ footer a:hover{color:var(--ink)}
   dialog.sheet{width:100%;max-width:100%;max-height:92vh;max-height:92dvh;margin:0;position:fixed;inset:auto 0 0 0}
   .sheet-card{border-radius:20px 20px 0 0;max-height:92vh;max-height:92dvh;animation:sheet-up .32s var(--ease)}
   .actions{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
-  .sheet-img{width:136px}
+  .sheet-img{width:120px}
+  .sheet-head{grid-template-columns:120px 1fr}
+  .sheet h2{font-size:21px;line-height:1.15;margin-bottom:4px}
+  .sheet-meta{margin-bottom:6px}
 }
 @media (min-width:720px){
   .profile{grid-template-columns:96px 1fr;gap:8px 20px}
@@ -197,9 +199,9 @@ footer a:hover{color:var(--ink)}
   .bio{grid-column:2;margin-top:-4px}
   .pitch{grid-template-columns:auto 1fr auto;padding:22px 22px}
   .pitch .btn{grid-column:auto;white-space:nowrap}
-  .sheet-head{flex-direction:row;align-items:center;gap:18px;text-align:start}
+  .sheet-head{grid-template-columns:144px 1fr;gap:18px}
   .sheet-head > div{padding-inline-end:52px}
-  .sheet-img{width:180px}
+  .sheet-img{width:144px}
   .tile-title{font-size:14px}
   .tile-meta{font-size:12px}
   .tile-cap{padding:36px 12px 10px}
@@ -286,7 +288,7 @@ footer a:hover{color:var(--ink)}
     </button>
     <div class="sheet-body">
       <div class="sheet-head">
-        <img class="sheet-img" id="sheetImg" alt="" width="200" height="200" src="/links/avatar.svg">
+        <img class="sheet-img" id="sheetImg" alt="" width="180" height="240" src="/links/avatar.svg">
         <div>
           <p class="example-note" id="sheetExample" hidden></p>
           <h2 id="sheetTitle" dir="auto"></h2>
@@ -591,8 +593,8 @@ footer a:hover{color:var(--ink)}
       var img = document.createElement("img");
       img.src = src;
       img.alt = "";
-      img.width = 800;
-      img.height = 800;
+      img.width = 1080;
+      img.height = 1440;
       img.decoding = "async";
       if (i < 3) img.setAttribute("fetchpriority", "high");
       else img.loading = "lazy";
@@ -792,6 +794,12 @@ footer a:hover{color:var(--ink)}
     var url = safeHttp(v.url);
     var video = safeHttp(v.videoUrl);
     if (url) actions.appendChild(actionLink(url, t("افتح الرابط", "Open link"), "open", "btn"));
+    (Array.isArray(v.links) ? v.links : []).forEach(function (link) {
+      var href = safeHttp(link && link.url);
+      if (!href) return;
+      var label = pick(link, "label") || t("رابط", "Link");
+      actions.appendChild(actionLink(href, label, "open", "btn ghost"));
+    });
     if (video) {
       var host = hostLabel(video);
       var watch = host
