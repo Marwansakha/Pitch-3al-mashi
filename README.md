@@ -3,8 +3,8 @@
 The site is a static page for Pitch على الماشي, plus a link-in-bio page for Marwan's short videos.
 
 - Homepage: `/`
-- Video links: `/links` (also `/bio`, for an Instagram or TikTok bio)
-- One video: `/links/video-slug` or `/bio/video-slug` (opens that video directly)
+- Video links: `/bio` (Instagram or TikTok bio). Exact `/links` redirects to the homepage.
+- One video: `/bio/video-slug`. An older `/links/video-slug` link still opens that video.
 
 ## Add a video to the link-in-bio page
 
@@ -32,7 +32,7 @@ Edit **`content/videos.json`**. No HTML changes. Put a new video anywhere in the
 
 | Field | What it does |
 | --- | --- |
-| `slug` | Required. The shareable URL: `/links/my-video-slug`. Lowercase English letters, numbers, and hyphens. Must be unique. Don't use `thumbs`. |
+| `slug` | Required. The shareable URL: `/bio/my-video-slug`. Lowercase English letters, numbers, and hyphens. Must be unique. Don't use `thumbs`. `/links/my-video-slug` still opens the same video. |
 | `title` | Required. Shown on the tile and in the detail sheet. Arabic is fine. |
 | `titleEn` | Optional. Shown when the site is in English. If you leave it out, the Arabic title is used. |
 | `thumbnail` | Image path in this repo (for example `/links/thumbs/my-video.jpg`) or a full `https://` URL. A 9:16 reel cover works best. The tile is a 3:4 portrait and crops from the top, so keep the face and the hook text in the upper part of the cover. Drop the file in `links/thumbs/`. |
@@ -46,7 +46,7 @@ Edit **`content/videos.json`**. No HTML changes. Put a new video anywhere in the
 | `videoUrl` | Optional. **Watch** button back to the Instagram, TikTok, or YouTube video. |
 | `example` | Optional. Set `true` only while drafting. The tile gets an EXAMPLE mark. Leave it off for a real video. |
 
-Any mix of `url`, `prompt`, and `videoUrl` is fine. Leave a field as `""` to hide that button. Every video also gets **Copy page link**, which copies `/links/slug`.
+Any mix of `url`, `prompt`, and `videoUrl` is fine. Leave a field as `""` to hide that button. Every video also gets **Copy page link**. On `/bio` that copies `/bio/slug`. On an older `/links/slug` address it copies that same `/links/slug` URL. Closing the sheet returns to `/bio`, not to `/links`.
 
 The name, handle, photo, and bio at the top of the page are the `profile` object in the same file. `photo` is a path or URL, the same way as a thumbnail.
 

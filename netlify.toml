@@ -27,10 +27,27 @@
   status = 301
   force = true
 
-# Link-in-bio. /bio is the short path for an Instagram or TikTok bio.
-# A video slug (/links/video-slug or /bio/video-slug) rewrites to the page
-# so the link is shareable. These rules are not forced, so real files
-# such as /links/thumbs/* are still served.
+# The video grid lives at /bio. Exact /links and /links/ go to the homepage.
+# force is required because /links/index.html exists and would otherwise win.
+# These two rules are exact, so /links/<slug> is not redirected.
+# They are listed before the splat rules, and they do not point at /bio,
+# so /bio is never rewritten to /links and then sent home.
+[[redirects]]
+  from = "/links"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/links/"
+  to = "/"
+  status = 301
+  force = true
+
+# /bio renders the grid. A video slug (/bio/video-slug or the older
+# /links/video-slug) rewrites to the same page. These rules are not forced,
+# so real files such as /links/thumbs/* and /links/avatar.svg are still served.
+# The rewrite target is the file /links/index.html, not the path /links.
 [[redirects]]
   from = "/bio"
   to = "/links/index.html"
