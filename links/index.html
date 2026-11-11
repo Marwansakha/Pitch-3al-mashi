@@ -8,14 +8,14 @@
 <meta property="og:title" content="مروان أبو سخا | الروابط">
 <meta property="og:description" content="فيديوهات قصيرة عن الذكاء الاصطناعي، البيزنس، وريادة الأعمال، والروابط اللي بينحكى عنها.">
 <meta property="og:image" content="https://marwandoesai.com/og-image.png">
-<meta property="og:url" content="https://marwandoesai.com/links">
+<meta property="og:url" content="https://marwandoesai.com/bio">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_AR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="مروان أبو سخا | الروابط">
 <meta name="twitter:description" content="فيديوهات قصيرة عن الذكاء الاصطناعي، البيزنس، وريادة الأعمال، والروابط اللي بينحكى عنها.">
 <meta name="twitter:image" content="https://marwandoesai.com/og-image.png">
-<link rel="canonical" href="https://marwandoesai.com/links">
+<link rel="canonical" href="https://marwandoesai.com/bio">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -225,7 +225,7 @@ footer a:hover{color:var(--ink)}
     <a class="brand" href="/" aria-label="Pitch على الماشي">
       <bdi class="name-mark" dir="ltr">Pitch على الماشي 🚗</bdi>
     </a>
-    <a class="nav-link" href="/links" aria-current="page"><span class="ar">الروابط</span><span class="en">Links</span></a>
+    <a class="nav-link" href="/bio" aria-current="page"><span class="ar">الروابط</span><span class="en">Links</span></a>
     <button class="lang" id="langBtn" type="button"><span class="ar">English</span><span class="en">العربية</span></button>
     <a class="btn sm apply" href="https://docs.google.com/forms/d/e/1FAIpQLSdzHPNID8SqfU9JqHYWxutpwpcV9LN7SGdZF_PYBzexhZveZg/viewform" target="_blank" rel="noopener noreferrer"><span class="ar">قدّم طلبك</span><span class="en">Apply</span></a>
   </div>
@@ -274,7 +274,7 @@ footer a:hover{color:var(--ink)}
 <footer>
   <div class="wrap">
     <a href="/"><bdi class="name-mark" dir="ltr">Pitch على الماشي 🚗</bdi></a>
-    <a href="/links"><span class="ar">روابط الفيديوهات</span><span class="en">Video links</span></a>
+    <a href="/bio"><span class="ar">روابط الفيديوهات</span><span class="en">Video links</span></a>
   </div>
 </footer>
 <div class="toast" id="toast" role="status"></div>
@@ -355,8 +355,13 @@ footer a:hover{color:var(--ink)}
   }
   function basePath() {
     var path = location.pathname;
-    if (path === "/bio" || path.indexOf("/bio/") === 0) return "/bio";
-    return "/links";
+    // Older shared links use /links/<slug>. Bare /links redirects home, so
+    // that form is only used when a slug is already in the path.
+    if (path.indexOf("/links/") === 0 && path !== "/links/") return "/links";
+    return "/bio";
+  }
+  function gridPath() {
+    return "/bio";
   }
   function slugFromLocation() {
     var path = location.pathname.replace(/\/+$/, "");
@@ -869,7 +874,7 @@ footer a:hover{color:var(--ink)}
     if (dialog.open) dialog.close();
     if (!fromPop && prev) {
       var path = location.pathname.replace(/\/+$/, "");
-      if (path !== basePath()) history.pushState({}, "", basePath());
+      if (path !== gridPath()) history.pushState({}, "", gridPath());
     }
     if (!prev) return;
     var again = null;
