@@ -10,6 +10,23 @@
   },
   "videos": [
     {
+      "slug": "grok-bot-series-2",
+      "title": "فيديو 2/5 من سلسلة GrokBot",
+      "titleEn": "Grok Bot series, video 2 of 5",
+      "thumbnail": "/links/thumbs/grok-bot-series-2.jpg",
+      "date": "2026-11-14",
+      "postedAt": "2026-11-14T21:04:00+03:00",
+      "tags": [
+        "AI",
+        "AI Agents",
+        "Grok Bot"
+      ],
+      "description": "الفيديو الثاني من سلسلة GrokBot: وكلاء ذكاء اصطناعي مع Grok Bot.",
+      "descriptionEn": "Video 2 of 5 in the GrokBot series: AI agents with Grok Bot.",
+      "url": "https://x.ai/bot",
+      "videoUrl": "https://www.instagram.com/reel/DfuzjMZxddP/"
+    },
+    {
       "slug": "google-maps-leads",
       "title": "أحسن طريقة تلاقي فيها عملاء جداد إذا عندك بزنس",
       "titleEn": "The best way to find new clients for your business",
