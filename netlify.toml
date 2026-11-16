@@ -67,3 +67,11 @@
   from = "/links/*"
   to = "/links/index.html"
   status = 200
+
+# The workshop page is a real file. Force the bare path to that file so
+# /grok-workshop returns 200, same as /grok-workshop/.
+[[redirects]]
+  from = "/grok-workshop"
+  to = "/grok-workshop/index.html"
+  status = 200
+  force = true

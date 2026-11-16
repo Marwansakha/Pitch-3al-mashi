@@ -121,6 +121,10 @@ expectServe("/links/thumbs/" + slug + ".jpg", slug + ".jpg");
 expectServe("/links/avatar.svg", "avatar.svg");
 expectServe("/content/videos.json", "videos.json");
 expectServe("/links/index.html", "links/index.html");
+expectServe("/grok-workshop", "grok-workshop/index.html");
+expectServe("/grok-workshop/", "grok-workshop/index.html");
+expectServe("/grok-workshop/thanks", "grok-workshop/thanks/index.html");
+expectServe("/grok-workshop/thanks/", "grok-workshop/thanks/index.html");
 
 const homeHtml = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const bioHtml = fs.readFileSync(path.join(root, "links/index.html"), "utf8");
