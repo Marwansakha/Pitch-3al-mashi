@@ -178,10 +178,10 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .amount .num{font-size:clamp(64px,10vw,96px);line-height:.9;color:var(--on)}
 .amount .cur{font-size:28px;color:var(--amber);font-weight:500}
 .per{margin:6px 0 0;color:#E4DDD2}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;list-style:none;margin:0;padding:0}
 .fact{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start}
-.fact dt{font-size:13px;color:#E4DDD2;font-weight:500}
-.fact dd{margin:0;font-weight:700}
+.fact .k{font-size:13px;color:#E4DDD2;font-weight:500;margin:0}
+.fact .v{margin:0;font-weight:700}
 .price-cta{margin-top:22px}
 .fine{margin:12px 0 0;color:#E4DDD2;font-size:15px}
 
@@ -450,13 +450,13 @@ footer a:hover{color:var(--ink)}
           <p class="fine">بعد ما تسجّل، رح نتواصل معك بكل التفاصيل.</p>
         </div>
       </div>
-      <dl class="facts">
-        <div class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><dt>التاريخ</dt><dd>الجمعة 18 والسبت 19 ديسمبر 2026</dd></div></div>
-        <div class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><dt>الوقت</dt><dd>6:00–8:00 مساءً، الرياض وعمّان</dd></div></div>
-        <div class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 19c.8-3 3-4.5 7-4.5S18.2 16 19 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><dt>الشكل</dt><dd>أونلاين، مباشرة مع مروان</dd></div></div>
-        <div class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><dt>المدة</dt><dd>جلستين، ساعتين كل يوم</dd></div></div>
-        <div class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="8" width="12" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="13" r="1" fill="currentColor"/><circle cx="14" cy="13" r="1" fill="currentColor"/><path d="M9 5h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><dt>الأداة</dt><dd><bdi class="latin" dir="ltr">Grok Bot</bdi></dd></div></div>
-      </dl>
+      <ul class="facts">
+        <li class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><p class="k">التاريخ</p><p class="v">الجمعة 18 والسبت 19 ديسمبر 2026</p></div></li>
+        <li class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><p class="k">الوقت</p><p class="v">6:00–8:00 مساءً، الرياض وعمّان</p></div></li>
+        <li class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 19c.8-3 3-4.5 7-4.5S18.2 16 19 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><p class="k">الشكل</p><p class="v">أونلاين، مباشرة مع مروان</p></div></li>
+        <li class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><p class="k">المدة</p><p class="v">جلستين، ساعتين كل يوم</p></div></li>
+        <li class="fact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="8" width="12" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="13" r="1" fill="currentColor"/><circle cx="14" cy="13" r="1" fill="currentColor"/><path d="M9 5h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><p class="k">الأداة</p><p class="v"><bdi class="latin" dir="ltr">Grok Bot</bdi></p></div></li>
+      </ul>
     </div>
   </section>
 
