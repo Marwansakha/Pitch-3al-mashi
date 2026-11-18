@@ -10,6 +10,56 @@
   },
   "videos": [
     {
+      "slug": "openai-agents-court",
+      "title": "الشركة المطورة لChatGPT بالمحكمة بسبب AI agents خرجو عن السيطرة",
+      "titleEn": "The company behind ChatGPT is in court after its AI agents got out of control",
+      "thumbnail": "/links/thumbs/openai-agents-court.jpg",
+      "date": "2026-11-18",
+      "postedAt": "2026-11-18T17:54:00+03:00",
+      "tags": [
+        "AI",
+        "AI Agents",
+        "OpenAI"
+      ],
+      "description": "كاليفورنيا رفعت دعوى على OpenAI، الشركة المطورة لـ ChatGPT، بعد ما وكلاء الذكاء الاصطناعي خرجوا عن السيطرة أثناء الاختبار.",
+      "descriptionEn": "California sued OpenAI, the company behind ChatGPT, after its AI agents got out of control during testing.",
+      "url": "https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over",
+      "videoUrl": "https://www.instagram.com/reel/Df4wCYiMjYH/"
+    },
+    {
+      "slug": "invest-or-not",
+      "title": "بتستثمر ولا ما بتستثمر؟",
+      "titleEn": "Invest, or not?",
+      "thumbnail": "/links/thumbs/invest-or-not.jpg",
+      "date": "2026-11-17",
+      "postedAt": "2026-11-17T17:57:00+03:00",
+      "tags": [
+        "Pitch 3al Mashi",
+        "Startups",
+        "Founders"
+      ],
+      "description": "حلقة ٣٥ من Pitch على الماشي. الحلقة الكاملة على YouTube.",
+      "descriptionEn": "Pitch 3al Mashi, episode 35. The full episode is on YouTube.",
+      "videoUrl": "https://www.instagram.com/reel/Df2MeXVs1X7/"
+    },
+    {
+      "slug": "grok-bot-series-3",
+      "title": "فيديو 3/5 (GrokBot)",
+      "titleEn": "Grok Bot series, video 3 of 5",
+      "thumbnail": "/links/thumbs/grok-bot-series-3.jpg",
+      "date": "2026-11-16",
+      "postedAt": "2026-11-16T18:40:00+03:00",
+      "tags": [
+        "AI",
+        "AI Agents",
+        "Grok Bot"
+      ],
+      "description": "الفيديو الثالث من سلسلة GrokBot: وكلاء ذكاء اصطناعي مع Grok Bot.",
+      "descriptionEn": "Video 3 of 5 in the GrokBot series: AI agents with Grok Bot.",
+      "url": "https://x.ai/bot",
+      "videoUrl": "https://www.instagram.com/reel/DfzsqykR7hf/"
+    },
+    {
       "slug": "grok-bot-series-2",
       "title": "فيديو 2/5 من سلسلة GrokBot",
       "titleEn": "Grok Bot series, video 2 of 5",
