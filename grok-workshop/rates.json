@@ -1,0 +1,17 @@
+{
+  "base": "AED",
+  "amount": 780,
+  "asOf": "2026-11-19",
+  "note": "السعر تقريبي، والدفع بالدرهم الإماراتي.",
+  "currencies": [
+    { "code": "AED", "name": "درهم إماراتي", "label": "درهم", "perAed": 1, "decimals": 0 },
+    { "code": "SAR", "name": "ريال سعودي", "label": "ريال سعودي", "perAed": 1.021104, "decimals": 0 },
+    { "code": "JOD", "name": "دينار أردني", "label": "دينار أردني", "perAed": 0.19305, "decimals": 2 },
+    { "code": "USD", "name": "دولار أمريكي", "label": "دولار", "perAed": 0.272294, "decimals": 2 },
+    { "code": "KWD", "name": "دينار كويتي", "label": "دينار كويتي", "perAed": 0.084921, "decimals": 3 },
+    { "code": "QAR", "name": "ريال قطري", "label": "ريال قطري", "perAed": 0.99115, "decimals": 0 },
+    { "code": "BHD", "name": "دينار بحريني", "label": "دينار بحريني", "perAed": 0.1028, "decimals": 3 },
+    { "code": "OMR", "name": "ريال عماني", "label": "ريال عماني", "perAed": 0.106, "decimals": 3 },
+    { "code": "EGP", "name": "جنيه مصري", "label": "جنيه مصري", "perAed": 14.6545, "decimals": 0 }
+  ]
+}

@@ -41,7 +41,6 @@ for (const field of ["name", "email", "role", "phone", "city"]) {
   assert.match(page, new RegExp(`name="${field}"[^>]*required|required[^>]*name="${field}"`));
 }
 assert.match(page, /id="phone"[^>]*dir="ltr"/);
-assert.match(page, /980/);
 assert.ok(sitemap.includes("https://marwandoesai.com/grok-workshop"));
 
 const webp = fs.statSync(path.join(root, "grok-workshop/marwan.webp")).size;
@@ -49,7 +48,15 @@ const jpg = fs.statSync(path.join(root, "grok-workshop/marwan.jpg")).size;
 assert.ok(webp < 80000, "webp " + webp);
 assert.ok(jpg < 80000, "jpg " + jpg);
 
-assert.match(thanks, /تمام، وصلنا تسجيلك/);
+assert.match(thanks, /تم حجز مقعدك مبدئياً/);
+assert.match(page, /تم حجز مقعدك مبدئياً/);
+assert.match(page, /780/);
+assert.match(page, /درهم/);
+assert.equal(page.includes("980"), false);
+assert.match(page, /name="session"/);
+assert.match(page, /2026-12-18/);
+assert.match(page, /2027-01-30/);
+assert.match(page, /rates\.json/);
 assert.equal(home.includes("/grok-workshop"), false);
 assert.match(toml, /from = "\/links"\s+to = "\/"\s+status = 301\s+force = true/);
 assert.match(toml, /from = "\/bio"\s+to = "\/links\/index\.html"\s+status = 200/);
