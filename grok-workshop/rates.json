@@ -2,7 +2,7 @@
   "base": "AED",
   "amount": 780,
   "asOf": "2026-11-19",
-  "note": "السعر تقريبي، والدفع بالدرهم الإماراتي.",
+  "note": "السعر تقريبي.",
   "currencies": [
     { "code": "AED", "name": "درهم إماراتي", "label": "درهم", "perAed": 1, "decimals": 0 },
     { "code": "SAR", "name": "ريال سعودي", "label": "ريال سعودي", "perAed": 1.021104, "decimals": 0 },

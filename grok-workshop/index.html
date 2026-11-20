@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ورشة Grok Bot: رجّع ساعتين من يومك | مروان أبو سخا</title>
-<meta name="description" content="ورشة أونلاين، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة، والدفع بالدرهم.">
+<meta name="description" content="ورشة أونلاين، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة.">
 <meta property="og:title" content="ورشة Grok Bot: رجّع ساعتين من يومك | مروان أبو سخا">
-<meta property="og:description" content="ورشة أونلاين، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة، والدفع بالدرهم.">
+<meta property="og:description" content="ورشة أونلاين، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة.">
 <meta property="og:image" content="https://marwandoesai.com/grok-workshop/og.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="ar_AR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ورشة Grok Bot: رجّع ساعتين من يومك | مروان أبو سخا">
-<meta name="twitter:description" content="ورشة أونلاين، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة، والدفع بالدرهم.">
+<meta name="twitter:description" content="ورشة أونلاين، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة.">
 <meta name="twitter:image" content="https://marwandoesai.com/grok-workshop/og.png">
 <link rel="canonical" href="https://marwandoesai.com/grok-workshop">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
@@ -450,7 +450,11 @@ footer a:hover{color:var(--ink)}
       <div>
         <h2 id="price-title">التفاصيل</h2>
         <p class="amount"><span class="num serif"><span id="price-num" class="money">780</span></span> <span class="cur money-label">درهم</span></p>
-        <p class="per">السعر للشخص وشامل الضريبة. الدفع بالدرهم الإماراتي، وفي فاتورة ضريبية إذا الشركة رح تدفع.</p>
+        <p class="per">السعر للشخص وشامل الضريبة، وفي فاتورة ضريبية إذا الشركة رح تدفع.</p>
+        <div class="fx">
+          <label for="currency" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">العملة</label>
+          <select id="currency"></select>
+        </div>
         <div class="price-cta">
           <a class="btn light" href="/grok-workshop/register">احجز مقعدك</a>
           <p class="fine">بعد ما تسجّل، رح نتواصل معك بكل التفاصيل.</p>
@@ -483,7 +487,7 @@ footer a:hover{color:var(--ink)}
       </details>
       <details>
         <summary>كيف بدفع وبعرف التفاصيل؟ <svg class="chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
-        <p>سجّل من <a href="/grok-workshop/register">صفحة الحجز</a>، وبعدها ادفع لتأكيد مقعدك. السعر <span class="money">780</span> <span class="money-label">درهم</span> للشخص وشامل الضريبة. الدفع بالدرهم الإماراتي، وفي فاتورة ضريبية إذا الشركة رح تدفع. المقعد بيضل محجوز لمدة يومين لحين إتمام الدفع.</p>
+        <p>سجّل من <a href="/grok-workshop/register">صفحة الحجز</a>، وبعدها ادفع لتأكيد مقعدك. السعر <span class="money">780</span> <span class="money-label">درهم</span> للشخص وشامل الضريبة، وفي فاتورة ضريبية إذا الشركة رح تدفع. المقعد بيضل محجوز لمدة يومين لحين إتمام الدفع.</p>
       </details>
     </div>
   </section>
@@ -556,6 +560,55 @@ footer a:hover{color:var(--ink)}
   } catch (err) {
     revealAll();
   }
+})();
+</script>
+<script>
+(function () {
+  var KEY = "grok-workshop-currency";
+  function readSaved() {
+    try { return localStorage.getItem(KEY) || ""; } catch (err) { return ""; }
+  }
+  function writeSaved(code) {
+    try { localStorage.setItem(KEY, code); } catch (err) {}
+  }
+  fetch("/grok-workshop/rates.json").then(function (res) { return res.json(); }).then(function (rates) {
+    var select = document.getElementById("currency");
+    var i;
+    function find(code) {
+      for (i = 0; i < rates.currencies.length; i++) {
+        if (rates.currencies[i].code === code) return rates.currencies[i];
+      }
+      return null;
+    }
+    for (i = 0; i < rates.currencies.length; i++) {
+      var option = document.createElement("option");
+      option.value = rates.currencies[i].code;
+      option.textContent = rates.currencies[i].name;
+      select.appendChild(option);
+    }
+    function render(code) {
+      var item = find(code) || find(rates.base) || rates.currencies[0];
+      var text = (rates.amount * item.perAed).toFixed(item.decimals);
+      if (item.decimals > 0) text = text.replace(/0+$/, "").replace(/\.$/, "");
+      var amounts = document.querySelectorAll(".money");
+      var labels = document.querySelectorAll(".money-label");
+      var n;
+      for (n = 0; n < amounts.length; n++) amounts[n].textContent = text;
+      for (n = 0; n < labels.length; n++) labels[n].textContent = item.label;
+      select.value = item.code;
+    }
+    select.addEventListener("change", function () {
+      writeSaved(select.value);
+      render(select.value);
+    });
+    var saved = readSaved();
+    if (saved && find(saved)) { render(saved); return; }
+    render(rates.base);
+    fetch("/.netlify/functions/currency-geo").then(function (res) { return res.json(); }).then(function (data) {
+      if (readSaved()) return;
+      render(data && find(data.currency) ? data.currency : rates.base);
+    }).catch(function () {});
+  }).catch(function () {});
 })();
 </script>
 </body>
