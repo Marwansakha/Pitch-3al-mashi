@@ -67,6 +67,8 @@ assert.equal(register.includes("2027-01-30"), false);
 assert.equal(register.includes("next-session"), false);
 assert.match(register, /سجّل اسمك للجلسة الجاية/);
 assert.match(register, /باقي أماكن قليلة/);
+assert.match(register, /مكتمل العدد/);
+assert.match(register, /seatsLeft <= 5/);
 assert.match(register, /مقعد متبقي/);
 assert.match(register, /String\(row\.seatsLeft\) \+ "\/" \+ String\(row\.capacity\)/);
 assert.equal(register.includes("11/20"), false);

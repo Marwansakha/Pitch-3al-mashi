@@ -42,6 +42,7 @@ h1{font-size:clamp(30px,6vw,42px);line-height:1.3;margin:0 0 8px}
 .sessions{display:grid;gap:12px}
 .session{border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--bg);display:grid;gap:8px}
 .session h2{margin:0;font-size:18px}
+.session.is-full h2,.session.is-full .when{color:var(--muted)}
 .session .when{margin:0;color:var(--muted);font-size:14px}
 .session .seats{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin:2px 0 6px}
 .session .left{display:inline-block;font-weight:700;font-size:36px;line-height:1;font-variant-numeric:tabular-nums;transform-origin:center}
@@ -111,7 +112,7 @@ footer a{color:var(--muted);text-decoration:none}
   <div class="wrap">
     <div class="session-head">
       <h1>سجّل اسمك للجلسة الجاية</h1>
-      <p class="badge">باقي أماكن قليلة</p>
+      <p class="badge" id="few-seats" hidden>باقي أماكن قليلة</p>
     </div>
     <p class="sub">الجمعة 18 والسبت 19 ديسمبر. ساعتين كل يوم، من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان.</p>
     <div class="sessions">
@@ -137,7 +138,7 @@ footer a{color:var(--muted);text-decoration:none}
           <h2>تم حجز مقعدك مبدئياً!</h2>
           <ul class="pay-summary">
             <li><span>الورشة</span><b>ورشة <bdi class="latin" lang="en" dir="ltr">Grok Bot</bdi></b></li>
-            <li><span>التاريخ</span><b>الجمعة 18 والسبت 19 ديسمبر</b></li>
+            <li><span>التاريخ</span><b id="pay-date">الجمعة 18 والسبت 19 ديسمبر</b></li>
             <li><span>الوقت</span><b>ساعتين كل يوم، 6:00–8:00 المسا</b></li>
             <li><span>السعر</span><b>780 درهم</b></li>
           </ul>
@@ -208,29 +209,70 @@ footer a{color:var(--muted);text-decoration:none}
   var form = document.querySelector("form[name=grok-workshop]");
   var button = form.querySelector("button[type=submit]");
   var label = button.querySelector(".btn-label");
+  var whenText = "6:00–8:00 المسا · ساعتين كل يوم · أونلاين";
+  function makeCard(row) {
+    var full = row.full || row.seatsLeft === 0;
+    var card = document.createElement("article");
+    var title = document.createElement("h2");
+    var when = document.createElement("p");
+    var seats = document.createElement("p");
+    var count = document.createElement("b");
+    var seatsLabel = document.createElement("span");
+    var btn = document.createElement("button");
+    card.className = "session" + (full ? " is-full" : "");
+    card.setAttribute("data-session", row.id);
+    title.textContent = row.label || "";
+    when.className = "when";
+    when.textContent = whenText;
+    seats.className = "seats";
+    count.className = "left live";
+    count.dir = "ltr";
+    count.textContent = String(row.seatsLeft) + "/" + String(row.capacity);
+    seatsLabel.className = "seats-label";
+    seatsLabel.textContent = "مقعد متبقي";
+    btn.className = "btn session-go";
+    btn.type = "button";
+    btn.disabled = full;
+    btn.textContent = full ? "مكتمل العدد" : "احجز مقعدك";
+    seats.appendChild(count);
+    seats.appendChild(seatsLabel);
+    card.appendChild(title);
+    card.appendChild(when);
+    card.appendChild(seats);
+    card.appendChild(btn);
+    return card;
+  }
   function paintSeats(list) {
-    var i, row, card, btn, option;
-    for (i = 0; i < (list || []).length; i++) {
-      row = list[i];
-      card = document.querySelector('.session[data-session="' + row.id + '"]');
-      if (!card) continue;
-      var count = card.querySelector(".left");
-      if (!count) continue;
-      count.textContent = String(row.seatsLeft) + "/" + String(row.capacity);
-      count.classList.add("live");
-      card.querySelector(".seats").hidden = false;
-      btn = card.querySelector(".session-go");
-      option = document.querySelector('#session option[value="' + row.id + '"]');
-      if (row.full || row.seatsLeft === 0) {
-        btn.disabled = true;
-        btn.textContent = "ممتلئ";
-        if (option) option.disabled = true;
-      } else {
-        btn.disabled = false;
-        btn.textContent = "احجز مقعدك";
-        if (option) option.disabled = false;
-      }
+    if (!list || !list.length) return;
+    var root = document.querySelector(".sessions");
+    var select = document.getElementById("session");
+    var badge = document.getElementById("few-seats");
+    var sub = document.querySelector("main .sub");
+    var previous = form.elements.session.value;
+    var open = null;
+    var i;
+    root.textContent = "";
+    select.textContent = "";
+    for (i = 0; i < list.length; i++) {
+      var row = list[i];
+      var full = row.full || row.seatsLeft === 0;
+      root.appendChild(makeCard(row));
+      if (full) continue;
+      open = row;
+      var option = document.createElement("option");
+      option.value = row.id;
+      option.textContent = row.label;
+      select.appendChild(option);
     }
+    var wait = document.createElement("option");
+    wait.value = "waitlist";
+    wait.textContent = "قائمة الانتظار للجلسات القادمة";
+    select.appendChild(wait);
+    if (previous === "waitlist") select.value = "waitlist";
+    else if (open) select.value = open.id;
+    if (badge) badge.hidden = !(open && open.seatsLeft > 0 && open.seatsLeft <= 5);
+    if (open && sub) sub.textContent = open.label.replace(/ \d{4}$/, "") + ". ساعتين كل يوم، من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان.";
+    applySessionMode();
   }
   function loadSeats() {
     return fetch("/.netlify/functions/register").then(function (res) {
@@ -246,23 +288,25 @@ footer a{color:var(--muted);text-decoration:none}
   }
   function applySessionMode() {
     var waitlist = sessionIsWaitlist();
+    var chosen = form.elements.session.options[form.elements.session.selectedIndex];
+    var dateLabel = chosen && chosen.value !== "waitlist" ? chosen.textContent.replace(/ \d{4}$/, "") : "الجمعة 18 والسبت 19 ديسمبر";
+    var payDate = document.getElementById("pay-date");
     document.getElementById("form-hint").textContent = waitlist
       ? "قائمة الانتظار للجلسات القادمة. عبّي بياناتك، وبنراسلك أول ما ينفتح تاريخ جديد."
-      : "الورشة يومين: الجمعة 18 والسبت 19 ديسمبر. عبّي بياناتك. كل الحقول مطلوبة.";
+      : "الورشة يومين: " + dateLabel + ". عبّي بياناتك. كل الحقول مطلوبة.";
     document.getElementById("form-title").textContent = waitlist ? "قائمة الانتظار للجلسات القادمة" : "سجّل مقعدك";
+    if (payDate && !waitlist) payDate.textContent = dateLabel;
     form.action = waitlist ? "/grok-workshop/thanks?list=waitlist" : "/grok-workshop/thanks";
     if (!button.disabled) label.textContent = waitlist ? "سجّلني على القائمة" : "احجز مقعدي";
   }
-  var buttons = document.querySelectorAll(".session-go");
-  for (var b = 0; b < buttons.length; b++) {
-    buttons[b].addEventListener("click", function () {
-      if (this.disabled) return;
-      form.elements.session.value = this.parentNode.getAttribute("data-session");
-      applySessionMode();
-      document.getElementById("register").scrollIntoView({ block: "start" });
-      form.elements.name.focus();
-    });
-  }
+  document.querySelector("main").addEventListener("click", function (event) {
+    var btn = event.target.closest(".session-go");
+    if (!btn || btn.disabled) return;
+    form.elements.session.value = btn.parentNode.getAttribute("data-session");
+    applySessionMode();
+    document.getElementById("register").scrollIntoView({ block: "start" });
+    form.elements.name.focus();
+  });
   form.elements.session.addEventListener("change", applySessionMode);
   fetch("/grok-workshop/rates.json").then(function (res) { return res.json(); }).then(function (rates) {
     var select = document.getElementById("currency");

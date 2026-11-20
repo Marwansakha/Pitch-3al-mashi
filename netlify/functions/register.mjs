@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import { book, releaseTests, seatsLeft } from "../../grok-workshop/seat-math.mjs";
+import { book, offeredSessions, releaseTests, seatsLeft } from "../../grok-workshop/seat-math.mjs";
 
 const STORE = "workshop-seats";
 
@@ -35,9 +35,9 @@ async function loadBookings(store) {
 
 function summary(sessions, bookings) {
   return {
-    sessions: sessions.filter((session) => session.active !== false).map((session) => {
+    sessions: offeredSessions(sessions, bookings).map((session) => {
       const left = seatsLeft(session, bookings);
-      return { id: session.id, seatsLeft: left, capacity: session.capacity, full: left === 0 };
+      return { id: session.id, label: session.label, seatsLeft: left, capacity: session.capacity, full: left === 0 };
     })
   };
 }
@@ -99,8 +99,11 @@ export default async function handler(request) {
     return reply({ error: "fields" }, 400);
   }
 
-  const result = book(sessions, bookings, entry);
-  if (!result.ok) return reply(result, result.error === "full" ? 409 : 400);
+  const offered = offeredSessions(sessions, bookings);
+  const result = book(offered, bookings, entry);
+  if (!result.ok) {
+    return reply(Object.assign({}, result, { sessions: summary(sessions, bookings).sessions }), result.error === "full" ? 409 : 400);
+  }
   await store.setJSON(key(), result.bookings);
   return reply({
     ok: true,
