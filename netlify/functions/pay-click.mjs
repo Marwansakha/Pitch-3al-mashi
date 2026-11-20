@@ -36,7 +36,7 @@ export default async function handler(request, context) {
   if (request.method === "GET") {
     try {
       const clicks = (await store.get(key, { type: "json" })) || [];
-      return reply({ count: clicks.length, clicks: clicks });
+      return reply({ count: clicks.length });
     } catch (error) {
       return reply({ error: "store" }, 500);
     }
