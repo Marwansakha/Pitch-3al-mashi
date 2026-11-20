@@ -46,7 +46,7 @@ const filled = [{ sessionId: "2026-12-18", email: "a@example.com", name: "A" }];
 const rolled = offeredSessions(catalog, filled);
 assert.deepEqual(rolled.map((session) => session.id), ["2026-12-18", "2026-12-25"]);
 assert.equal(rolled[1].seeded, 0);
-assert.equal(rolled[1].label, "الجمعة 25 والسبت 26 ديسمبر 2026");
+assert.equal(rolled[1].label, "25 و26 ديسمبر 2026");
 assert.equal(seatsLeft(rolled[1], filled), 2);
 assert.equal(book(rolled, filled, { sessionId: "2026-12-18", name: "بعد", email: "late@example.com" }).error, "full");
 assert.equal(book(rolled, filled, { sessionId: "2026-12-25", name: "جديد", email: "new@example.com" }).ok, true);
@@ -56,7 +56,7 @@ const bothFull = filled.concat([
 ]);
 assert.equal(offeredSessions(catalog, bothFull)[2].id, "2027-01-01");
 assert.equal(offeredSessions(catalog, bothFull)[2].seeded, 0);
-assert.equal(offeredSessions(catalog, bothFull)[2].label, "الجمعة 1 والسبت 2 يناير 2027");
+assert.equal(offeredSessions(catalog, bothFull)[2].label, "1 و2 يناير 2027");
 assert.equal(book(rolled, filled, { sessionId: "2027-02-05", name: "بعيد", email: "far@example.com" }).error, "inactive");
 
 console.log("seat math passed");
