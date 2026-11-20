@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>احجز مقعدك | ورشة Grok Bot</title>
-<meta name="description" content="سجّل اسمك لورشة Grok Bot، الجمعة 18 والسبت 19 ديسمبر، ساعتين كل يوم من 6:00 لـ 8:00 المسا. 780 درهم للشخص، شامل الضريبة.">
+<meta name="description" content="سجّل اسمك لورشة Grok Bot، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://marwandoesai.com/grok-workshop/register">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
@@ -44,6 +44,8 @@ h1{font-size:clamp(30px,6vw,42px);line-height:1.3;margin:0 0 8px}
 .session h2{margin:0;font-size:18px}
 .session.is-full h2,.session.is-full .when{color:var(--muted)}
 .session .when{margin:0;color:var(--muted);font-size:14px}
+.times{display:grid;gap:2px}
+.times span{display:block}
 .session .seats{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin:2px 0 6px}
 .session .left{display:inline-block;font-weight:700;font-size:36px;line-height:1;font-variant-numeric:tabular-nums;transform-origin:center}
 .seats-label{color:var(--muted);font-size:13px;font-weight:500}
@@ -114,11 +116,11 @@ footer a{color:var(--muted);text-decoration:none}
       <h1>سجّل اسمك للجلسة الجاية</h1>
       <p class="badge" id="few-seats" hidden>باقي أماكن قليلة</p>
     </div>
-    <p class="sub">الجمعة 18 والسبت 19 ديسمبر. ساعتين كل يوم، من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان.</p>
+    <p class="sub">18 و19 ديسمبر 2026 • <bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي.</p>
     <div class="sessions">
       <article class="session" data-session="2026-12-18">
-        <h2>الجمعة 18 والسبت 19 ديسمبر 2026</h2>
-        <p class="when">6:00–8:00 المسا · ساعتين كل يوم · أونلاين</p>
+        <h2>18 و19 ديسمبر 2026</h2>
+        <p class="when"><span class="times"><span><bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض</span><span> • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي</span></span></p>
         <p class="seats" hidden>
           <b class="left" dir="ltr"></b>
           <span class="seats-label">مقعد متبقي</span>
@@ -138,8 +140,8 @@ footer a{color:var(--muted);text-decoration:none}
           <h2>تم حجز مقعدك مبدئياً!</h2>
           <ul class="pay-summary">
             <li><span>الورشة</span><b>ورشة <bdi class="latin" lang="en" dir="ltr">Grok Bot</bdi></b></li>
-            <li><span>التاريخ</span><b id="pay-date">الجمعة 18 والسبت 19 ديسمبر</b></li>
-            <li><span>الوقت</span><b>ساعتين كل يوم، 6:00–8:00 المسا</b></li>
+            <li><span>التاريخ</span><b id="pay-date">18 و19 ديسمبر 2026</b></li>
+            <li><span>الوقت</span><b><bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي</b></li>
             <li><span>السعر</span><b>780 درهم</b></li>
           </ul>
           <p>مقعدك محجوز لمدة يومين لحين إتمام الدفع</p>
@@ -157,14 +159,14 @@ footer a{color:var(--muted);text-decoration:none}
       </div>
       <form name="grok-workshop" method="POST" action="/grok-workshop/thanks" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8" novalidate>
         <h2 id="form-title">سجّل مقعدك</h2>
-        <p class="hint" id="form-hint">الورشة يومين: الجمعة 18 والسبت 19 ديسمبر. عبّي بياناتك. كل الحقول مطلوبة.</p>
+        <p class="hint" id="form-hint">الورشة يومين: 18 و19 ديسمبر 2026. عبّي بياناتك. كل الحقول مطلوبة.</p>
         <input type="hidden" name="form-name" value="grok-workshop">
         <p hidden><label>لا تعبّي هاد الحقل <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="fields">
           <div class="field">
             <label for="session">الجلسة</label>
             <select id="session" name="session" required>
-              <option value="2026-12-18" selected>الجمعة 18 والسبت 19 ديسمبر 2026</option>
+              <option value="2026-12-18" selected>18 و19 ديسمبر 2026</option>
               <option value="waitlist">قائمة الانتظار للجلسات القادمة</option>
             </select>
             <p class="field-error" id="session-error" hidden></p>
@@ -196,7 +198,7 @@ footer a{color:var(--muted);text-decoration:none}
           </div>
         </div>
         <p class="form-error" id="form-error" hidden role="alert">ما وصل الطلب. تأكد من النت وجرّب مرة تانية.</p>
-        <button class="btn full" type="submit" style="margin-top:16px"><span class="btn-label">احجز مقعدي</span></button>
+        <button class="btn full" type="submit" style="margin-top:16px"><span class="btn-label">إرسال طلب الحجز</span></button>
       </form>
     </div>
   </div>
@@ -209,7 +211,8 @@ footer a{color:var(--muted);text-decoration:none}
   var form = document.querySelector("form[name=grok-workshop]");
   var button = form.querySelector("button[type=submit]");
   var label = button.querySelector(".btn-label");
-  var whenText = "6:00–8:00 المسا · ساعتين كل يوم · أونلاين";
+  var whenAmman = "6:00–8:00";
+  var whenDubai = "7:00–9:00";
   function makeCard(row) {
     var full = row.full || row.seatsLeft === 0;
     var card = document.createElement("article");
@@ -223,7 +226,26 @@ footer a{color:var(--muted);text-decoration:none}
     card.setAttribute("data-session", row.id);
     title.textContent = row.label || "";
     when.className = "when";
-    when.textContent = whenText;
+    var times = document.createElement("span");
+    var lineOne = document.createElement("span");
+    var lineTwo = document.createElement("span");
+    var amman = document.createElement("bdi");
+    var dubai = document.createElement("bdi");
+    times.className = "times";
+    amman.className = "latin";
+    amman.dir = "ltr";
+    amman.textContent = whenAmman;
+    dubai.className = "latin";
+    dubai.dir = "ltr";
+    dubai.textContent = whenDubai;
+    lineOne.appendChild(amman);
+    lineOne.appendChild(document.createTextNode(" مساءً بتوقيت عمّان والرياض"));
+    lineTwo.appendChild(document.createTextNode("• "));
+    lineTwo.appendChild(dubai);
+    lineTwo.appendChild(document.createTextNode(" مساءً بتوقيت دبي"));
+    times.appendChild(lineOne);
+    times.appendChild(lineTwo);
+    when.appendChild(times);
     seats.className = "seats";
     count.className = "left live";
     count.dir = "ltr";
@@ -271,7 +293,7 @@ footer a{color:var(--muted);text-decoration:none}
     if (previous === "waitlist") select.value = "waitlist";
     else if (open) select.value = open.id;
     if (badge) badge.hidden = !(open && open.seatsLeft > 0 && open.seatsLeft <= 5);
-    if (open && sub) sub.textContent = open.label.replace(/ \d{4}$/, "") + ". ساعتين كل يوم، من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان.";
+    if (open && sub) sub.textContent = open.label + " • 6:00–8:00 مساءً بتوقيت عمّان والرياض • 7:00–9:00 مساءً بتوقيت دبي";
     applySessionMode();
   }
   function loadSeats() {
@@ -282,14 +304,20 @@ footer a{color:var(--muted);text-decoration:none}
       paintSeats(data.sessions);
     });
   }
-  loadSeats().catch(function () {});
+  loadSeats().catch(function () {
+    var badge = document.getElementById("few-seats");
+    var seats = document.querySelectorAll(".seats");
+    var i;
+    if (badge) badge.hidden = true;
+    for (i = 0; i < seats.length; i++) seats[i].hidden = true;
+  });
   function sessionIsWaitlist() {
     return form.elements.session.value === "waitlist";
   }
   function applySessionMode() {
     var waitlist = sessionIsWaitlist();
     var chosen = form.elements.session.options[form.elements.session.selectedIndex];
-    var dateLabel = chosen && chosen.value !== "waitlist" ? chosen.textContent.replace(/ \d{4}$/, "") : "الجمعة 18 والسبت 19 ديسمبر";
+    var dateLabel = chosen && chosen.value !== "waitlist" ? chosen.textContent : "18 و19 ديسمبر 2026";
     var payDate = document.getElementById("pay-date");
     document.getElementById("form-hint").textContent = waitlist
       ? "قائمة الانتظار للجلسات القادمة. عبّي بياناتك، وبنراسلك أول ما ينفتح تاريخ جديد."
@@ -297,7 +325,7 @@ footer a{color:var(--muted);text-decoration:none}
     document.getElementById("form-title").textContent = waitlist ? "قائمة الانتظار للجلسات القادمة" : "سجّل مقعدك";
     if (payDate && !waitlist) payDate.textContent = dateLabel;
     form.action = waitlist ? "/grok-workshop/thanks?list=waitlist" : "/grok-workshop/thanks";
-    if (!button.disabled) label.textContent = waitlist ? "سجّلني على القائمة" : "احجز مقعدي";
+    if (!button.disabled) label.textContent = waitlist ? "سجّلني على القائمة" : "إرسال طلب الحجز";
   }
   document.querySelector("main").addEventListener("click", function (event) {
     var btn = event.target.closest(".session-go");

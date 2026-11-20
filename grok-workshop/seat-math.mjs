@@ -28,12 +28,12 @@ export function weekendLabel(fridayId) {
   const startYear = start.getUTCFullYear();
   const endYear = end.getUTCFullYear();
   if (startMonth === endMonth && startYear === endYear) {
-    return "الجمعة " + startDay + " والسبت " + endDay + " " + startMonth + " " + startYear;
+    return startDay + " و" + endDay + " " + startMonth + " " + startYear;
   }
   if (startYear === endYear) {
-    return "الجمعة " + startDay + " " + startMonth + " والسبت " + endDay + " " + endMonth + " " + startYear;
+    return startDay + " " + startMonth + " و" + endDay + " " + endMonth + " " + startYear;
   }
-  return "الجمعة " + startDay + " " + startMonth + " " + startYear + " والسبت " + endDay + " " + endMonth + " " + endYear;
+  return startDay + " " + startMonth + " " + startYear + " و" + endDay + " " + endMonth + " " + endYear;
 }
 
 export function offeredSessions(sessions, bookings) {
