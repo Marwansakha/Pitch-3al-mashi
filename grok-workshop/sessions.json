@@ -4,7 +4,7 @@
   "format": "أونلاين",
   "timezone": "توقيت الرياض وعمّان",
   "sessions": [
-    { "id": "2026-12-18", "label": "الجمعة 18 والسبت 19 ديسمبر 2026", "seeded": 9, "active": true },
+    { "id": "2026-12-18", "label": "الجمعة 18 والسبت 19 ديسمبر 2026", "seeded": 5, "active": true },
     { "id": "2026-12-19", "label": "السبت 19 ديسمبر 2026", "seeded": 0, "active": false },
     { "id": "2027-01-02", "label": "الجمعة 2 يناير 2027", "seeded": 0, "active": false },
     { "id": "2027-01-16", "label": "الجمعة 16 يناير 2027", "seeded": 0, "active": false },
