@@ -1,3 +1,67 @@
+const MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+
+function parseISO(id) {
+  const parts = String(id).split("-").map(Number);
+  return Date.UTC(parts[0], parts[1] - 1, parts[2]);
+}
+
+function formatISO(ms) {
+  const date = new Date(ms);
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  return date.getUTCFullYear() + "-" + month + "-" + day;
+}
+
+export function addDays(id, days) {
+  return formatISO(parseISO(id) + days * 86400000);
+}
+
+export function weekendLabel(fridayId) {
+  const friday = parseISO(fridayId);
+  const saturday = friday + 86400000;
+  const start = new Date(friday);
+  const end = new Date(saturday);
+  const startDay = start.getUTCDate();
+  const endDay = end.getUTCDate();
+  const startMonth = MONTHS[start.getUTCMonth()];
+  const endMonth = MONTHS[end.getUTCMonth()];
+  const startYear = start.getUTCFullYear();
+  const endYear = end.getUTCFullYear();
+  if (startMonth === endMonth && startYear === endYear) {
+    return "الجمعة " + startDay + " والسبت " + endDay + " " + startMonth + " " + startYear;
+  }
+  if (startYear === endYear) {
+    return "الجمعة " + startDay + " " + startMonth + " والسبت " + endDay + " " + endMonth + " " + startYear;
+  }
+  return "الجمعة " + startDay + " " + startMonth + " " + startYear + " والسبت " + endDay + " " + endMonth + " " + endYear;
+}
+
+export function offeredSessions(sessions, bookings) {
+  const base = sessions.find((session) => session.active !== false);
+  if (!base) return [];
+  const offered = [];
+  let current = {
+    id: base.id,
+    label: base.label,
+    seeded: base.seeded || 0,
+    capacity: base.capacity,
+    active: true
+  };
+  for (let step = 0; step < 104; step++) {
+    offered.push(current);
+    if (seatsLeft(current, bookings) > 0) break;
+    const id = addDays(current.id, 7);
+    current = {
+      id,
+      label: weekendLabel(id),
+      seeded: 0,
+      capacity: current.capacity,
+      active: true
+    };
+  }
+  return offered;
+}
+
 export function seatsLeft(session, bookings) {
   const real = bookings.filter((row) => row.sessionId === session.id).length;
   return Math.max(0, session.capacity - (session.seeded || 0) - real);

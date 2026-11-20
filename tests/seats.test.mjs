@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { book, releaseTests, seatsLeft } from "../grok-workshop/seat-math.mjs";
+import { book, offeredSessions, releaseTests, seatsLeft } from "../grok-workshop/seat-math.mjs";
 
 const sessions = [
   { id: "2026-12-18", capacity: 20, seeded: 9 },
@@ -38,5 +38,25 @@ assert.equal(waiting.waitlist, true);
 assert.equal(seatsLeft(sessions[0], waiting.bookings), 0);
 assert.equal(waiting.bookings.filter((row) => row.sessionId === "2026-12-18").length, rows.length);
 assert.equal(releaseTests(waiting.bookings, "").some((row) => row.sessionId === "waitlist"), false);
+
+const catalog = [{ id: "2026-12-18", label: "الجمعة 18 والسبت 19 ديسمبر 2026", capacity: 2, seeded: 1, active: true }, { id: "2026-12-19", capacity: 2, seeded: 0, active: false }];
+assert.deepEqual(offeredSessions(catalog, []).map((session) => session.id), ["2026-12-18"]);
+assert.equal(seatsLeft(offeredSessions(catalog, [])[0], []), 1);
+const filled = [{ sessionId: "2026-12-18", email: "a@example.com", name: "A" }];
+const rolled = offeredSessions(catalog, filled);
+assert.deepEqual(rolled.map((session) => session.id), ["2026-12-18", "2026-12-25"]);
+assert.equal(rolled[1].seeded, 0);
+assert.equal(rolled[1].label, "الجمعة 25 والسبت 26 ديسمبر 2026");
+assert.equal(seatsLeft(rolled[1], filled), 2);
+assert.equal(book(rolled, filled, { sessionId: "2026-12-18", name: "بعد", email: "late@example.com" }).error, "full");
+assert.equal(book(rolled, filled, { sessionId: "2026-12-25", name: "جديد", email: "new@example.com" }).ok, true);
+const bothFull = filled.concat([
+  { sessionId: "2026-12-25", email: "c@example.com", name: "C" },
+  { sessionId: "2026-12-25", email: "d@example.com", name: "D" }
+]);
+assert.equal(offeredSessions(catalog, bothFull)[2].id, "2027-01-01");
+assert.equal(offeredSessions(catalog, bothFull)[2].seeded, 0);
+assert.equal(offeredSessions(catalog, bothFull)[2].label, "الجمعة 1 والسبت 2 يناير 2027");
+assert.equal(book(rolled, filled, { sessionId: "2027-02-05", name: "بعيد", email: "far@example.com" }).error, "inactive");
 
 console.log("seat math passed");
