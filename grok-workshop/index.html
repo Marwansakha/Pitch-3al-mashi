@@ -81,11 +81,6 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .motion .chips li:nth-child(2){animation-delay:80ms}
 .motion .chips li:nth-child(3){animation-delay:160ms}
 .motion .chips li:nth-child(4){animation-delay:240ms}
-.stats{padding:4px 0 48px}
-.stats ul{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none;margin:0;padding:0}
-.stat{border-top:2px solid var(--amber);padding-top:12px}
-.stat .n{font-size:clamp(36px,5vw,60px);line-height:.9;display:block}
-.stat p{margin:8px 0 0;color:var(--ink2);font-size:15px}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px}
 .text-link{display:inline-flex;align-items:center;gap:6px;font-weight:500;text-decoration:none}
@@ -161,7 +156,8 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .day h3{margin:0 0 4px;font-size:20px}
 .day .when{margin:0 0 10px;color:var(--muted)}
 .day ul{margin:0;padding-inline-start:1.1em;color:var(--ink2)}
-.day li+li{margin-top:6px}
+.day li+li{margin-top:8px}
+.day .take{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);font-weight:500}
 
 .host{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:36px;align-items:center}
 .portrait{width:min(100%,300px);margin:0}
@@ -240,7 +236,6 @@ footer a:hover{color:var(--ink)}
   .sticky{display:block}
   body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
   .facts{grid-template-columns:1fr 1fr}
-  .stat p{font-size:13px}
 }
 @media (min-width:769px){
   .ba-arrow.down{display:none}
@@ -310,16 +305,6 @@ footer a:hover{color:var(--ink)}
           <text x="74" y="252" text-anchor="middle" fill="#1A1A1A" font-family="IBM Plex Sans Arabic, Tahoma, sans-serif" font-size="15" font-weight="500">المتابعة</text>
         </svg>
       </div>
-    </div>
-  </section>
-
-  <section class="stats" aria-label="أرقام من الشغل">
-    <div class="wrap">
-      <ul>
-        <li class="stat"><span class="n serif"><span data-count="2">2</span></span><p>ساعات بترجع ليومك، كل يوم، بالمعدل</p></li>
-        <li class="stat"><span class="n serif"><span data-count="100">100</span>+</span><p>وكيل انبنى مع الناس</p></li>
-        <li class="stat"><span class="n serif"><span data-count="18">18</span>%</span><p>أقل مصاريف بالأتمتة</p></li>
-      </ul>
     </div>
   </section>
 
@@ -401,22 +386,28 @@ footer a:hover{color:var(--ink)}
         <article class="day">
           <span class="day-num serif">1</span>
           <h3>اليوم 1: الجمعة 18 ديسمبر</h3>
-          <p class="when">نفهم الفكرة ونبني أول وكيل</p>
+          <p class="when">مساعدك الشخصي، من المكتب ومن السيارة</p>
           <ul>
-            <li>شو يعني "فريق ذكاء اصطناعي"، بكلام بسيط</li>
-            <li>كيف تلاقي المهام اللي بتستاهل تتأتمت بشركتك</li>
-            <li>نبني مع بعض أول وكيل على <bdi class="latin" dir="ltr">Grok Bot</bdi></li>
+            <li>بنبني مساعدك الشخصي: بوت بيعرفك، وبيشوف تقويمك وإيميلك ومهامك.</li>
+            <li>بنرتّب إيميلك: البوت بيفرز الرسائل وبيجهّز الرد، وإنت بس تراجع وتبعت.</li>
+            <li>بنخلّص شغل من السيارة: بتتصل بمساعدك بصوتك، وبيخلّص المهمة وإيدك على الدركسيون.</li>
+            <li>بنحوّل أي مهمة رقمية لروتين: خطوات بتتكرر وبتشتغل لحاله على الوقت اللي بتحدده.</li>
+            <li>بنجهّز الاجتماع: قبل اللقاء في ملخص، وبعده البوت بيلقط المطلوب وبتابع الناس.</li>
           </ul>
+          <p class="take">بتطلع ومساعدك شغال، وبتقدر تحكي معه من السيارة.</p>
         </article>
         <article class="day">
           <span class="day-num serif">2</span>
           <h3>اليوم 2: السبت 19 ديسمبر</h3>
-          <p class="when">نخلّي الوكلاء يشتغلوا كفريق</p>
+          <p class="when">تقارير، أدوات، وفريق وكلاء</p>
           <ul>
-            <li>كيف توصّل أكتر من وكيل ببعض</li>
-            <li>نبني مسار شغل كامل من أوله لآخره</li>
-            <li>خطة واضحة تطبّقها بشركتك من الأسبوع الجاي</li>
+            <li>بنبني بوت التقارير: ملخص يومي أو أسبوعي بيوصلّك لحاله، بدون ما تجمع الأرقام.</li>
+            <li>البوت بيبنيلك أداة: لوحة أو تطبيق صغير داخلي لشركتك، هو بيعمله.</li>
+            <li>بنتابع العملاء المحتملين: البوت بيتابع اللي ما رد، وبيجهّز الرسالة الجاية.</li>
+            <li>بنوصّل الوكلاء كفريق: المساعد والتقارير والأداة بيشتغلوا مع بعض، مش كل واحد لحاله.</li>
+            <li>بنحط خطة الأسبوع الجاي: شو أول مسار رح تشغّله بشركتك، ومين بيمسكه.</li>
           </ul>
+          <p class="take">بتطلع بفريق وكلاء، وخطة واضحة تطبقها من الأسبوع الجاي.</p>
         </article>
       </div>
     </div>
@@ -592,7 +583,8 @@ footer a:hover{color:var(--ink)}
         entry.target.querySelectorAll("[data-count]").forEach(runCount);
       });
     }, { threshold: 0.45 });
-    document.querySelectorAll(".stats, #price-num").forEach(function (el) { cio.observe(el); });
+    var price = document.getElementById("price-num");
+    if (price) cio.observe(price);
   }
 
   var sticky = document.getElementById("sticky");
