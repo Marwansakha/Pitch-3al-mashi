@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>احجز مقعدك | ورشة Grok Bot</title>
+<meta name="description" content="سجّل اسمك لورشة Grok Bot، 18 و19 ديسمبر 2026. 6:00–8:00 مساءً بتوقيت عمّان والرياض، و7:00–9:00 مساءً بتوقيت دبي. 780 درهم للشخص، شامل الضريبة.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://marwandoesai.com/grok-workshop/register">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F5F3EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F3EE;--ink:#1A1A1A;--ink2:#3A3835;--muted:#5C5852;--line:rgba(26,26,26,.15);
+  --amber:#B8860B;--on:#F5F3EE;--ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;box-sizing:border-box;
+}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none !important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","DM Sans",Tahoma,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.latin{font-family:"DM Sans","IBM Plex Sans Arabic",sans-serif}
+.serif{font-family:"DM Serif Display","DM Sans",serif;font-weight:400}
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:64px;padding-top:8px;padding-bottom:8px}
+.back{text-decoration:none;font-weight:700;margin-inline-end:auto}
+.price-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.price-head .num{font-size:28px;line-height:1}
+.price-head select{font:inherit;font-size:15px;height:40px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:0 10px}
+.fx-note{margin:0;color:var(--muted);font-size:13px;text-align:end;width:100%}
+main{padding:28px 0 48px}
+h1{font-size:clamp(30px,6vw,42px);line-height:1.3;margin:0 0 8px}
+.sub{margin:0 0 18px;color:var(--ink2)}
+.sessions{display:grid;gap:12px}
+.session{border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--bg);display:grid;gap:8px}
+.session h2{margin:0;font-size:18px}
+.session.is-full h2,.session.is-full .when{color:var(--muted)}
+.session .when{margin:0;color:var(--muted);font-size:14px}
+.times{display:grid;gap:2px}
+.times span{display:block}
+.session .seats{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin:2px 0 6px}
+.session .left{display:inline-block;font-weight:700;font-size:36px;line-height:1;font-variant-numeric:tabular-nums;transform-origin:center}
+.seats-label{color:var(--muted);font-size:13px;font-weight:500}
+.session-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.badge{display:inline-flex;align-items:center;background:#B8860B;color:#1A1A1A;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
+@media (prefers-reduced-motion:no-preference){
+  .badge{animation:seat-pulse 2.2s ease-in-out infinite}
+  .session .left.live{animation:seat-shake 2.6s ease-in-out infinite}
+}
+@keyframes seat-pulse{0%,100%{opacity:1}50%{opacity:.72}}
+@keyframes seat-shake{
+  0%,72%,100%{transform:translate3d(0,0,0) rotate(0)}
+  76%{transform:translate3d(-4px,0,0) rotate(-2deg)}
+  80%{transform:translate3d(5px,0,0) rotate(2deg)}
+  84%{transform:translate3d(-5px,1px,0) rotate(-2deg)}
+  88%{transform:translate3d(4px,-1px,0) rotate(2deg)}
+  92%{transform:translate3d(-2px,0,0) rotate(-1deg)}
+  96%{transform:translate3d(0,0,0) rotate(0)}
+}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border-radius:999px;border:0;background:var(--ink);color:var(--on);font:inherit;font-weight:500;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--amber);color:var(--ink)}
+.btn:disabled{background:#E7E2D8;color:var(--muted);cursor:not-allowed}
+.btn.full{width:100%}
+.waitlist{background:#fff;margin-top:18px}
+.waitlist .btn{width:100%;background:transparent;color:var(--ink);border:1px solid var(--ink);white-space:normal;line-height:1.45;text-align:center}
+.waitlist .btn:hover{background:var(--ink);color:var(--on)}
+.pay-note{margin:14px 0 0;color:var(--ink2);font-size:15px}
+.form-card{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 18px}
+.hint{margin:0 0 14px;color:var(--muted)}
+.fields{display:grid;gap:14px}
+.field{display:grid;gap:6px}
+.field label{font-weight:500;font-size:15px}
+.field input,.field select{width:100%;height:48px;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:0 14px}
+.field input[dir="ltr"]{font-family:"DM Sans","IBM Plex Sans Arabic",sans-serif;text-align:start}
+.field-error,.form-error{margin:0;color:#8A3B2C;font-size:14px;font-weight:500}
+.thanks h2{margin:0}
+.thanks p{margin:0;color:var(--ink2)}
+.pay-step{display:grid;gap:14px}
+.pay-summary{list-style:none;margin:0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px}
+.pay-summary li{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.pay-summary span{color:var(--muted);font-size:14px}
+.pay-summary b{font-weight:600}
+.pay-methods{display:flex;align-items:center;justify-content:center;gap:8px;margin:0;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.pay-methods svg{display:block;flex:none}
+body.paying::before{content:"";position:fixed;inset:0;background:rgba(26,26,26,.35);z-index:15}
+body.paying .form-card{position:fixed;z-index:20;top:50%;left:50%;transform:translate(-50%,-50%);width:min(440px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;margin:0;border-top:3px solid #B8860B;box-shadow:0 16px 40px rgba(26,26,26,.12)}
+footer{border-top:1px solid var(--line);padding:22px 0 calc(22px + env(safe-area-inset-bottom));color:var(--muted);font-size:14px}
+footer a{color:var(--muted);text-decoration:none}
+@media (max-width:640px){.wrap{padding:0 20px}.top .wrap{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="/grok-workshop">الورشة</a>
+    <div class="price-head">
+      <span class="num serif money">780</span>
+      <span class="money-label">درهم</span>
+      <label class="sr" for="currency" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">العملة</label>
+      <select id="currency"></select>
+      <p class="fx-note" id="fx-note">السعر تقريبي.</p>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="session-head">
+      <h1>سجّل اسمك للجلسة الجاية</h1>
+      <p class="badge" id="few-seats" hidden>باقي أماكن قليلة</p>
+    </div>
+    <p class="sub">18 و19 ديسمبر 2026 • <bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي.</p>
+    <div class="sessions">
+      <article class="session" data-session="2026-12-18">
+        <h2>18 و19 ديسمبر 2026</h2>
+        <p class="when"><span class="times"><span><bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض</span><span> • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي</span></span></p>
+        <p class="seats" hidden>
+          <b class="left" dir="ltr"></b>
+          <span class="seats-label">مقعد متبقي</span>
+        </p>
+        <button class="btn session-go" type="button">احجز مقعدك</button>
+      </article>
+    </div>
+    <article class="session waitlist" data-session="waitlist">
+      <h2>قائمة الانتظار للجلسات القادمة</h2>
+      <p class="when">إذا التاريخ الجاي لسا مو محدد، سجّل اسمك وبنخبرك بالإيميل أول ما ينفتح.</p>
+      <button class="btn session-go" type="button">سجّل اسمك على قائمة الانتظار للجلسات القادمة</button>
+    </article>
+
+    <div class="form-card" id="register">
+      <div class="thanks" id="thanks" hidden tabindex="-1">
+        <div id="thanks-seat" class="pay-step">
+          <h2>تم حجز مقعدك مبدئياً!</h2>
+          <ul class="pay-summary">
+            <li><span>الورشة</span><b>ورشة <bdi class="latin" lang="en" dir="ltr">Grok Bot</bdi></b></li>
+            <li><span>التاريخ</span><b id="pay-date">18 و19 ديسمبر 2026</b></li>
+            <li><span>الوقت</span><b><bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي</b></li>
+            <li><span>السعر</span><b><span class="money">780</span> <span class="money-label">درهم</span></b></li>
+          </ul>
+          <p>مقعدك محجوز لمدة يومين لحين إتمام الدفع</p>
+          <a class="btn full" id="pay-now" href="https://buy.stripe.com/9B66oH0ewePha0b8F6cEw0Y">ادفع الآن لتأكيد مقعدك</a>
+          <p class="pay-methods">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16.4 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8s-1.7-.8-2.9-.8c-1.5 0-2.8.9-3.6 2.2-1.5 2.7-.4 6.6 1.1 8.8.7 1.1 1.6 2.3 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.9.7 1.9-1.1 2.6-2.2c.8-1.2 1.2-2.3 1.2-2.4-.1 0-2.2-.8-2.2-3.5zM14.7 6.5c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.6-1.1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2z"/></svg>
+            <svg viewBox="0 0 24 24" width="20" height="16" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h20" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            تقدر تدفع بـ <bdi class="latin" lang="en" dir="ltr">Apple Pay</bdi> أو بالبطاقة
+          </p>
+        </div>
+        <div id="thanks-waitlist" hidden>
+          <h2>تم تسجيلك على قائمة الانتظار</h2>
+          <p>اسمك على القائمة. بنبعتلك إيميل أول ما ينفتح تاريخ الجلسة الجاية.</p>
+        </div>
+      </div>
+      <form name="grok-workshop" method="POST" action="/grok-workshop/thanks" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8" novalidate>
+        <h2 id="form-title">سجّل مقعدك</h2>
+        <p class="hint" id="form-hint">الورشة يومين: 18 و19 ديسمبر 2026. عبّي بياناتك. كل الحقول مطلوبة.</p>
+        <input type="hidden" name="form-name" value="grok-workshop">
+        <p hidden><label>لا تعبّي هاد الحقل <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="fields">
+          <div class="field">
+            <label for="session">الجلسة</label>
+            <select id="session" name="session" required>
+              <option value="2026-12-18" selected>18 و19 ديسمبر 2026</option>
+              <option value="waitlist">قائمة الانتظار للجلسات القادمة</option>
+            </select>
+            <p class="field-error" id="session-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="full-name">اسمك الكامل</label>
+            <input id="full-name" name="name" type="text" autocomplete="name" required maxlength="120">
+            <p class="field-error" id="name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="email">إيميلك</label>
+            <input id="email" name="email" type="email" dir="ltr" inputmode="email" autocomplete="email" required maxlength="160" spellcheck="false">
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="role">شو منصبك؟</label>
+            <input id="role" name="role" type="text" autocomplete="organization-title" placeholder="مثلًا: صاحب شركة، مدير عام" required maxlength="120">
+            <p class="field-error" id="role-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="phone">رقم تلفونك</label>
+            <input id="phone" name="phone" type="tel" dir="ltr" inputmode="tel" autocomplete="tel" placeholder="+966 5x xxx xxxx" required maxlength="30">
+            <p class="field-error" id="phone-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="city">مدينتك</label>
+            <input id="city" name="city" type="text" autocomplete="address-level2" required maxlength="80">
+            <p class="field-error" id="city-error" hidden></p>
+          </div>
+        </div>
+        <p class="form-error" id="form-error" hidden role="alert">ما وصل الطلب. تأكد من النت وجرّب مرة تانية.</p>
+        <button class="btn full" type="submit" style="margin-top:16px"><span class="btn-label">إرسال طلب الحجز</span></button>
+      </form>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap"><a href="/grok-workshop">رجوع للورشة</a></div>
+</footer>
+<script>
+(function () {
+  var form = document.querySelector("form[name=grok-workshop]");
+  var payTimer = 0;
+  function logPay(source) {
+    try {
+      var body = JSON.stringify({
+        email: String(form.elements.email.value || "").trim(),
+        sessionId: String(form.elements.session.value || "").trim(),
+        source: source
+      });
+      var endpoint = "/.netlify/functions/pay-click";
+      var sent = false;
+      if (navigator.sendBeacon) sent = navigator.sendBeacon(endpoint, new Blob([body], { type: "application/json" }));
+      if (!sent) fetch(endpoint, { method: "POST", headers: { "content-type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+    } catch (err) {}
+  }
+  document.getElementById("pay-now").addEventListener("click", function () {
+    if (payTimer) clearTimeout(payTimer);
+    logPay("button");
+  });
+  var button = form.querySelector("button[type=submit]");
+  var label = button.querySelector(".btn-label");
+  var whenAmman = "6:00–8:00";
+  var whenDubai = "7:00–9:00";
+  function makeCard(row) {
+    var full = row.full || row.seatsLeft === 0;
+    var card = document.createElement("article");
+    var title = document.createElement("h2");
+    var when = document.createElement("p");
+    var seats = document.createElement("p");
+    var count = document.createElement("b");
+    var seatsLabel = document.createElement("span");
+    var btn = document.createElement("button");
+    card.className = "session" + (full ? " is-full" : "");
+    card.setAttribute("data-session", row.id);
+    title.textContent = row.label || "";
+    when.className = "when";
+    var times = document.createElement("span");
+    var lineOne = document.createElement("span");
+    var lineTwo = document.createElement("span");
+    var amman = document.createElement("bdi");
+    var dubai = document.createElement("bdi");
+    times.className = "times";
+    amman.className = "latin";
+    amman.dir = "ltr";
+    amman.textContent = whenAmman;
+    dubai.className = "latin";
+    dubai.dir = "ltr";
+    dubai.textContent = whenDubai;
+    lineOne.appendChild(amman);
+    lineOne.appendChild(document.createTextNode(" مساءً بتوقيت عمّان والرياض"));
+    lineTwo.appendChild(document.createTextNode("• "));
+    lineTwo.appendChild(dubai);
+    lineTwo.appendChild(document.createTextNode(" مساءً بتوقيت دبي"));
+    times.appendChild(lineOne);
+    times.appendChild(lineTwo);
+    when.appendChild(times);
+    seats.className = "seats";
+    count.className = "left live";
+    count.dir = "ltr";
+    count.textContent = String(row.seatsLeft) + "/" + String(row.capacity);
+    seatsLabel.className = "seats-label";
+    seatsLabel.textContent = "مقعد متبقي";
+    btn.className = "btn session-go";
+    btn.type = "button";
+    btn.disabled = full;
+    btn.textContent = full ? "مكتمل العدد" : "احجز مقعدك";
+    seats.appendChild(count);
+    seats.appendChild(seatsLabel);
+    card.appendChild(title);
+    card.appendChild(when);
+    card.appendChild(seats);
+    card.appendChild(btn);
+    return card;
+  }
+  function paintSeats(list) {
+    if (!list || !list.length) return;
+    var root = document.querySelector(".sessions");
+    var select = document.getElementById("session");
+    var badge = document.getElementById("few-seats");
+    var sub = document.querySelector("main .sub");
+    var previous = form.elements.session.value;
+    var open = null;
+    var i;
+    root.textContent = "";
+    select.textContent = "";
+    for (i = 0; i < list.length; i++) {
+      var row = list[i];
+      var full = row.full || row.seatsLeft === 0;
+      root.appendChild(makeCard(row));
+      if (full) continue;
+      open = row;
+      var option = document.createElement("option");
+      option.value = row.id;
+      option.textContent = row.label;
+      select.appendChild(option);
+    }
+    var wait = document.createElement("option");
+    wait.value = "waitlist";
+    wait.textContent = "قائمة الانتظار للجلسات القادمة";
+    select.appendChild(wait);
+    if (previous === "waitlist") select.value = "waitlist";
+    else if (open) select.value = open.id;
+    if (badge) badge.hidden = !(open && open.seatsLeft > 0 && open.seatsLeft <= 5);
+    if (open && sub) sub.textContent = open.label + " • 6:00–8:00 مساءً بتوقيت عمّان والرياض • 7:00–9:00 مساءً بتوقيت دبي";
+    applySessionMode();
+  }
+  function loadSeats() {
+    return fetch("/.netlify/functions/register").then(function (res) {
+      if (!res.ok) throw new Error("seats");
+      return res.json();
+    }).then(function (data) {
+      paintSeats(data.sessions);
+    });
+  }
+  loadSeats().catch(function () {
+    var badge = document.getElementById("few-seats");
+    var seats = document.querySelectorAll(".seats");
+    var i;
+    if (badge) badge.hidden = true;
+    for (i = 0; i < seats.length; i++) seats[i].hidden = true;
+  });
+  function sessionIsWaitlist() {
+    return form.elements.session.value === "waitlist";
+  }
+  function applySessionMode() {
+    var waitlist = sessionIsWaitlist();
+    var chosen = form.elements.session.options[form.elements.session.selectedIndex];
+    var dateLabel = chosen && chosen.value !== "waitlist" ? chosen.textContent : "18 و19 ديسمبر 2026";
+    var payDate = document.getElementById("pay-date");
+    document.getElementById("form-hint").textContent = waitlist
+      ? "قائمة الانتظار للجلسات القادمة. عبّي بياناتك، وبنراسلك أول ما ينفتح تاريخ جديد."
+      : "الورشة يومين: " + dateLabel + ". عبّي بياناتك. كل الحقول مطلوبة.";
+    document.getElementById("form-title").textContent = waitlist ? "قائمة الانتظار للجلسات القادمة" : "سجّل مقعدك";
+    if (payDate && !waitlist) payDate.textContent = dateLabel;
+    form.action = waitlist ? "/grok-workshop/thanks?list=waitlist" : "/grok-workshop/thanks";
+    if (!button.disabled) label.textContent = waitlist ? "سجّلني على القائمة" : "إرسال طلب الحجز";
+  }
+  document.querySelector("main").addEventListener("click", function (event) {
+    var btn = event.target.closest(".session-go");
+    if (!btn || btn.disabled) return;
+    form.elements.session.value = btn.parentNode.getAttribute("data-session");
+    applySessionMode();
+    document.getElementById("register").scrollIntoView({ block: "start" });
+    form.elements.name.focus();
+  });
+  form.elements.session.addEventListener("change", applySessionMode);
+  fetch("/grok-workshop/rates.json").then(function (res) { return res.json(); }).then(function (rates) {
+    var select = document.getElementById("currency");
+    var note = document.getElementById("fx-note");
+    var i;
+    if (note && rates.note) note.textContent = rates.note;
+    for (i = 0; i < rates.currencies.length; i++) {
+      var option = document.createElement("option");
+      option.value = rates.currencies[i].code;
+      option.textContent = rates.currencies[i].name;
+      if (rates.currencies[i].code === rates.base) option.selected = true;
+      select.appendChild(option);
+    }
+    function render(code) {
+      var item = rates.currencies[0];
+      var n;
+      for (n = 0; n < rates.currencies.length; n++) {
+        if (rates.currencies[n].code === code) item = rates.currencies[n];
+      }
+      var text = (rates.amount * item.perAed).toFixed(item.decimals);
+      if (item.decimals > 0) text = text.replace(/0+$/, "").replace(/\.$/, "");
+      var amounts = document.querySelectorAll(".money");
+      var labels = document.querySelectorAll(".money-label");
+      for (n = 0; n < amounts.length; n++) amounts[n].textContent = text;
+      for (n = 0; n < labels.length; n++) labels[n].textContent = item.label;
+    }
+    function find(code) {
+      for (var c = 0; c < rates.currencies.length; c++) {
+        if (rates.currencies[c].code === code) return true;
+      }
+      return false;
+    }
+    function readSaved() {
+      try { return localStorage.getItem("grok-workshop-currency") || ""; } catch (err) { return ""; }
+    }
+    function writeSaved(code) {
+      try { localStorage.setItem("grok-workshop-currency", code); } catch (err) {}
+    }
+    select.addEventListener("change", function () {
+      writeSaved(select.value);
+      render(select.value);
+    });
+    var saved = readSaved();
+    if (saved && find(saved)) { render(saved); return; }
+    render(rates.base);
+    fetch("/.netlify/functions/currency-geo").then(function (res) { return res.json(); }).then(function (data) {
+      if (readSaved()) return;
+      render(data && find(data.currency) ? data.currency : rates.base);
+    }).catch(function () {});
+  }).catch(function () {});
+
+  var thanks = document.getElementById("thanks");
+  var error = document.getElementById("form-error");
+  var messages = { name: "اكتب اسمك الكامل", email: "اكتب إيميل صحيح", role: "اكتب منصبك", phone: "اكتب رقم تلفونك", city: "اكتب مدينتك", session: "اختار الجلسة" };
+  function applyMessages() {
+    var first = null;
+    var key;
+    for (key in messages) {
+      if (!Object.prototype.hasOwnProperty.call(messages, key)) continue;
+      var field = form.elements[key];
+      var slot = document.getElementById(key + "-error");
+      var bad = !String(field.value || "").trim() || (field.type === "email" && field.validity.typeMismatch);
+      if (bad) {
+        field.setAttribute("aria-invalid", "true");
+        slot.hidden = false;
+        slot.textContent = messages[key];
+        if (!first) first = field;
+      } else {
+        field.removeAttribute("aria-invalid");
+        slot.hidden = true;
+        slot.textContent = "";
+      }
+    }
+    return first;
+  }
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    error.hidden = true;
+    var firstInvalid = applyMessages();
+    if (firstInvalid) { firstInvalid.focus(); return; }
+    button.disabled = true;
+    label.textContent = "لحظة…";
+    var payload = {
+      sessionId: form.elements.session.value,
+      name: form.elements.name.value,
+      email: form.elements.email.value,
+      role: form.elements.role.value,
+      phone: form.elements.phone.value,
+      city: form.elements.city.value
+    };
+    fetch("/.netlify/functions/register", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      return res.json().then(function (data) {
+        if (data && data.sessions) paintSeats(data.sessions);
+        if (data && data.error === "full") { var full = new Error("full"); full.full = true; throw full; }
+        if (data && data.error === "duplicate") { var dup = new Error("duplicate"); dup.duplicate = true; throw dup; }
+        if (!res.ok || !data.ok) throw new Error("status");
+        return fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(form)).toString()
+        });
+      });
+    }).then(function (response) {
+      if (!response.ok) throw new Error("form");
+      var waitlist = sessionIsWaitlist();
+      document.getElementById("thanks-seat").hidden = waitlist;
+      document.getElementById("thanks-waitlist").hidden = !waitlist;
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.focus();
+      var box = document.getElementById("register");
+      window.scrollTo(0, box.getBoundingClientRect().top + window.pageYOffset - 16);
+      loadSeats().catch(function () {});
+      if (!waitlist) {
+        document.body.classList.add("paying");
+        var payUrl = "https://buy.stripe.com/9B66oH0ewePha0b8F6cEw0Y?prefilled_email=" + encodeURIComponent(String(form.elements.email.value || "").trim());
+        document.getElementById("pay-now").href = payUrl;
+        payTimer = setTimeout(function () {
+          logPay("redirect");
+          window.location.assign(payUrl);
+        }, 3000);
+      }
+    }).catch(function (err) {
+      button.disabled = false;
+      applySessionMode();
+      error.hidden = false;
+      error.textContent = err && err.full ? "هالجلسة امتلأت. اختار جلسة ثانية." : err && err.duplicate ? "هذا الإيميل مسجّل بهالجلسة." : "ما وصل الطلب. تأكد من النت وجرّب مرة تانية.";
+    });
+  });
+})();
+</script>
+</body>
+</html>

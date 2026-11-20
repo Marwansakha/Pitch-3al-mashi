@@ -1,3 +1,11 @@
+# Install the function dependency. The site itself is still the repo root.
+[build]
+  command = "npm ci --omit=dev"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+
 # Send traffic on the production Netlify subdomain to the custom domain.
 # The hostname is matched exactly, so deploy previews
 # (deploy-preview-<id>--loquacious-cobbler-451547.netlify.app)
@@ -67,3 +75,17 @@
   from = "/links/*"
   to = "/links/index.html"
   status = 200
+
+# The workshop page is a real file. Force the bare path to that file so
+# /grok-workshop returns 200, same as /grok-workshop/.
+[[redirects]]
+  from = "/grok-workshop"
+  to = "/grok-workshop/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/grok-workshop/register"
+  to = "/grok-workshop/register/index.html"
+  status = 200
+  force = true
