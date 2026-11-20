@@ -125,6 +125,8 @@ expectServe("/grok-workshop", "grok-workshop/index.html");
 expectServe("/grok-workshop/", "grok-workshop/index.html");
 expectServe("/grok-workshop/thanks", "grok-workshop/thanks/index.html");
 expectServe("/grok-workshop/thanks/", "grok-workshop/thanks/index.html");
+expectServe("/grok-workshop/register", "grok-workshop/register/index.html");
+expectServe("/grok-workshop/register/", "grok-workshop/register/index.html");
 
 const homeHtml = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const bioHtml = fs.readFileSync(path.join(root, "links/index.html"), "utf8");

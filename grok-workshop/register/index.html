@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>احجز مقعدك | ورشة Grok Bot</title>
+<meta name="description" content="اختار جلسة ورشة Grok Bot. كل جلسة ساعتين أونلاين من 6:00 لـ 8:00 المسا. 780 درهم للشخص، شامل الضريبة.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://marwandoesai.com/grok-workshop/register">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F5F3EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F3EE;--ink:#1A1A1A;--ink2:#3A3835;--muted:#5C5852;--line:rgba(26,26,26,.15);
+  --amber:#B8860B;--on:#F5F3EE;--ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;box-sizing:border-box;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","DM Sans",Tahoma,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.latin{font-family:"DM Sans","IBM Plex Sans Arabic",sans-serif}
+.serif{font-family:"DM Serif Display","DM Sans",serif;font-weight:400}
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:64px;padding-top:8px;padding-bottom:8px}
+.back{text-decoration:none;font-weight:700;margin-inline-end:auto}
+.price-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.price-head .num{font-size:28px;line-height:1}
+.price-head select{font:inherit;font-size:15px;height:40px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:0 10px}
+.fx-note{margin:0;color:var(--muted);font-size:13px;text-align:end;width:100%}
+main{padding:28px 0 48px}
+h1{font-size:clamp(30px,6vw,42px);line-height:1.3;margin:0 0 8px}
+.sub{margin:0 0 18px;color:var(--ink2)}
+.sessions{display:grid;gap:12px}
+.session{border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--bg);display:grid;gap:8px}
+.session h2{margin:0;font-size:18px}
+.session .when{margin:0;color:var(--muted);font-size:14px}
+.session .left{font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border-radius:999px;border:0;background:var(--ink);color:var(--on);font:inherit;font-weight:500;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--amber);color:var(--ink)}
+.btn:disabled{background:#E7E2D8;color:var(--muted);cursor:not-allowed}
+.btn.full{width:100%}
+.pay-note{margin:14px 0 0;color:var(--ink2);font-size:15px}
+.form-card{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 18px}
+.hint{margin:0 0 14px;color:var(--muted)}
+.fields{display:grid;gap:14px}
+.field{display:grid;gap:6px}
+.field label{font-weight:500;font-size:15px}
+.field input,.field select{width:100%;height:48px;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:0 14px}
+.field input[dir="ltr"]{font-family:"DM Sans","IBM Plex Sans Arabic",sans-serif;text-align:start}
+.field-error,.form-error{margin:0;color:#8A3B2C;font-size:14px;font-weight:500}
+.thanks h2{margin:12px 0 8px}
+.thanks p{margin:0;color:var(--ink2)}
+footer{border-top:1px solid var(--line);padding:22px 0 calc(22px + env(safe-area-inset-bottom));color:var(--muted);font-size:14px}
+footer a{color:var(--muted);text-decoration:none}
+@media (max-width:640px){.wrap{padding:0 20px}.top .wrap{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="/grok-workshop">الورشة</a>
+    <div class="price-head">
+      <span class="num serif money">780</span>
+      <span class="money-label">درهم</span>
+      <label class="sr" for="currency" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">العملة</label>
+      <select id="currency"></select>
+      <p class="fx-note" id="fx-note">السعر تقريبي، والدفع بالدرهم الإماراتي.</p>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>اختار جلستك</h1>
+    <p class="sub">كل جلسة ساعتين أونلاين، من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان. في 20 مقعد بكل جلسة.</p>
+    <div class="sessions">
+      <article class="session" data-session="2026-12-18">
+        <h2>الجمعة 18 ديسمبر 2026</h2>
+        <p class="when">6:00–8:00 المسا · أونلاين</p>
+        <p class="seats">باقي <b class="left">11</b> من 20</p>
+        <button class="btn session-go" type="button">احجز مقعدك</button>
+      </article>
+      <article class="session" data-session="2026-12-19">
+        <h2>السبت 19 ديسمبر 2026</h2>
+        <p class="when">6:00–8:00 المسا · أونلاين</p>
+        <p class="seats">باقي <b class="left">20</b> من 20</p>
+        <button class="btn session-go" type="button">احجز مقعدك</button>
+      </article>
+      <article class="session" data-session="2027-01-02">
+        <h2>الجمعة 2 يناير 2027</h2>
+        <p class="when">6:00–8:00 المسا · أونلاين</p>
+        <p class="seats">باقي <b class="left">20</b> من 20</p>
+        <button class="btn session-go" type="button">احجز مقعدك</button>
+      </article>
+      <article class="session" data-session="2027-01-16">
+        <h2>الجمعة 16 يناير 2027</h2>
+        <p class="when">6:00–8:00 المسا · أونلاين</p>
+        <p class="seats">باقي <b class="left">20</b> من 20</p>
+        <button class="btn session-go" type="button">احجز مقعدك</button>
+      </article>
+      <article class="session" data-session="2027-01-30">
+        <h2>الجمعة 30 يناير 2027</h2>
+        <p class="when">6:00–8:00 المسا · أونلاين</p>
+        <p class="seats">باقي <b class="left">20</b> من 20</p>
+        <button class="btn session-go" type="button">احجز مقعدك</button>
+      </article>
+    </div>
+    <p class="pay-note">الدفع عن طريق رابط بيوصل على إيميلك. المقعد بيضل محجوز لمدة يومين، وإذا ما اكتمل الدفع بنعطيه لشخص ثاني.</p>
+
+    <div class="form-card" id="register">
+      <div class="thanks" id="thanks" hidden tabindex="-1">
+        <h2>تم حجز مقعدك مبدئياً!</h2>
+        <p>رح يوصلك رابط الدفع على إيميلك. معك يومين من وصول الرابط لتكمل الدفع، وإلا للأسف رح نعطي المقعد لشخص ثاني.</p>
+      </div>
+      <form name="grok-workshop" method="POST" action="/grok-workshop/thanks" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8" novalidate>
+        <h2>سجّل مقعدك</h2>
+        <p class="hint">اختار الجلسة، وعبّي بياناتك. كل الحقول مطلوبة.</p>
+        <input type="hidden" name="form-name" value="grok-workshop">
+        <p hidden><label>لا تعبّي هاد الحقل <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="fields">
+          <div class="field">
+            <label for="session">الجلسة</label>
+            <select id="session" name="session" required>
+              <option value="">اختار الجلسة</option>
+              <option value="2026-12-18">الجمعة 18 ديسمبر 2026</option>
+              <option value="2026-12-19">السبت 19 ديسمبر 2026</option>
+              <option value="2027-01-02">الجمعة 2 يناير 2027</option>
+              <option value="2027-01-16">الجمعة 16 يناير 2027</option>
+              <option value="2027-01-30">الجمعة 30 يناير 2027</option>
+            </select>
+            <p class="field-error" id="session-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="full-name">اسمك الكامل</label>
+            <input id="full-name" name="name" type="text" autocomplete="name" required maxlength="120">
+            <p class="field-error" id="name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="email">إيميلك</label>
+            <input id="email" name="email" type="email" dir="ltr" inputmode="email" autocomplete="email" required maxlength="160" spellcheck="false">
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="role">شو منصبك؟</label>
+            <input id="role" name="role" type="text" autocomplete="organization-title" placeholder="مثلًا: صاحب شركة، مدير عام" required maxlength="120">
+            <p class="field-error" id="role-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="phone">رقم تلفونك</label>
+            <input id="phone" name="phone" type="tel" dir="ltr" inputmode="tel" autocomplete="tel" placeholder="+966 5x xxx xxxx" required maxlength="30">
+            <p class="field-error" id="phone-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="city">مدينتك</label>
+            <input id="city" name="city" type="text" autocomplete="address-level2" required maxlength="80">
+            <p class="field-error" id="city-error" hidden></p>
+          </div>
+        </div>
+        <p class="form-error" id="form-error" hidden role="alert">ما وصل الطلب. تأكد من النت وجرّب مرة تانية.</p>
+        <button class="btn full" type="submit" style="margin-top:16px"><span class="btn-label">احجز مقعدي</span></button>
+      </form>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap"><a href="/grok-workshop">رجوع للورشة</a></div>
+</footer>
+<script>
+(function () {
+  var form = document.querySelector("form[name=grok-workshop]");
+  function paintSeats(list) {
+    var i, row, card, btn, option;
+    for (i = 0; i < (list || []).length; i++) {
+      row = list[i];
+      card = document.querySelector('.session[data-session="' + row.id + '"]');
+      if (!card) continue;
+      card.querySelector(".left").textContent = String(row.seatsLeft);
+      btn = card.querySelector(".session-go");
+      option = document.querySelector('#session option[value="' + row.id + '"]');
+      if (row.full || row.seatsLeft === 0) {
+        btn.disabled = true;
+        btn.textContent = "ممتلئ";
+        if (option) option.disabled = true;
+      } else {
+        btn.disabled = false;
+        btn.textContent = "احجز مقعدك";
+        if (option) option.disabled = false;
+      }
+    }
+  }
+  function loadSeats() {
+    return fetch("/.netlify/functions/register").then(function (res) {
+      if (!res.ok) throw new Error("seats");
+      return res.json();
+    }).then(function (data) {
+      paintSeats(data.sessions);
+    });
+  }
+  loadSeats().catch(function () {});
+  var buttons = document.querySelectorAll(".session-go");
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () {
+      if (this.disabled) return;
+      form.elements.session.value = this.parentNode.getAttribute("data-session");
+      document.getElementById("register").scrollIntoView({ block: "start" });
+    });
+  }
+  fetch("/grok-workshop/rates.json").then(function (res) { return res.json(); }).then(function (rates) {
+    var select = document.getElementById("currency");
+    var note = document.getElementById("fx-note");
+    var i;
+    if (note && rates.note) note.textContent = rates.note;
+    for (i = 0; i < rates.currencies.length; i++) {
+      var option = document.createElement("option");
+      option.value = rates.currencies[i].code;
+      option.textContent = rates.currencies[i].name;
+      if (rates.currencies[i].code === rates.base) option.selected = true;
+      select.appendChild(option);
+    }
+    function render(code) {
+      var item = rates.currencies[0];
+      var n;
+      for (n = 0; n < rates.currencies.length; n++) {
+        if (rates.currencies[n].code === code) item = rates.currencies[n];
+      }
+      var text = (rates.amount * item.perAed).toFixed(item.decimals);
+      if (item.decimals > 0) text = text.replace(/0+$/, "").replace(/\.$/, "");
+      var amounts = document.querySelectorAll(".money");
+      var labels = document.querySelectorAll(".money-label");
+      for (n = 0; n < amounts.length; n++) amounts[n].textContent = text;
+      for (n = 0; n < labels.length; n++) labels[n].textContent = item.label;
+    }
+    select.addEventListener("change", function () { render(select.value); });
+    render(rates.base);
+  }).catch(function () {});
+
+  if (!form) return;
+  var thanks = document.getElementById("thanks");
+  var error = document.getElementById("form-error");
+  var button = form.querySelector("button[type=submit]");
+  var label = button.querySelector(".btn-label");
+  var messages = { name: "اكتب اسمك الكامل", email: "اكتب إيميل صحيح", role: "اكتب منصبك", phone: "اكتب رقم تلفونك", city: "اكتب مدينتك", session: "اختار الجلسة" };
+  function applyMessages() {
+    var first = null;
+    var key;
+    for (key in messages) {
+      if (!Object.prototype.hasOwnProperty.call(messages, key)) continue;
+      var field = form.elements[key];
+      var slot = document.getElementById(key + "-error");
+      var bad = !String(field.value || "").trim() || (field.type === "email" && field.validity.typeMismatch);
+      if (bad) {
+        field.setAttribute("aria-invalid", "true");
+        slot.hidden = false;
+        slot.textContent = messages[key];
+        if (!first) first = field;
+      } else {
+        field.removeAttribute("aria-invalid");
+        slot.hidden = true;
+        slot.textContent = "";
+      }
+    }
+    return first;
+  }
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    error.hidden = true;
+    var firstInvalid = applyMessages();
+    if (firstInvalid) { firstInvalid.focus(); return; }
+    button.disabled = true;
+    label.textContent = "لحظة…";
+    var payload = {
+      sessionId: form.elements.session.value,
+      name: form.elements.name.value,
+      email: form.elements.email.value,
+      role: form.elements.role.value,
+      phone: form.elements.phone.value,
+      city: form.elements.city.value
+    };
+    fetch("/.netlify/functions/register", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      return res.json().then(function (data) {
+        if (data && data.sessions) paintSeats(data.sessions);
+        if (data && data.error === "full") { var full = new Error("full"); full.full = true; throw full; }
+        if (data && data.error === "duplicate") { var dup = new Error("duplicate"); dup.duplicate = true; throw dup; }
+        if (!res.ok || !data.ok) throw new Error("status");
+        return fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(form)).toString()
+        });
+      });
+    }).then(function (response) {
+      if (!response.ok) throw new Error("form");
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.focus();
+      loadSeats().catch(function () {});
+    }).catch(function (err) {
+      button.disabled = false;
+      label.textContent = "احجز مقعدي";
+      error.hidden = false;
+      error.textContent = err && err.full ? "هالجلسة امتلأت. اختار جلسة ثانية." : err && err.duplicate ? "هذا الإيميل مسجّل بهالجلسة." : "ما وصل الطلب. تأكد من النت وجرّب مرة تانية.";
+    });
+  });
+})();
+</script>
+</body>
+</html>

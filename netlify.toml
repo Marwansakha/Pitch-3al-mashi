@@ -83,3 +83,9 @@
   to = "/grok-workshop/index.html"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/grok-workshop/register"
+  to = "/grok-workshop/register/index.html"
+  status = 200
+  force = true

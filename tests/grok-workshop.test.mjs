@@ -32,15 +32,21 @@ assert.match(page, /marwan\.webp/);
 assert.match(page, /alt="مروان أبو سخا ببليزر كريمي/);
 assert.equal(page.includes("لسا مش جاهزة"), false);
 
-assert.match(page, /<form[^>]*name="grok-workshop"/);
-assert.match(page, /data-netlify="true"/);
-assert.match(page, /netlify-honeypot="bot-field"/);
-assert.match(page, /name="form-name" value="grok-workshop"/);
-assert.match(page, /name="bot-field"/);
+assert.equal(page.includes("<form"), false);
+assert.match(page, /function revealAll/);
+assert.match(page, /js-anim/);
+assert.equal(page.includes('classList.add("motion")'), false);
+assert.match(page, /href="\/grok-workshop\/register"/);
+const register = fs.readFileSync(path.join(root, "grok-workshop/register/index.html"), "utf8");
+assert.match(register, /<form[^>]*name="grok-workshop"/);
+assert.match(register, /data-netlify="true"/);
+assert.match(register, /netlify-honeypot="bot-field"/);
+assert.match(register, /name="form-name" value="grok-workshop"/);
+assert.match(register, /name="bot-field"/);
 for (const field of ["name", "email", "role", "phone", "city"]) {
-  assert.match(page, new RegExp(`name="${field}"[^>]*required|required[^>]*name="${field}"`));
+  assert.match(register, new RegExp(`name="${field}"[^>]*required|required[^>]*name="${field}"`));
 }
-assert.match(page, /id="phone"[^>]*dir="ltr"/);
+assert.match(register, /id="phone"[^>]*dir="ltr"/);
 assert.ok(sitemap.includes("https://marwandoesai.com/grok-workshop"));
 
 const webp = fs.statSync(path.join(root, "grok-workshop/marwan.webp")).size;
@@ -49,14 +55,15 @@ assert.ok(webp < 80000, "webp " + webp);
 assert.ok(jpg < 80000, "jpg " + jpg);
 
 assert.match(thanks, /تم حجز مقعدك مبدئياً/);
-assert.match(page, /تم حجز مقعدك مبدئياً/);
+assert.match(register, /تم حجز مقعدك مبدئياً/);
 assert.match(page, /780/);
 assert.match(page, /درهم/);
 assert.equal(page.includes("980"), false);
-assert.match(page, /name="session"/);
-assert.match(page, /2026-12-18/);
-assert.match(page, /2027-01-30/);
-assert.match(page, /rates\.json/);
+assert.match(register, /name="session"/);
+assert.match(register, /id="currency"/);
+assert.match(register, /2026-12-18/);
+assert.match(register, /2027-01-30/);
+assert.match(register, /rates\.json/);
 assert.equal(home.includes("/grok-workshop"), false);
 assert.match(toml, /from = "\/links"\s+to = "\/"\s+status = 301\s+force = true/);
 assert.match(toml, /from = "\/bio"\s+to = "\/links\/index\.html"\s+status = 200/);

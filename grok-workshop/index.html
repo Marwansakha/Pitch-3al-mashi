@@ -28,9 +28,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
-<script>
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("motion");
-</script>
 <style>
 :root{
   --bg:#F5F3EE;--ink:#1A1A1A;--ink2:#3A3835;--muted:#5C5852;--line:rgba(26,26,26,.15);
@@ -66,7 +63,7 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .btn.full{width:100%}
 .btn:disabled{opacity:.7;cursor:progress}
 .spin{width:18px;height:18px}
-.motion .spin{animation:spin .7s linear infinite}
+.js-anim .spin{animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .hero{padding:48px 0 28px}
@@ -77,10 +74,10 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .sub{margin:0 0 18px;color:var(--ink2);font-size:clamp(17px,1.6vw,19px);max-width:38em}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
 .chips li{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:var(--bg);font-size:14px;font-weight:500}
-.motion .chips li{animation:rise .45s var(--ease) both}
-.motion .chips li:nth-child(2){animation-delay:80ms}
-.motion .chips li:nth-child(3){animation-delay:160ms}
-.motion .chips li:nth-child(4){animation-delay:240ms}
+.js-anim .chips li{animation:rise .45s var(--ease) both}
+.js-anim .chips li:nth-child(2){animation-delay:80ms}
+.js-anim .chips li:nth-child(3){animation-delay:160ms}
+.js-anim .chips li:nth-child(4){animation-delay:240ms}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px}
 .text-link{display:inline-flex;align-items:center;gap:6px;font-weight:500;text-decoration:none}
@@ -89,16 +86,16 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .diagram{position:relative;width:min(100%,480px);margin-inline:auto;aspect-ratio:520/400}
 .diagram svg{width:100%;height:100%}
 .link{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round}
-.motion .link{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .6s var(--ease) forwards}
-.motion .link:nth-of-type(2){animation-delay:.12s}
-.motion .link:nth-of-type(3){animation-delay:.24s}
-.motion .link:nth-of-type(4){animation-delay:.36s}
+.js-anim .link{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .6s var(--ease) forwards}
+.js-anim .link:nth-of-type(2){animation-delay:.12s}
+.js-anim .link:nth-of-type(3){animation-delay:.24s}
+.js-anim .link:nth-of-type(4){animation-delay:.36s}
 @keyframes draw{to{stroke-dashoffset:0}}
 .agent{transform-box:fill-box;transform-origin:center}
-.motion .agent{animation:breathe 4s ease-in-out infinite}
+.js-anim .agent{animation:breathe 4s ease-in-out infinite}
 @keyframes breathe{50%{transform:scale(1.02)}}
 .check{fill:none;stroke:var(--amber);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.motion .check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:tick 8s linear infinite 1.1s}
+.js-anim .check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:tick 8s linear infinite 1.1s}
 @keyframes tick{0%,18%{opacity:0;stroke-dashoffset:1}22%{opacity:1;stroke-dashoffset:0}30%{opacity:0}40%{opacity:0}44%{opacity:1;stroke-dashoffset:0}52%{opacity:0}62%{opacity:0}66%{opacity:1}74%{opacity:0}84%{opacity:0}88%{opacity:1}96%,100%{opacity:0}}
 .task{fill:var(--amber)}
 
@@ -107,8 +104,8 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:22px 20px 24px;position:relative;overflow:hidden}
 .card .bar{position:absolute;top:0;inset-inline:0;height:2px;background:var(--amber);transform:scaleX(1);transform-origin:right center}
-.motion .card .bar{transform:scaleX(0)}
-.motion .card.in .bar{transform:scaleX(1);transition:transform .5s var(--ease)}
+.js-anim .card .bar{transform:scaleX(0)}
+.js-anim .card.in .bar{transform:scaleX(1);transition:transform .5s var(--ease)}
 .card h3{margin:12px 0 8px;font-size:20px}
 .card p{margin:0;color:var(--ink2)}
 @media (hover:hover){
@@ -122,17 +119,17 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .pills{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .pill-task{position:relative;background:#E7E2D8;color:var(--ink2);border-radius:999px;padding:10px 16px;font-size:15px}
 .pill-task::after{content:"";position:absolute;top:50%;inset-inline:14px;height:1px;background:var(--muted);transform:scaleX(0);transform-origin:right center}
-.motion .in .pill-task::after{transform:scaleX(1);transition:transform .5s var(--ease)}
-.motion .in .pill-task:nth-child(2)::after{transition-delay:.12s}
-.motion .in .pill-task:nth-child(3)::after{transition-delay:.24s}
-.motion .in .pill-task:nth-child(4)::after{transition-delay:.36s}
+.js-anim .in .pill-task::after{transform:scaleX(1);transition:transform .5s var(--ease)}
+.js-anim .in .pill-task:nth-child(2)::after{transition-delay:.12s}
+.js-anim .in .pill-task:nth-child(3)::after{transition-delay:.24s}
+.js-anim .in .pill-task:nth-child(4)::after{transition-delay:.36s}
 .pill-done{display:flex;align-items:flex-start;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:10px 12px;font-size:15px}
 .pill-done b{display:block;font-size:12px;font-weight:500;color:#7A5A08}
-.motion .pill-done{opacity:0;transform:translateX(12px)}
-.motion .in .pill-done{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.motion .in .pill-done:nth-child(2){transition-delay:.12s}
-.motion .in .pill-done:nth-child(3){transition-delay:.24s}
-.motion .in .pill-done:nth-child(4){transition-delay:.36s}
+.js-anim .pill-done{opacity:0;transform:translateX(12px)}
+.js-anim .in .pill-done{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.js-anim .in .pill-done:nth-child(2){transition-delay:.12s}
+.js-anim .in .pill-done:nth-child(3){transition-delay:.24s}
+.js-anim .in .pill-done:nth-child(4){transition-delay:.36s}
 .ba-arrow{align-self:center;color:var(--ink)}
 .note{margin:18px 0 0;color:var(--ink2);max-width:40em}
 
@@ -141,16 +138,16 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .outcomes li:last-child{border-bottom:1px solid var(--line)}
 .outcomes h3{margin:0;font-size:18px}
 .outcomes p{margin:4px 0 0;color:var(--ink2)}
-.motion .outcomes li{opacity:0;transform:translateY(12px)}
-.motion .in .outcomes li{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.motion .in .outcomes li:nth-child(2){transition-delay:.08s}
-.motion .in .outcomes li:nth-child(3){transition-delay:.16s}
-.motion .in .outcomes li:nth-child(4){transition-delay:.24s}
+.js-anim .outcomes li{opacity:0;transform:translateY(12px)}
+.js-anim .in .outcomes li{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.js-anim .in .outcomes li:nth-child(2){transition-delay:.08s}
+.js-anim .in .outcomes li:nth-child(3){transition-delay:.16s}
+.js-anim .in .outcomes li:nth-child(4){transition-delay:.24s}
 
 .agenda{position:relative;display:grid;gap:16px;padding-inline-start:36px}
 .agenda-rail{position:absolute;inset-inline-start:11px;top:8px;bottom:8px;width:2px;background:var(--line)}
 .agenda-progress{position:absolute;inset-inline-start:11px;top:8px;bottom:8px;width:2px;background:var(--amber);transform:scaleY(1);transform-origin:top center}
-.motion .agenda-progress{transform:scaleY(0)}
+.js-anim .agenda-progress{transform:scaleY(0)}
 .day{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:20px 22px;position:relative}
 .day-num{font-size:56px;line-height:.9;color:var(--amber);display:block;margin-bottom:6px}
 .day h3{margin:0 0 4px;font-size:20px}
@@ -219,7 +216,7 @@ header.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--b
 .thanks p{margin:0;color:var(--ink2);font-size:18px}
 .draw{width:56px;height:56px}
 .draw path{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.motion .thanks:not([hidden]) .draw path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .6s var(--ease) forwards}
+.js-anim .thanks:not([hidden]) .draw path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .6s var(--ease) forwards}
 
 footer{border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area-inset-bottom));color:var(--muted);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -229,11 +226,11 @@ footer a:hover{color:var(--ink)}
 .sticky{position:fixed;inset-inline:0;bottom:0;z-index:30;display:none;background:var(--ink);color:var(--on);transform:translateY(100%);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
 .sticky .inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1080px;margin:0 auto}
 .sticky b{font-weight:500}
-.motion .sticky{transition:transform .25s var(--ease)}
+.js-anim .sticky{transition:transform .25s var(--ease)}
 .sticky.show{transform:translateY(0)}
 
-.motion .reveal{opacity:0;transform:translateY(12px)}
-.motion .reveal.in{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.js-anim .reveal{opacity:0;transform:translateY(12px)}
+.js-anim .reveal.in{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
 
 @media (max-width:900px){
   .hero-grid,.price-layout,.host,.cards{grid-template-columns:1fr}
@@ -292,7 +289,7 @@ footer a:hover{color:var(--ink)}
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h10l-2-2M14 12l-2 2M20 7l-3 5 3 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="money">780</span> <span class="money-label">درهم</span></li>
         </ul>
         <div class="cta-row">
-          <a class="btn hero-cta" href="#sessions">احجز مقعدك</a>
+          <a class="btn hero-cta" href="/grok-workshop/register">احجز مقعدك</a>
           <a class="text-link" href="#agenda">شو رح نتعلم؟ <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v10M4 8l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
         </div>
         <p class="by">مع مروان أبو سخا</p>
@@ -450,14 +447,9 @@ footer a:hover{color:var(--ink)}
       <div>
         <h2 id="price-title">التفاصيل</h2>
         <p class="amount"><span class="num serif"><span id="price-num" class="money">780</span></span> <span class="cur money-label">درهم</span></p>
-        <div class="fx">
-          <label for="currency">العملة</label>
-          <select id="currency"></select>
-        </div>
-        <p class="fx-note" id="fx-note">السعر تقريبي، والدفع بالدرهم الإماراتي.</p>
         <p class="per">السعر للشخص وشامل الضريبة. الدفع بالدرهم الإماراتي، وفي فاتورة ضريبية إذا الشركة رح تدفع.</p>
         <div class="price-cta">
-          <a class="btn light" href="#register">احجز مقعدك</a>
+          <a class="btn light" href="/grok-workshop/register">احجز مقعدك</a>
           <p class="fine">بعد ما تسجّل، رح نتواصل معك بكل التفاصيل.</p>
         </div>
       </div>
@@ -488,106 +480,11 @@ footer a:hover{color:var(--ink)}
       </details>
       <details>
         <summary>كيف بدفع وبعرف التفاصيل؟ <svg class="chev icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary>
-        <p>سجّل بجلسة من تحت، ورح يوصلك رابط الدفع على إيميلك. السعر <span class="money">780</span> <span class="money-label">درهم</span> للشخص وشامل الضريبة. الدفع بالدرهم الإماراتي، وفي فاتورة ضريبية إذا الشركة رح تدفع. المقعد بيضل محجوز يومين.</p>
+        <p>سجّل من <a href="/grok-workshop/register">صفحة الحجز</a>، ورح يوصلك رابط الدفع على إيميلك. السعر <span class="money">780</span> <span class="money-label">درهم</span> للشخص وشامل الضريبة. الدفع بالدرهم الإماراتي، وفي فاتورة ضريبية إذا الشركة رح تدفع. المقعد بيضل محجوز يومين.</p>
       </details>
     </div>
   </section>
 
-  <section class="band" id="sessions" aria-labelledby="sessions-title">
-    <div class="wrap">
-      <h2 id="sessions-title">اختار جلستك</h2>
-      <p class="sub">كل جلسة ساعتين أونلاين، من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان. في 20 مقعد بكل جلسة.</p>
-      <div class="sessions" id="session-list">
-        <article class="session" data-session="2026-12-18">
-          <div><h3>الجمعة 18 ديسمبر 2026</h3><p class="when">6:00–8:00 المسا · أونلاين</p></div>
-          <p class="seats">باقي <b class="left">11</b> من 20</p>
-          <button class="btn session-go" type="button">احجز مقعدك</button>
-        </article>
-        <article class="session" data-session="2026-12-19">
-          <div><h3>السبت 19 ديسمبر 2026</h3><p class="when">6:00–8:00 المسا · أونلاين</p></div>
-          <p class="seats">باقي <b class="left">20</b> من 20</p>
-          <button class="btn session-go" type="button">احجز مقعدك</button>
-        </article>
-        <article class="session" data-session="2027-01-02">
-          <div><h3>الجمعة 2 يناير 2027</h3><p class="when">6:00–8:00 المسا · أونلاين</p></div>
-          <p class="seats">باقي <b class="left">20</b> من 20</p>
-          <button class="btn session-go" type="button">احجز مقعدك</button>
-        </article>
-        <article class="session" data-session="2027-01-16">
-          <div><h3>الجمعة 16 يناير 2027</h3><p class="when">6:00–8:00 المسا · أونلاين</p></div>
-          <p class="seats">باقي <b class="left">20</b> من 20</p>
-          <button class="btn session-go" type="button">احجز مقعدك</button>
-        </article>
-        <article class="session" data-session="2027-01-30">
-          <div><h3>الجمعة 30 يناير 2027</h3><p class="when">6:00–8:00 المسا · أونلاين</p></div>
-          <p class="seats">باقي <b class="left">20</b> من 20</p>
-          <button class="btn session-go" type="button">احجز مقعدك</button>
-        </article>
-      </div>
-      <p class="pay-note">الدفع عن طريق رابط بيوصل على إيميلك. المقعد بيضل محجوز لمدة يومين، وإذا ما اكتمل الدفع بنعطيه لشخص ثاني.</p>
-    </div>
-  </section>
-
-  <section class="band" id="register" style="padding-top:0" aria-labelledby="register-title">
-    <div class="wrap">
-      <div class="form-card">
-        <div class="thanks" id="thanks" hidden tabindex="-1">
-          <svg class="draw" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" pathLength="1"/><path pathLength="1" d="M16 29 l8 8 16-18"/></svg>
-          <h2>تم حجز مقعدك مبدئياً!</h2>
-          <p>رح يوصلك رابط الدفع على إيميلك. معك يومين من وصول الرابط لتكمل الدفع، وإلا للأسف رح نعطي المقعد لشخص ثاني.</p>
-        </div>
-        <form name="grok-workshop" method="POST" action="/grok-workshop/thanks" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8" novalidate>
-          <h2 id="register-title">سجّل مقعدك</h2>
-          <p class="hint">اختار الجلسة، وعبّي بياناتك. كل الحقول مطلوبة.</p>
-          <input type="hidden" name="form-name" value="grok-workshop">
-          <p hidden>
-            <label>لا تعبّي هاد الحقل <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-          </p>
-          <div class="fields">
-            <div class="field">
-              <label for="full-name">اسمك الكامل</label>
-              <input id="full-name" name="name" type="text" autocomplete="name" required maxlength="120">
-              <p class="field-error" id="name-error" hidden></p>
-            </div>
-            <div class="field">
-              <label for="email">إيميلك</label>
-              <input id="email" name="email" type="email" dir="ltr" inputmode="email" autocomplete="email" required maxlength="160" spellcheck="false">
-              <p class="field-error" id="email-error" hidden></p>
-            </div>
-            <div class="field">
-              <label for="role">شو منصبك؟</label>
-              <input id="role" name="role" type="text" autocomplete="organization-title" placeholder="مثلًا: صاحب شركة، مدير عام" required maxlength="120">
-              <p class="field-error" id="role-error" hidden></p>
-            </div>
-            <div class="field">
-              <label for="phone">رقم تلفونك</label>
-              <input id="phone" name="phone" type="tel" dir="ltr" inputmode="tel" autocomplete="tel" placeholder="+966 5x xxx xxxx" required maxlength="30">
-              <p class="field-error" id="phone-error" hidden></p>
-            </div>
-            <div class="field">
-              <label for="session">الجلسة</label>
-              <select id="session" name="session" required>
-                <option value="">اختار الجلسة</option>
-                <option value="2026-12-18">الجمعة 18 ديسمبر 2026</option>
-                <option value="2026-12-19">السبت 19 ديسمبر 2026</option>
-                <option value="2027-01-02">الجمعة 2 يناير 2027</option>
-                <option value="2027-01-16">الجمعة 16 يناير 2027</option>
-                <option value="2027-01-30">الجمعة 30 يناير 2027</option>
-              </select>
-              <p class="field-error" id="session-error" hidden></p>
-            </div>
-            <div class="field">
-              <label for="city">مدينتك</label>
-              <input id="city" name="city" type="text" autocomplete="address-level2" required maxlength="80">
-              <p class="field-error" id="city-error" hidden></p>
-            </div>
-          </div>
-          <p class="form-error" id="form-error" hidden role="alert">ما وصل الطلب. تأكد من النت وجرّب مرة تانية.</p>
-          <button class="btn full" type="submit" style="margin-top:16px"><svg class="spin" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="16 28" stroke-linecap="round"/></svg><span class="btn-label">احجز مقعدي</span></button>
-        </form>
-      </div>
-    </div>
-  </section>
 </main>
 <footer>
   <div class="wrap">
@@ -598,249 +495,64 @@ footer a:hover{color:var(--ink)}
 <div class="sticky" id="sticky">
   <div class="inner">
     <b><span class="money">780</span> <span class="money-label">درهم</span> · 6:00 المسا</b>
-    <a class="btn light" href="#sessions">احجز مقعدك</a>
+    <a class="btn light" href="/grok-workshop/register">احجز مقعدك</a>
   </div>
 </div>
 <script>
 (function () {
-  var reduced = !document.documentElement.classList.contains("motion");
-  var easeRoot = "0px 0px -10% 0px";
-  if (!reduced && "IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("in");
-        io.unobserve(entry.target);
+  function revealAll() {
+    var nodes = document.querySelectorAll(".reveal, .pill-done, .outcomes li, .chips li");
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].classList.add("in");
+      nodes[i].style.opacity = "1";
+      nodes[i].style.transform = "none";
+      nodes[i].style.animation = "none";
+    }
+  }
+  window.addEventListener("error", revealAll);
+  window.addEventListener("unhandledrejection", revealAll);
+  setTimeout(revealAll, 1500);
+  try {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var sticky = document.getElementById("sticky");
+    var heroCta = document.querySelector(".hero-cta");
+    if (sticky && heroCta && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        var narrow = window.matchMedia("(max-width: 768px)").matches;
+        sticky.classList.toggle("show", narrow && !entries[0].isIntersecting);
+      }).observe(heroCta);
+      window.addEventListener("resize", function () {
+        if (!window.matchMedia("(max-width: 768px)").matches) sticky.classList.remove("show");
       });
-    }, { threshold: 0.15, rootMargin: easeRoot });
-    document.querySelectorAll(".reveal, [data-ba]").forEach(function (el) { io.observe(el); });
-
-    var agenda = document.querySelector("[data-agenda]");
-    var bar = agenda && agenda.querySelector(".agenda-progress");
-    if (agenda && bar) {
-      var onScroll = function () {
-        var rect = agenda.getBoundingClientRect();
-        var view = window.innerHeight || 800;
-        var total = rect.height + view * 0.4;
-        var passed = Math.min(Math.max(view * 0.55 - rect.top, 0), total);
-        bar.style.transform = "scaleY(" + Math.max(0, Math.min(1, passed / total)) + ")";
-      };
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
     }
-
-    function runCount(el) {
-      var target = Number(el.getAttribute("data-count"));
-      var start = performance.now();
-      function tick(now) {
-        var t = Math.min(1, (now - start) / 700);
-        var eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = String(Math.round(target * eased));
-        if (t < 1) requestAnimationFrame(tick);
-      }
-      el.textContent = "0";
-      requestAnimationFrame(tick);
-    }
-    var cio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        cio.unobserve(entry.target);
-        if (entry.target.hasAttribute("data-count")) runCount(entry.target);
-        entry.target.querySelectorAll("[data-count]").forEach(runCount);
-      });
-    }, { threshold: 0.45 });
-    var price = document.getElementById("price-num");
-    if (price) cio.observe(price);
-  }
-
-  var sticky = document.getElementById("sticky");
-  var heroCta = document.querySelector(".hero-cta");
-  var register = document.getElementById("register");
-  var ctaGone = false;
-  var formOn = false;
-  function syncBar() {
-    var narrow = window.matchMedia("(max-width: 768px)").matches;
-    sticky.classList.toggle("show", narrow && ctaGone && !formOn);
-  }
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) {
-      ctaGone = !entries[0].isIntersecting;
-      syncBar();
-    }).observe(heroCta);
-    new IntersectionObserver(function (entries) {
-      formOn = entries[0].isIntersecting;
-      syncBar();
-    }, { threshold: 0.15 }).observe(register);
-    window.addEventListener("resize", syncBar);
-  }
-
-  var form = document.querySelector("form[name=grok-workshop]");
-  if (!form) return;
-  var thanks = document.getElementById("thanks");
-  var error = document.getElementById("form-error");
-  var button = form.querySelector("button[type=submit]");
-  var label = button.querySelector(".btn-label");
-  var spinner = button.querySelector(".spin");
-  var messages = {
-    name: "اكتب اسمك الكامل",
-    email: "اكتب إيميل صحيح",
-    role: "اكتب منصبك",
-    phone: "اكتب رقم تلفونك",
-    city: "اكتب مدينتك",
-    session: "اختار الجلسة"
-  };
-  function paintSeats(list) {
-    (list || []).forEach(function (row) {
-      var card = document.querySelector('.session[data-session="' + row.id + '"]');
-      if (!card) return;
-      card.querySelector(".left").textContent = String(row.seatsLeft);
-      var btn = card.querySelector(".session-go");
-      var option = document.querySelector('#session option[value="' + row.id + '"]');
-      if (row.full || row.seatsLeft === 0) {
-        btn.disabled = true;
-        btn.textContent = "ممتلئ";
-        if (option) option.disabled = true;
-      } else {
-        btn.disabled = false;
-        btn.textContent = "احجز مقعدك";
-        if (option) option.disabled = false;
-      }
-    });
-  }
-  function loadSeats() {
-    return fetch("/.netlify/functions/register").then(function (res) {
-      if (!res.ok) throw new Error("seats");
-      return res.json();
-    }).then(function (data) {
-      paintSeats(data.sessions);
-      return data;
-    });
-  }
-  loadSeats().catch(function () {});
-  document.querySelectorAll(".session-go").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      if (btn.disabled) return;
-      var id = btn.closest(".session").getAttribute("data-session");
-      form.elements.session.value = id;
-      document.getElementById("register").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-      form.elements.name.focus();
-    });
-  });
-  fetch("/grok-workshop/rates.json").then(function (res) { return res.json(); }).then(function (rates) {
-    var select = document.getElementById("currency");
-    var note = document.getElementById("fx-note");
-    if (note && rates.note) note.textContent = rates.note;
-    rates.currencies.forEach(function (item) {
-      var option = document.createElement("option");
-      option.value = item.code;
-      option.textContent = item.name;
-      if (item.code === rates.base) option.selected = true;
-      select.appendChild(option);
-    });
-    function render(code) {
-      var item = rates.currencies.filter(function (row) { return row.code === code; })[0] || rates.currencies[0];
-      var value = rates.amount * item.perAed;
-      var text = value.toFixed(item.decimals);
-      if (item.decimals > 0) text = text.replace(/0+$/, "").replace(/\.$/, "");
-      document.querySelectorAll(".money").forEach(function (el) { el.textContent = text; });
-      document.querySelectorAll(".money-label").forEach(function (el) { el.textContent = item.label; });
-    }
-    select.addEventListener("change", function () { render(select.value); });
-    render(rates.base);
-  }).catch(function () {});
-  function applyMessages() {
-    var first = null;
-    Object.keys(messages).forEach(function (key) {
-      var field = form.elements[key];
-      var slot = document.getElementById(key + "-error");
-      var bad = !field.value.trim() || (field.type === "email" && field.validity.typeMismatch);
-      if (bad) {
-        field.setAttribute("aria-invalid", "true");
-        slot.hidden = false;
-        slot.textContent = messages[key];
-        if (!first) first = field;
-      } else {
-        field.removeAttribute("aria-invalid");
-        slot.hidden = true;
-        slot.textContent = "";
-      }
-    });
-    return first;
-  }
-  Object.keys(messages).forEach(function (key) {
-    form.elements[key].addEventListener("input", function () {
-      var field = form.elements[key];
-      if (!field.value.trim() || !field.checkValidity()) return;
-      field.removeAttribute("aria-invalid");
-      var slot = document.getElementById(key + "-error");
-      slot.hidden = true;
-      slot.textContent = "";
-    });
-  });
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    error.hidden = true;
-    var firstInvalid = applyMessages();
-    if (firstInvalid || !form.checkValidity()) {
-      if (firstInvalid) firstInvalid.focus();
-      return;
-    }
-    button.disabled = true;
-    label.textContent = "لحظة…";
-    spinner.hidden = false;
-    form.setAttribute("aria-busy", "true");
-    var payload = {
-      sessionId: form.elements.session.value,
-      name: form.elements.name.value,
-      email: form.elements.email.value,
-      role: form.elements.role.value,
-      phone: form.elements.phone.value,
-      city: form.elements.city.value
-    };
-    fetch("/.netlify/functions/register", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(payload)
-    }).then(function (res) {
-      return res.json().then(function (data) {
-        if (data && data.sessions) paintSeats(data.sessions);
-        if (data && data.error === "full") {
-          var full = new Error("full");
-          full.full = true;
-          throw full;
-        }
-        if (data && data.error === "duplicate") {
-          var dup = new Error("duplicate");
-          dup.duplicate = true;
-          throw dup;
-        }
-        if (!res.ok || !data.ok) throw new Error("status");
-        return fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(new FormData(form)).toString()
+    if (!reduce && "IntersectionObserver" in window) {
+      document.documentElement.classList.add("js-anim");
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
         });
-      });
-    }).then(function (response) {
-      if (!response.ok) throw new Error("form");
-      form.hidden = true;
-      thanks.hidden = false;
-      register.setAttribute("aria-labelledby", "thanks");
-      thanks.focus();
-      loadSeats().catch(function () {});
-    }).catch(function (err) {
-      button.disabled = false;
-      label.textContent = "احجز مقعدي";
-      spinner.hidden = true;
-      form.removeAttribute("aria-busy");
-      error.hidden = false;
-      error.textContent = err && err.full
-        ? "هالجلسة امتلأت. اختار جلسة ثانية."
-        : err && err.duplicate
-          ? "هذا الإيميل مسجّل بهالجلسة."
-          : "ما وصل الطلب. تأكد من النت وجرّب مرة تانية.";
-    });
-  });
+      }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
+      var nodes = document.querySelectorAll(".reveal, [data-ba]");
+      for (var n = 0; n < nodes.length; n++) io.observe(nodes[n]);
+      var agenda = document.querySelector("[data-agenda]");
+      var bar = agenda && agenda.querySelector(".agenda-progress");
+      if (agenda && bar) {
+        var onScroll = function () {
+          var rect = agenda.getBoundingClientRect();
+          var view = window.innerHeight || 800;
+          var total = rect.height + view * 0.4;
+          var passed = Math.min(Math.max(view * 0.55 - rect.top, 0), total);
+          bar.style.transform = "scaleY(" + Math.max(0, Math.min(1, passed / total)) + ")";
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+    }
+  } catch (err) {
+    revealAll();
+  }
 })();
 </script>
 </body>
