@@ -102,5 +102,10 @@ export default async function handler(request) {
   const result = book(sessions, bookings, entry);
   if (!result.ok) return reply(result, result.error === "full" ? 409 : 400);
   await store.setJSON(key(), result.bookings);
-  return reply({ ok: true, seatsLeft: result.seatsLeft, sessions: summary(sessions, result.bookings).sessions });
+  return reply({
+    ok: true,
+    waitlist: Boolean(result.waitlist),
+    seatsLeft: result.seatsLeft,
+    sessions: summary(sessions, result.bookings).sessions
+  });
 }

@@ -4,22 +4,26 @@ export function seatsLeft(session, bookings) {
 }
 
 export function book(sessions, bookings, entry) {
-  const session = sessions.find((item) => item.id === entry.sessionId);
-  if (!session || session.active === false) return { error: "inactive" };
   const email = String(entry.email || "").trim().toLowerCase();
-  if (bookings.some((row) => row.sessionId === session.id && row.email === email)) {
-    return { error: "duplicate", seatsLeft: seatsLeft(session, bookings) };
-  }
-  if (seatsLeft(session, bookings) <= 0) return { error: "full", seatsLeft: 0 };
-  const next = bookings.concat([{
-    sessionId: session.id,
+  const row = {
+    sessionId: entry.sessionId,
     email,
     name: String(entry.name || "").trim(),
     role: String(entry.role || "").trim(),
     phone: String(entry.phone || "").trim(),
     city: String(entry.city || "").trim(),
     at: entry.at || new Date().toISOString()
-  }]);
+  };
+  if (entry.sessionId === "waitlist") {
+    return { ok: true, bookings: bookings.concat([row]), waitlist: true };
+  }
+  const session = sessions.find((item) => item.id === entry.sessionId);
+  if (!session || session.active === false) return { error: "inactive" };
+  if (bookings.some((item) => item.sessionId === session.id && item.email === email)) {
+    return { error: "duplicate", seatsLeft: seatsLeft(session, bookings) };
+  }
+  if (seatsLeft(session, bookings) <= 0) return { error: "full", seatsLeft: 0 };
+  const next = bookings.concat([Object.assign({}, row, { sessionId: session.id })]);
   return { ok: true, bookings: next, seatsLeft: seatsLeft(session, next) };
 }
 
