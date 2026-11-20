@@ -22,6 +22,7 @@
   color-scheme:light;box-sizing:border-box;
 }
 *,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none !important}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","DM Sans",Tahoma,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
@@ -355,6 +356,8 @@ footer a{color:var(--muted);text-decoration:none}
       form.hidden = true;
       thanks.hidden = false;
       thanks.focus();
+      var box = document.getElementById("register");
+      window.scrollTo(0, box.getBoundingClientRect().top + window.pageYOffset - 16);
       loadSeats().catch(function () {});
       if (!waitlist) {
         document.body.classList.add("paying");
