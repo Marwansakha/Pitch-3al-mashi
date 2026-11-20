@@ -209,6 +209,24 @@ footer a{color:var(--muted);text-decoration:none}
 <script>
 (function () {
   var form = document.querySelector("form[name=grok-workshop]");
+  var payTimer = 0;
+  function logPay(source) {
+    try {
+      var body = JSON.stringify({
+        email: String(form.elements.email.value || "").trim(),
+        sessionId: String(form.elements.session.value || "").trim(),
+        source: source
+      });
+      var endpoint = "/.netlify/functions/pay-click";
+      var sent = false;
+      if (navigator.sendBeacon) sent = navigator.sendBeacon(endpoint, new Blob([body], { type: "application/json" }));
+      if (!sent) fetch(endpoint, { method: "POST", headers: { "content-type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+    } catch (err) {}
+  }
+  document.getElementById("pay-now").addEventListener("click", function () {
+    if (payTimer) clearTimeout(payTimer);
+    logPay("button");
+  });
   var button = form.querySelector("button[type=submit]");
   var label = button.querySelector(".btn-label");
   var whenAmman = "6:00–8:00";
@@ -456,7 +474,10 @@ footer a{color:var(--muted);text-decoration:none}
         document.body.classList.add("paying");
         var payUrl = "https://buy.stripe.com/9B66oH0ewePha0b8F6cEw0Y?prefilled_email=" + encodeURIComponent(String(form.elements.email.value || "").trim());
         document.getElementById("pay-now").href = payUrl;
-        setTimeout(function () { window.location.assign(payUrl); }, 3000);
+        payTimer = setTimeout(function () {
+          logPay("redirect");
+          window.location.assign(payUrl);
+        }, 3000);
       }
     }).catch(function (err) {
       button.disabled = false;
