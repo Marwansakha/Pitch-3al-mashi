@@ -106,7 +106,7 @@ footer a{color:var(--muted);text-decoration:none}
       <span class="money-label">درهم</span>
       <label class="sr" for="currency" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">العملة</label>
       <select id="currency"></select>
-      <p class="fx-note" id="fx-note">السعر تقريبي، والدفع بالدرهم الإماراتي.</p>
+      <p class="fx-note" id="fx-note">السعر تقريبي.</p>
     </div>
   </div>
 </header>
@@ -142,7 +142,7 @@ footer a{color:var(--muted);text-decoration:none}
             <li><span>الورشة</span><b>ورشة <bdi class="latin" lang="en" dir="ltr">Grok Bot</bdi></b></li>
             <li><span>التاريخ</span><b id="pay-date">18 و19 ديسمبر 2026</b></li>
             <li><span>الوقت</span><b><bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي</b></li>
-            <li><span>السعر</span><b>780 درهم</b></li>
+            <li><span>السعر</span><b><span class="money">780</span> <span class="money-label">درهم</span></b></li>
           </ul>
           <p>مقعدك محجوز لمدة يومين لحين إتمام الدفع</p>
           <a class="btn full" id="pay-now" href="https://buy.stripe.com/9B66oH0ewePha0b8F6cEw0Y">ادفع الآن لتأكيد مقعدك</a>
@@ -361,8 +361,29 @@ footer a{color:var(--muted);text-decoration:none}
       for (n = 0; n < amounts.length; n++) amounts[n].textContent = text;
       for (n = 0; n < labels.length; n++) labels[n].textContent = item.label;
     }
-    select.addEventListener("change", function () { render(select.value); });
+    function find(code) {
+      for (var c = 0; c < rates.currencies.length; c++) {
+        if (rates.currencies[c].code === code) return true;
+      }
+      return false;
+    }
+    function readSaved() {
+      try { return localStorage.getItem("grok-workshop-currency") || ""; } catch (err) { return ""; }
+    }
+    function writeSaved(code) {
+      try { localStorage.setItem("grok-workshop-currency", code); } catch (err) {}
+    }
+    select.addEventListener("change", function () {
+      writeSaved(select.value);
+      render(select.value);
+    });
+    var saved = readSaved();
+    if (saved && find(saved)) { render(saved); return; }
     render(rates.base);
+    fetch("/.netlify/functions/currency-geo").then(function (res) { return res.json(); }).then(function (data) {
+      if (readSaved()) return;
+      render(data && find(data.currency) ? data.currency : rates.base);
+    }).catch(function () {});
   }).catch(function () {});
 
   var thanks = document.getElementById("thanks");
