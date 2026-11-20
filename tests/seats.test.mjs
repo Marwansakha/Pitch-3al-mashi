@@ -28,5 +28,15 @@ assert.equal(book(sessions, rows, { sessionId: "2026-12-18", name: "بعد", ema
 const released = releaseTests(rows, "2026-12-18");
 assert.equal(released.length, 0);
 assert.equal(seatsLeft(sessions[0], released), 11);
+assert.equal(book([{ id: "2026-12-19", capacity: 20, seeded: 0, active: false }], [], {
+  sessionId: "2026-12-19", name: "TEST", email: "test@example.com"
+}).error, "inactive");
+
+const waiting = book(sessions, rows, { sessionId: "waitlist", name: "TEST Wait", email: "wait@example.com", role: "مدير", phone: "1", city: "عمّان" });
+assert.equal(waiting.ok, true);
+assert.equal(waiting.waitlist, true);
+assert.equal(seatsLeft(sessions[0], waiting.bookings), 0);
+assert.equal(waiting.bookings.filter((row) => row.sessionId === "2026-12-18").length, rows.length);
+assert.equal(releaseTests(waiting.bookings, "").some((row) => row.sessionId === "waitlist"), false);
 
 console.log("seat math passed");

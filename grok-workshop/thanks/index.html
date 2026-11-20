@@ -51,8 +51,14 @@ footer a:hover{color:var(--ink)}
 </header>
 <main>
   <div class="wrap">
-    <h1>تم حجز مقعدك مبدئياً</h1>
-    <p>رح يوصلك رابط الدفع على إيميلك. معك يومين من وصول الرابط لتكمل الدفع، وإلا للأسف رح نعطي المقعد لشخص ثاني.</p>
+    <h1 id="thanks-title">تم حجز مقعدك مبدئياً</h1>
+    <p id="thanks-body">رح يوصلك رابط الدفع على إيميلك. معك يومين من وصول الرابط لتكمل الدفع، وإلا للأسف رح نعطي المقعد لشخص ثاني.</p>
+    <script>
+      if (new URLSearchParams(location.search).get("list") === "waitlist") {
+        document.getElementById("thanks-title").textContent = "تم تسجيلك على قائمة الانتظار";
+        document.getElementById("thanks-body").textContent = "اسمك على القائمة. بنبعتلك إيميل أول ما ينفتح تاريخ الجلسة الجاية.";
+      }
+    </script>
     <a class="btn" href="/grok-workshop">العودة إلى الورشة</a>
   </div>
 </main>
