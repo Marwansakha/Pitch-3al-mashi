@@ -83,7 +83,23 @@ footer a:hover{color:var(--ink)}
         var payUrl = pay.getAttribute("href");
         if (email) payUrl = payUrl.split("?")[0] + "?prefilled_email=" + encodeURIComponent(email);
         pay.href = payUrl;
-        setTimeout(function () { window.location.assign(payUrl); }, 3000);
+        function logPay(source) {
+          try {
+            var body = JSON.stringify({ email: email || "", sessionId: params.get("session") || "", source: source });
+            var endpoint = "/.netlify/functions/pay-click";
+            var sent = false;
+            if (navigator.sendBeacon) sent = navigator.sendBeacon(endpoint, new Blob([body], { type: "application/json" }));
+            if (!sent) fetch(endpoint, { method: "POST", headers: { "content-type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+          } catch (err) {}
+        }
+        var payTimer = setTimeout(function () {
+          logPay("redirect");
+          window.location.assign(payUrl);
+        }, 3000);
+        pay.addEventListener("click", function () {
+          clearTimeout(payTimer);
+          logPay("button");
+        });
       })();
     </script>
     <a class="back" href="/grok-workshop">العودة إلى الورشة</a>
