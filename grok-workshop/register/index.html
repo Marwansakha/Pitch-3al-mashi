@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>احجز مقعدك | ورشة Grok Bot</title>
-<meta name="description" content="اختار جلسة ورشة Grok Bot. كل جلسة ساعتين أونلاين من 6:00 لـ 8:00 المسا. 780 درهم للشخص، شامل الضريبة.">
+<meta name="description" content="سجّل اسمك لجلسة Grok Bot، الجمعة 18 ديسمبر، من 6:00 لـ 8:00 المسا. 780 درهم للشخص، شامل الضريبة.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://marwandoesai.com/grok-workshop/register">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
@@ -43,6 +43,12 @@ h1{font-size:clamp(30px,6vw,42px);line-height:1.3;margin:0 0 8px}
 .session h2{margin:0;font-size:18px}
 .session .when{margin:0;color:var(--muted);font-size:14px}
 .session .left{font-weight:700}
+.session-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.badge{display:inline-flex;align-items:center;background:#B8860B;color:#1A1A1A;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
+@media (prefers-reduced-motion:no-preference){
+  .badge{animation:seat-pulse 2.2s ease-in-out infinite}
+}
+@keyframes seat-pulse{0%,100%{opacity:1}50%{opacity:.72}}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border-radius:999px;border:0;background:var(--ink);color:var(--on);font:inherit;font-weight:500;text-decoration:none;cursor:pointer}
 .btn:hover{background:var(--amber);color:var(--ink)}
 .btn:disabled{background:#E7E2D8;color:var(--muted);cursor:not-allowed}
@@ -78,37 +84,16 @@ footer a{color:var(--muted);text-decoration:none}
 </header>
 <main>
   <div class="wrap">
-    <h1>اختار جلستك</h1>
-    <p class="sub">كل جلسة ساعتين أونلاين، من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان. في 20 مقعد بكل جلسة.</p>
+    <div class="session-head">
+      <h1>سجّل اسمك للجلسة الجاية</h1>
+      <p class="badge">باقي أماكن قليلة</p>
+    </div>
+    <p class="sub">الجمعة 18 ديسمبر، ساعتين أونلاين من 6:00 لـ 8:00 المسا، بتوقيت الرياض وعمّان.</p>
     <div class="sessions">
       <article class="session" data-session="2026-12-18">
         <h2>الجمعة 18 ديسمبر 2026</h2>
         <p class="when">6:00–8:00 المسا · أونلاين</p>
-        <p class="seats">باقي <b class="left">11</b> من 20</p>
-        <button class="btn session-go" type="button">احجز مقعدك</button>
-      </article>
-      <article class="session" data-session="2026-12-19">
-        <h2>السبت 19 ديسمبر 2026</h2>
-        <p class="when">6:00–8:00 المسا · أونلاين</p>
-        <p class="seats">باقي <b class="left">20</b> من 20</p>
-        <button class="btn session-go" type="button">احجز مقعدك</button>
-      </article>
-      <article class="session" data-session="2027-01-02">
-        <h2>الجمعة 2 يناير 2027</h2>
-        <p class="when">6:00–8:00 المسا · أونلاين</p>
-        <p class="seats">باقي <b class="left">20</b> من 20</p>
-        <button class="btn session-go" type="button">احجز مقعدك</button>
-      </article>
-      <article class="session" data-session="2027-01-16">
-        <h2>الجمعة 16 يناير 2027</h2>
-        <p class="when">6:00–8:00 المسا · أونلاين</p>
-        <p class="seats">باقي <b class="left">20</b> من 20</p>
-        <button class="btn session-go" type="button">احجز مقعدك</button>
-      </article>
-      <article class="session" data-session="2027-01-30">
-        <h2>الجمعة 30 يناير 2027</h2>
-        <p class="when">6:00–8:00 المسا · أونلاين</p>
-        <p class="seats">باقي <b class="left">20</b> من 20</p>
+        <p class="seats">باقي <b class="left">11</b> مقعد بس</p>
         <button class="btn session-go" type="button">احجز مقعدك</button>
       </article>
     </div>
@@ -121,19 +106,14 @@ footer a{color:var(--muted);text-decoration:none}
       </div>
       <form name="grok-workshop" method="POST" action="/grok-workshop/thanks" data-netlify="true" netlify-honeypot="bot-field" accept-charset="UTF-8" novalidate>
         <h2>سجّل مقعدك</h2>
-        <p class="hint">اختار الجلسة، وعبّي بياناتك. كل الحقول مطلوبة.</p>
+        <p class="hint">الجلسة محددة: الجمعة 18 ديسمبر. عبّي بياناتك. كل الحقول مطلوبة.</p>
         <input type="hidden" name="form-name" value="grok-workshop">
         <p hidden><label>لا تعبّي هاد الحقل <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="fields">
           <div class="field">
             <label for="session">الجلسة</label>
             <select id="session" name="session" required>
-              <option value="">اختار الجلسة</option>
-              <option value="2026-12-18">الجمعة 18 ديسمبر 2026</option>
-              <option value="2026-12-19">السبت 19 ديسمبر 2026</option>
-              <option value="2027-01-02">الجمعة 2 يناير 2027</option>
-              <option value="2027-01-16">الجمعة 16 يناير 2027</option>
-              <option value="2027-01-30">الجمعة 30 يناير 2027</option>
+              <option value="2026-12-18" selected>الجمعة 18 ديسمبر 2026</option>
             </select>
             <p class="field-error" id="session-error" hidden></p>
           </div>

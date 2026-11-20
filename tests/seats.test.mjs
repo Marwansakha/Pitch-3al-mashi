@@ -28,5 +28,8 @@ assert.equal(book(sessions, rows, { sessionId: "2026-12-18", name: "بعد", ema
 const released = releaseTests(rows, "2026-12-18");
 assert.equal(released.length, 0);
 assert.equal(seatsLeft(sessions[0], released), 11);
+assert.equal(book([{ id: "2026-12-19", capacity: 20, seeded: 0, active: false }], [], {
+  sessionId: "2026-12-19", name: "TEST", email: "test@example.com"
+}).error, "inactive");
 
 console.log("seat math passed");

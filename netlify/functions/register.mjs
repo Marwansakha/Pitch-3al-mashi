@@ -24,7 +24,8 @@ async function catalog(request) {
     id: session.id,
     label: session.label,
     seeded: session.seeded || 0,
-    capacity
+    capacity,
+    active: session.active !== false
   }));
 }
 
@@ -34,7 +35,7 @@ async function loadBookings(store) {
 
 function summary(sessions, bookings) {
   return {
-    sessions: sessions.map((session) => {
+    sessions: sessions.filter((session) => session.active !== false).map((session) => {
       const left = seatsLeft(session, bookings);
       return { id: session.id, seatsLeft: left, capacity: session.capacity, full: left === 0 };
     })

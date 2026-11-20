@@ -5,7 +5,7 @@ export function seatsLeft(session, bookings) {
 
 export function book(sessions, bookings, entry) {
   const session = sessions.find((item) => item.id === entry.sessionId);
-  if (!session) return { error: "unknown" };
+  if (!session || session.active === false) return { error: "inactive" };
   const email = String(entry.email || "").trim().toLowerCase();
   if (bookings.some((row) => row.sessionId === session.id && row.email === email)) {
     return { error: "duplicate", seatsLeft: seatsLeft(session, bookings) };
