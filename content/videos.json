@@ -10,6 +10,22 @@
   },
   "videos": [
     {
+      "slug": "grok-for-managers",
+      "title": "افضل اداة لاي شخص إداري او صاحب بزنس",
+      "titleEn": "The best tool for any manager or business owner",
+      "thumbnail": "/links/thumbs/grok-for-managers.jpg",
+      "date": "2026-11-20",
+      "postedAt": "2026-11-20T15:23:00+03:00",
+      "tags": [
+        "Grok",
+        "AI tools"
+      ],
+      "description": "Grok: افضل أداة لأي شخص إداري أو صاحب بزنس.",
+      "descriptionEn": "Grok, the tool this reel recommends for managers and business owners.",
+      "url": "https://grok.com/",
+      "videoUrl": "https://www.instagram.com/reel/Df9pIDDxM6n/"
+    },
+    {
       "slug": "invest-or-not-2",
       "title": "بتستثمر ولا ما بتستثمر؟",
       "titleEn": "Invest, or not?",
