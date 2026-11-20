@@ -10,6 +10,22 @@
   },
   "videos": [
     {
+      "slug": "invest-or-not-2",
+      "title": "بتستثمر ولا ما بتستثمر؟",
+      "titleEn": "Invest, or not?",
+      "thumbnail": "/links/thumbs/invest-or-not-2.jpg",
+      "date": "2026-11-19",
+      "postedAt": "2026-11-19T18:01:00+03:00",
+      "tags": [
+        "Pitch 3al Mashi",
+        "Startups",
+        "Founders"
+      ],
+      "description": "حلقة ٣٦ من Pitch على الماشي: حل التأخير في الدفع.",
+      "descriptionEn": "Pitch 3al Mashi, episode 36: a fix for late payments.",
+      "videoUrl": "https://www.instagram.com/reel/Df7WnUpsLw9/"
+    },
+    {
       "slug": "openai-agents-court",
       "title": "الشركة المطورة لChatGPT بالمحكمة بسبب AI agents خرجو عن السيطرة",
       "titleEn": "The company behind ChatGPT is in court after its AI agents got out of control",
