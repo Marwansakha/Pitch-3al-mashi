@@ -109,8 +109,8 @@ footer a{color:var(--muted);text-decoration:none}
         <h2>الجمعة 18 ديسمبر 2026</h2>
         <p class="when">6:00–8:00 المسا · أونلاين</p>
         <p class="seats" hidden>
-          <b class="left"></b>
-          <span class="seats-label">مقاعد باقية</span>
+          <b class="left" dir="ltr"></b>
+          <span class="seats-label">مقعد متبقي</span>
         </p>
         <button class="btn session-go" type="button">احجز مقعدك</button>
       </article>
@@ -195,7 +195,7 @@ footer a{color:var(--muted);text-decoration:none}
       if (!card) continue;
       var count = card.querySelector(".left");
       if (!count) continue;
-      count.textContent = String(row.seatsLeft);
+      count.textContent = String(row.seatsLeft) + "/" + String(row.capacity);
       count.classList.add("live");
       card.querySelector(".seats").hidden = false;
       btn = card.querySelector(".session-go");
