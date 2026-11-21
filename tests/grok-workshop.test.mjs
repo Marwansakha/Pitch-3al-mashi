@@ -71,14 +71,52 @@ assert.equal(register.includes("2026-12-19"), false);
 assert.equal(register.includes("2027-01-30"), false);
 assert.equal(register.includes("next-session"), false);
 assert.match(register, /سجّل اسمك للجلسة الجاية/);
-assert.match(register, /باقي أماكن قليلة/);
+assert.equal(register.includes("باقي أماكن قليلة"), false);
+assert.equal(register.includes("few-seats"), false);
+assert.equal(register.includes("seat-shake"), false);
+assert.equal(register.includes("seat-pulse"), false);
+assert.equal(register.includes("أماكن قليلة"), false);
 assert.match(register, /مكتمل العدد/);
-assert.match(register, /seatsLeft <= 5/);
-assert.match(register, /مقعد متبقي/);
-assert.match(register, /String\(row\.seatsLeft\) \+ "\/" \+ String\(row\.capacity\)/);
+assert.match(register, /function seatsLeftLabel/);
+assert.match(register, /مقعد متبقي بهالدفعة/);
+assert.match(register, /مقعدين متبقيين بهالدفعة/);
+assert.match(register, /مقاعد متبقية بهالدفعة/);
+assert.match(register, /اكتمل العدد/);
+assert.equal(register.includes('String(row.seatsLeft) + "/" + String(row.capacity)'), false);
 assert.equal(register.includes("11/20"), false);
 assert.equal(page.includes("مقاعد باقية"), false);
-assert.match(register, /seat-shake/);
+assert.match(register, /setAttribute\("role", "meter"\)/);
+assert.match(register, /aria-valuenow/);
+assert.match(register, /aria-valuemin/);
+assert.match(register, /aria-valuemax/);
+assert.match(register, /aria-label/);
+assert.match(register, /#E5E1D8/);
+assert.match(register, /#B8860B/);
+assert.match(register, /inset-inline-start:0/);
+assert.match(register, /محجوز/);
+function isolateFunction(source, name) {
+  const marker = "function " + name + "(";
+  const start = source.indexOf(marker);
+  assert.notEqual(start, -1, name);
+  let depth = 0;
+  for (let i = source.indexOf("{", start); i < source.length; i++) {
+    if (source[i] === "{") depth++;
+    else if (source[i] === "}") {
+      depth--;
+      if (depth === 0) return new Function(source.slice(start, i + 1) + "\nreturn " + name + ";")();
+    }
+  }
+  throw new Error("unclosed " + name);
+}
+const seatsLeftLabel = isolateFunction(register, "seatsLeftLabel");
+assert.equal(seatsLeftLabel(0), "اكتمل العدد");
+assert.equal(seatsLeftLabel(1), "مقعد متبقي بهالدفعة");
+assert.equal(seatsLeftLabel(2), "مقعدين متبقيين بهالدفعة");
+assert.equal(seatsLeftLabel(3), "مقاعد متبقية بهالدفعة");
+assert.equal(seatsLeftLabel(10), "مقاعد متبقية بهالدفعة");
+assert.equal(seatsLeftLabel(11), "مقعد متبقي بهالدفعة");
+assert.equal(seatsLeftLabel(20), "مقعد متبقي بهالدفعة");
+assert.equal(register.includes("بس"), false);
 assert.match(register, /سجّل اسمك على قائمة الانتظار للجلسات القادمة/);
 assert.match(register, /value="waitlist"/);
 assert.match(register, /قائمة الانتظار للجلسات القادمة/);
