@@ -179,7 +179,8 @@ html[dir="rtl"] .chips.fade-start.fade-end{
 .miss{margin:14px 0 0;padding:12px 14px;border:1px solid var(--rule);border-radius:14px;background:var(--card);color:var(--ink2)}
 
 .grid-wrap{margin:18px -20px 0}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;padding-top:6px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;padding-top:6px;align-items:start}
+.card{position:relative;min-width:0;display:flex;flex-direction:column}
 .tile{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:start;cursor:pointer;border-radius:2px;animation:tile-in .42s var(--ease) both;animation-delay:calc(var(--i,0) * 40ms)}
 .tile-media{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#E7E1D6;border-radius:2px}
 .tile img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .35s var(--ease)}
@@ -188,11 +189,25 @@ html[dir="rtl"] .chips.fade-start.fade-end{
 .tile-meta{font-size:10px;line-height:1.3;color:#F3EDE3;font-variant-numeric:tabular-nums}
 .stamp{position:absolute;inset-block-start:6px;inset-inline-start:6px;background:#E0A540;color:#0D0D0D;font-family:"Inter",sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;padding:3px 5px;direction:ltr;unicode-bidi:isolate}
 .fallback{display:grid;place-items:center;width:100%;height:100%;background:var(--ink);color:var(--on-ink);font-family:"Inter",sans-serif;font-weight:800;font-size:28px}
+.card-workshop{
+  position:absolute;z-index:2;inset-inline:6px;bottom:6px;
+  display:flex;align-items:center;justify-content:center;min-height:28px;padding:4px 8px;
+  background:#F5F3EE;color:#1A1A1A;border:1px solid #1A1A1A;border-bottom:2px solid #B8860B;border-radius:999px;
+  text-decoration:none;font-family:"DM Sans","IBM Plex Sans Arabic",system-ui,sans-serif;
+  font-size:12px;font-weight:600;line-height:1.15;letter-spacing:0;text-align:center;white-space:nowrap;
+}
+.tile.has-workshop .tile-cap{padding-bottom:40px}
+.card-workshop:hover{background:#1A1A1A;color:#F5F3EE;border-color:#1A1A1A;border-bottom-color:#B8860B}
+.btn.workshop{
+  background:#F5F3EE;color:#1A1A1A;border:1px solid #1A1A1A;border-bottom:2px solid #B8860B;
+  font-family:"DM Sans","IBM Plex Sans Arabic",system-ui,sans-serif;font-weight:600;
+}
+.btn.workshop:hover{background:#1A1A1A;color:#F5F3EE;border-color:#1A1A1A;border-bottom-color:#B8860B}
 @media (hover:hover){
-  .tile{transition:transform .18s var(--ease)}
-  .tile:hover{transform:translateY(-4px);z-index:1}
-  .tile:hover img{transform:scale(1.045)}
-  .tile:hover .tile-media{box-shadow:0 12px 28px rgba(13,13,13,.16)}
+  .card{transition:transform .18s var(--ease)}
+  .card:hover{transform:translateY(-4px);z-index:1}
+  .card:hover img{transform:scale(1.045)}
+  .card:hover .tile-media{box-shadow:0 12px 28px rgba(13,13,13,.16)}
 }
 .tile:active{transform:translateY(0) scale(.985)}
 @keyframes tile-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -263,6 +278,9 @@ footer a:hover{color:var(--ink)}
   .tile-title{font-size:14px}
   .tile-meta{font-size:12px}
   .tile-cap{padding:36px 12px 10px}
+}
+@media (max-width:420px){
+  .card-workshop{font-size:11px;padding:5px 4px;letter-spacing:0}
 }
 @media (max-width:360px){
   .action-row{grid-template-columns:1fr}
@@ -408,6 +426,54 @@ footer a:hover{color:var(--ink)}
     u = u.trim();
     if (u.charAt(0) === "/" && u.indexOf("//") !== 0) return u;
     return safeHttp(u);
+  }
+  function isGrokEntry(v) {
+    if (!v) return false;
+    var tags = Array.isArray(v.tags) ? v.tags : [];
+    for (var i = 0; i < tags.length; i++) {
+      var tag = String(tags[i] || "").trim().toLowerCase();
+      if (tag === "grok" || tag === "grok bot") return true;
+    }
+    return String(v.slug || "").toLowerCase().indexOf("grok") !== -1;
+  }
+  function workshopHref(v) {
+    var raw = v && v.workshopUrl != null ? String(v.workshopUrl).trim() : "";
+    if (raw.charAt(0) === "/" && raw.indexOf("//") !== 0 && raw.indexOf("\\") === -1 && raw.indexOf(" ") === -1) return raw;
+    if (raw) {
+      var abs = safeHttp(raw);
+      if (abs) {
+        try {
+          var parsed = new URL(abs);
+          if (parsed.origin === location.origin) return parsed.pathname + parsed.search + parsed.hash;
+          return parsed.href;
+        } catch (e) {}
+      }
+    }
+    if (isGrokEntry(v)) return "/grok-workshop";
+    return "";
+  }
+  function workshopAnchor(href, className) {
+    var a = document.createElement("a");
+    a.className = className;
+    a.href = href;
+    if (/^https?:/i.test(href)) {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    }
+    var s = document.createElement("span");
+    s.className = "lbl";
+    if (html.lang === "en") {
+      s.textContent = "Grok workshop";
+    } else {
+      s.appendChild(document.createTextNode("ورشة "));
+      var bdi = document.createElement("bdi");
+      bdi.dir = "ltr";
+      bdi.lang = "en";
+      bdi.textContent = "Grok";
+      s.appendChild(bdi);
+    }
+    a.appendChild(s);
+    return a;
   }
   function formatDate(iso) {
     if (!iso) return "";
@@ -795,6 +861,8 @@ footer a:hover{color:var(--ink)}
   }
 
   function tileButton(v, i) {
+    var card = document.createElement("div");
+    card.className = "card";
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "tile";
@@ -803,6 +871,8 @@ footer a:hover{color:var(--ink)}
     btn.setAttribute("aria-haspopup", "dialog");
     btn.setAttribute("aria-expanded", state.open === v.slug ? "true" : "false");
     var title = pick(v, "title") || v.slug;
+    var workshop = workshopHref(v);
+    if (workshop) btn.classList.add("has-workshop");
     var media = document.createElement("span");
     media.className = "tile-media";
     var src = safeThumb(v.thumbnail);
@@ -840,7 +910,7 @@ footer a:hover{color:var(--ink)}
     var date = formatDate(v.date);
     if (date) metaBits.push(date);
     if (v.tags && v.tags.length) metaBits.push(v.tags[0]);
-    if (metaBits.length) {
+    if (!workshop && metaBits.length) {
       var meta = document.createElement("span");
       meta.className = "tile-meta";
       meta.dir = "auto";
@@ -850,7 +920,9 @@ footer a:hover{color:var(--ink)}
     media.appendChild(cap);
     btn.appendChild(media);
     btn.addEventListener("click", function () { openSlug(v.slug, {}); });
-    return btn;
+    card.appendChild(btn);
+    if (workshop) card.appendChild(workshopAnchor(workshop, "card-workshop"));
+    return card;
   }
 
   function icon(name) {
@@ -1024,6 +1096,8 @@ footer a:hover{color:var(--ink)}
         : t("شاهد الفيديو", "Watch video");
       actions.appendChild(actionLink(video, watch, "play", "btn ghost"));
     }
+    var workshop = workshopHref(v);
+    if (workshop) actions.appendChild(workshopAnchor(workshop, "btn workshop"));
     var copies = document.createElement("div");
     copies.className = "action-row";
     if (url) {
