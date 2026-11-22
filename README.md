@@ -44,6 +44,7 @@ Edit **`content/videos.json`**. No HTML changes. Put a new video anywhere in the
 | `postedAt` | Optional. Full post time, such as `2026-11-10T19:41:13+03:00`. Used only to sort, including two videos from the same day. It is never shown. If you leave it out, `date` is used. |
 | `prompt` | Optional. Turns on **Copy prompt** and shows the text. Line breaks are kept exactly. `promptEn` is the English version. Leave it out, or `""`, and the button stays hidden. |
 | `videoUrl` | Optional. **Watch** button back to the Instagram, TikTok, or YouTube video. |
+| `workshopUrl` | Optional. A path such as `/grok-workshop`, or a full `https://` URL. Adds a secondary **ورشة Grok** button (English: **Grok workshop**) on the tile and in the detail sheet. A video tagged `Grok` or `Grok Bot`, or whose slug contains `grok`, gets that button pointing at `/grok-workshop` even when this field is left out. |
 | `example` | Optional. Set `true` only while drafting. The tile gets an EXAMPLE mark. Leave it off for a real video. |
 
 Any mix of `url`, `prompt`, and `videoUrl` is fine. Leave a field as `""` to hide that button. Every video also gets **Copy page link**. On `/bio` that copies `/bio/slug`. On an older `/links/slug` address it copies that same `/links/slug` URL. Closing the sheet returns to `/bio`, not to `/links`.
