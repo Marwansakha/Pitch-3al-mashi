@@ -23,7 +23,7 @@
 <meta name="theme-color" content="#F8F6F1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script>
 (function () {
   var l = null;
@@ -107,10 +107,68 @@ html[lang="en"] .profile h1{letter-spacing:-.03em;font-weight:800}
 .search input::placeholder{color:var(--muted)}
 .search input:hover{border-color:var(--ink2)}
 
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.chip{font:inherit;font-size:14px;font-weight:500;padding:6px 12px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
-.chip:hover{border-color:var(--ink)}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.topics{position:relative;margin-top:12px}
+.chips{
+  display:flex;flex-wrap:nowrap;align-items:center;gap:8px;
+  overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scroll-padding-inline:2px;
+  -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  scrollbar-width:none;-ms-overflow-style:none;
+  min-height:36px;padding-block:2px;padding-inline-end:20px;
+}
+.chips::-webkit-scrollbar{display:none;width:0;height:0}
+.chips::-webkit-scrollbar-thumb{background:transparent;border:0}
+.chips.fade-end{
+  -webkit-mask-image:linear-gradient(to left,transparent,#000 44px);
+  mask-image:linear-gradient(to left,transparent,#000 44px);
+}
+.chips.fade-start{
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 44px);
+  mask-image:linear-gradient(to right,transparent,#000 44px);
+}
+.chips.fade-start.fade-end{
+  -webkit-mask-image:linear-gradient(to left,transparent,#000 44px,#000 calc(100% - 44px),transparent);
+  mask-image:linear-gradient(to left,transparent,#000 44px,#000 calc(100% - 44px),transparent);
+}
+html[dir="rtl"] .chips.fade-end{
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 44px);
+  mask-image:linear-gradient(to right,transparent,#000 44px);
+}
+html[dir="rtl"] .chips.fade-start{
+  -webkit-mask-image:linear-gradient(to left,transparent,#000 44px);
+  mask-image:linear-gradient(to left,transparent,#000 44px);
+}
+html[dir="rtl"] .chips.fade-start.fade-end{
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 44px,#000 calc(100% - 44px),transparent);
+  mask-image:linear-gradient(to right,transparent,#000 44px,#000 calc(100% - 44px),transparent);
+}
+.chip{
+  flex:0 0 auto;scroll-snap-align:start;
+  font-family:"DM Sans","IBM Plex Sans Arabic",system-ui,sans-serif;
+  font-size:13px;font-weight:500;line-height:1.2;letter-spacing:.01em;
+  padding:7px 12px;border-radius:999px;white-space:nowrap;
+  border:1px solid rgba(26,26,26,.18);background:transparent;color:#1A1A1A;
+  cursor:pointer;
+}
+.chip:hover{border-color:#1A1A1A}
+.chip[aria-pressed="true"]{background:#1A1A1A;color:#F5F3EE;border-color:#1A1A1A}
+.chip[aria-pressed="true"]:hover{background:#1A1A1A;color:#F5F3EE}
+.chip:focus-visible{outline:2px solid #B8860B;outline-offset:2px}
+.chip-more{display:inline-flex;align-items:center;gap:5px}
+.chip-more svg{display:block;transition:transform .2s var(--ease)}
+.chip-more[aria-expanded="true"] svg{transform:rotate(180deg)}
+.chip-more.is-filtering,.chip-more[aria-expanded="true"]{border-color:#B8860B}
+.more-pop{
+  position:absolute;z-index:6;inset-inline:0;top:calc(100% + 8px);
+  background:#F5F3EE;color:#1A1A1A;
+  border:1px solid rgba(26,26,26,.14);border-top:2px solid #B8860B;
+  border-radius:16px;box-shadow:0 16px 40px rgba(26,26,26,.12);
+  padding:12px;max-height:min(320px,42dvh);overflow:auto;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:rgba(26,26,26,.28) transparent;
+}
+.more-pop::-webkit-scrollbar{width:6px;height:6px}
+.more-pop::-webkit-scrollbar-thumb{background:rgba(26,26,26,.28);border:0;border-radius:999px}
+.more-tags{display:flex;flex-wrap:wrap;gap:8px}
 
 .showing{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 0;padding:10px 0;border-top:1px solid var(--rule);font-size:14px;color:var(--ink2)}
 .showing strong{color:var(--ink);font-weight:500}
@@ -258,7 +316,12 @@ footer a:hover{color:var(--ink)}
     <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.25" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M16 16.5 20 20.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
     <input id="q" type="search" name="q" enterkeyhint="search" autocomplete="off">
   </form>
-  <div class="chips" id="chips" role="toolbar"></div>
+  <div class="topics" id="topics">
+    <div class="chips" id="chips" role="toolbar"></div>
+    <div class="more-pop" id="morePop" role="region" hidden>
+      <div class="more-tags" id="moreTags"></div>
+    </div>
+  </div>
   <div class="showing" id="showing" hidden></div>
   <p class="miss" id="missing" hidden></p>
   <p class="sr" id="count" aria-live="polite"></p>
@@ -310,7 +373,8 @@ footer a:hover{color:var(--ink)}
 (function () {
   var DATA_URL = "/content/videos.json";
   var html = document.documentElement;
-  var state = { profile: null, videos: [], query: "", tags: {}, open: null, lastFocus: null };
+  var state = { profile: null, videos: [], query: "", tags: {}, open: null, lastFocus: null, moreOpen: false };
+  var PRIMARY_TAG_LIMIT = 8;
   var toast = document.getElementById("toast");
   var toastTimer = 0;
   var dialog = document.getElementById("sheet");
@@ -405,6 +469,7 @@ footer a:hover{color:var(--ink)}
     document.getElementById("qLabel").textContent = t("بحث في الفيديوهات", "Search videos");
     document.getElementById("q").placeholder = t("دور بالفيديوهات", "Search videos");
     document.getElementById("chips").setAttribute("aria-label", t("تصفية حسب الوسم", "Filter by tag"));
+    document.getElementById("morePop").setAttribute("aria-label", t("وسوم إضافية", "More tags"));
     document.getElementById("closeLabel").textContent = t("إغلاق", "Close");
     document.getElementById("promptLabel").textContent = t("البرومبت", "Prompt");
     document.getElementById("sheetExample").textContent = t(
@@ -429,40 +494,186 @@ footer a:hover{color:var(--ink)}
     avatar.alt = name;
   }
 
-  function allTags() {
-    var seen = {};
-    var list = [];
+  function tagGroups() {
+    var counts = {};
     state.videos.forEach(function (v) {
+      var seen = {};
       (v.tags || []).forEach(function (tag) {
         tag = String(tag).trim();
         if (!tag || seen[tag]) return;
         seen[tag] = true;
-        list.push(tag);
+        counts[tag] = (counts[tag] || 0) + 1;
       });
     });
-    list.sort(function (a, b) { return a.localeCompare(b, html.lang === "ar" ? "ar" : "en"); });
-    return list;
+    var names = Object.keys(counts);
+    names.sort(function (a, b) {
+      if (counts[b] !== counts[a]) return counts[b] - counts[a];
+      return a.localeCompare(b, "en");
+    });
+    var primary = [];
+    var more = [];
+    names.forEach(function (tag) {
+      if (counts[tag] >= 2 && primary.length < PRIMARY_TAG_LIMIT) primary.push(tag);
+      else more.push(tag);
+    });
+    return { primary: primary, more: more };
+  }
+
+  function chevronIcon() {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("width", "14");
+    svg.setAttribute("height", "14");
+    svg.setAttribute("aria-hidden", "true");
+    var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("d", "M6 9l6 6 6-6");
+    p.setAttribute("fill", "none");
+    p.setAttribute("stroke", "currentColor");
+    p.setAttribute("stroke-width", "1.75");
+    p.setAttribute("stroke-linecap", "round");
+    p.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(p);
+    return svg;
+  }
+
+  function makeChip(label, opts) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (opts.className ? " " + opts.className : "");
+    b.dir = "auto";
+    b.textContent = label;
+    if (opts.id) b.id = opts.id;
+    if (opts.pressed != null) b.setAttribute("aria-pressed", opts.pressed ? "true" : "false");
+    if (opts.expanded != null) b.setAttribute("aria-expanded", opts.expanded ? "true" : "false");
+    if (opts.controls) b.setAttribute("aria-controls", opts.controls);
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      opts.onClick();
+    });
+    return b;
+  }
+
+  function toggleTag(tag) {
+    if (state.tags[tag]) delete state.tags[tag];
+    else state.tags[tag] = true;
+    paintChips();
+    paintShowing();
+    paintGrid();
+  }
+
+  function closeMore() {
+    state.moreOpen = false;
+    var pop = document.getElementById("morePop");
+    if (pop) pop.hidden = true;
+    var btn = document.getElementById("moreBtn");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  }
+
+  function placeMore() {
+    var pop = document.getElementById("morePop");
+    var row = document.getElementById("chips");
+    if (!pop || !row || pop.hidden) return;
+    var space = Math.floor(window.innerHeight - row.getBoundingClientRect().bottom - 12);
+    pop.style.maxHeight = Math.max(0, space) + "px";
+  }
+
+  function openMore() {
+    state.moreOpen = true;
+    document.getElementById("morePop").hidden = false;
+    var btn = document.getElementById("moreBtn");
+    if (btn) {
+      btn.setAttribute("aria-expanded", "true");
+      btn.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "auto" });
+    }
+    placeMore();
+    syncChipFade();
+  }
+
+  function fromInlineStart(el) {
+    var max = el.scrollWidth - el.clientWidth;
+    if (max <= 1) return 0;
+    var first = el.firstElementChild;
+    if (!first) return 0;
+    var er = el.getBoundingClientRect();
+    var fr = first.getBoundingClientRect();
+    var cs = getComputedStyle(el);
+    var delta = cs.direction === "rtl"
+      ? (fr.right - er.right) - (parseFloat(cs.paddingRight) || 0) - (parseFloat(cs.borderRightWidth) || 0)
+      : (er.left - fr.left) - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.borderLeftWidth) || 0);
+    if (delta < 0) delta = 0;
+    if (delta > max) delta = max;
+    return delta;
+  }
+
+  function syncChipFade() {
+    var row = document.getElementById("chips");
+    if (!row) return;
+    var max = row.scrollWidth - row.clientWidth;
+    var fromStart = fromInlineStart(row);
+    row.classList.toggle("fade-end", max > 2 && fromStart < max - 2);
+    row.classList.toggle("fade-start", max > 2 && fromStart > 2);
   }
 
   function paintChips() {
+    var groups = tagGroups();
     var row = document.getElementById("chips");
+    var keepLeft = row.scrollLeft;
     row.textContent = "";
-    allTags().forEach(function (tag) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "chip";
-      b.textContent = tag;
-      b.setAttribute("aria-pressed", state.tags[tag] ? "true" : "false");
-      b.dir = "auto";
-      b.addEventListener("click", function () {
-        if (state.tags[tag]) delete state.tags[tag];
-        else state.tags[tag] = true;
+    row.appendChild(makeChip(t("الكل", "All"), {
+      pressed: activeTags().length === 0,
+      onClick: function () {
+        if (!activeTags().length) return;
+        state.tags = {};
+        closeMore();
         paintChips();
         paintShowing();
         paintGrid();
-      });
-      row.appendChild(b);
+      }
+    }));
+    groups.primary.forEach(function (tag) {
+      row.appendChild(makeChip(tag, {
+        pressed: !!state.tags[tag],
+        onClick: function () { toggleTag(tag); }
+      }));
     });
+    var moreBox = document.getElementById("moreTags");
+    moreBox.textContent = "";
+    if (groups.more.length) {
+      var moreActive = groups.more.some(function (tag) { return !!state.tags[tag]; });
+      var more = makeChip(t("المزيد", "More"), {
+        id: "moreBtn",
+        className: "chip-more" + (moreActive ? " is-filtering" : ""),
+        expanded: state.moreOpen,
+        controls: "morePop",
+        onClick: function () {
+          if (state.moreOpen) closeMore();
+          else openMore();
+        }
+      });
+      more.appendChild(chevronIcon());
+      row.appendChild(more);
+      groups.more.forEach(function (tag) {
+        moreBox.appendChild(makeChip(tag, {
+          pressed: !!state.tags[tag],
+          onClick: function () {
+            if (state.tags[tag]) delete state.tags[tag];
+            else state.tags[tag] = true;
+            state.moreOpen = false;
+            paintChips();
+            paintShowing();
+            paintGrid();
+            var again = document.getElementById("moreBtn");
+            if (again) again.focus({ preventScroll: true });
+          }
+        }));
+      });
+    } else {
+      state.moreOpen = false;
+    }
+    document.getElementById("morePop").hidden = !state.moreOpen;
+    if (keepLeft) row.scrollLeft = keepLeft;
+    if (state.moreOpen) placeMore();
+    syncChipFade();
   }
 
   function activeTags() {
@@ -527,6 +738,7 @@ footer a:hover{color:var(--ink)}
   function clearAll() {
     state.tags = {};
     state.query = "";
+    state.moreOpen = false;
     document.getElementById("q").value = "";
     paintChips();
     paintShowing();
@@ -894,6 +1106,13 @@ footer a:hover{color:var(--ink)}
   }
 
   function onKey(e) {
+    if (e.key === "Escape" && state.moreOpen && !dialog.open) {
+      e.preventDefault();
+      closeMore();
+      var moreBtn = document.getElementById("moreBtn");
+      if (moreBtn) moreBtn.focus();
+      return;
+    }
     if (e.key === "Escape" && !dialog.open && document.activeElement && document.activeElement.id === "q" && state.query) {
       e.preventDefault();
       clearAll();
@@ -921,6 +1140,18 @@ footer a:hover{color:var(--ink)}
     state.query = e.target.value;
     paintShowing();
     paintGrid();
+  });
+  document.getElementById("chips").addEventListener("scroll", function () { syncChipFade(); }, { passive: true });
+  window.addEventListener("resize", function () { syncChipFade(); placeMore(); });
+  window.addEventListener("scroll", function () { if (state.moreOpen) placeMore(); }, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { syncChipFade(); });
+  document.addEventListener("click", function (e) {
+    if (!state.moreOpen) return;
+    var pop = document.getElementById("morePop");
+    var btn = document.getElementById("moreBtn");
+    if (pop && pop.contains(e.target)) return;
+    if (btn && btn.contains(e.target)) return;
+    closeMore();
   });
   document.getElementById("sheetClose").addEventListener("click", function () { closeSheet(false); });
   dialog.addEventListener("click", function (e) {
