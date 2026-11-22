@@ -10,6 +10,22 @@
   },
   "videos": [
     {
+      "slug": "invest-or-not-3",
+      "title": "بتستثمر ولا ما بتستثمر؟",
+      "titleEn": "Invest, or not?",
+      "thumbnail": "/links/thumbs/invest-or-not-3.jpg",
+      "date": "2026-11-22",
+      "postedAt": "2026-11-22T17:58:00+03:00",
+      "tags": [
+        "Pitch 3al Mashi",
+        "Startups",
+        "Founders"
+      ],
+      "description": "حلقة ٣٧ من Pitch على الماشي.",
+      "descriptionEn": "Pitch 3al Mashi, episode 37.",
+      "videoUrl": "https://www.instagram.com/reel/DgDEpu_xOSG/"
+    },
+    {
       "slug": "grok-for-managers",
       "title": "افضل اداة لاي شخص إداري او صاحب بزنس",
       "titleEn": "The best tool for any manager or business owner",
