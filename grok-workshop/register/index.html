@@ -46,25 +46,14 @@ h1{font-size:clamp(30px,6vw,42px);line-height:1.3;margin:0 0 8px}
 .session .when{margin:0;color:var(--muted);font-size:14px}
 .times{display:grid;gap:2px}
 .times span{display:block}
-.session .seats{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin:2px 0 6px}
-.session .left{display:inline-block;font-weight:700;font-size:36px;line-height:1;font-variant-numeric:tabular-nums;transform-origin:center}
-.seats-label{color:var(--muted);font-size:13px;font-weight:500}
+.session .seats{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:2px 0 6px;inline-size:100%}
+.session .left{display:inline-block;align-self:flex-start;font-weight:700;font-size:36px;line-height:1;font-variant-numeric:tabular-nums;font-feature-settings:"locl" 0}
+.seats-label{align-self:flex-start;margin-block-start:2px;color:var(--muted);font-size:13px;font-weight:500;line-height:1.35}
+.capacity{position:relative;inline-size:100%;block-size:4px;margin-block-start:8px;background:#E5E1D8;border-radius:999px;overflow:hidden}
+.capacity-fill{position:absolute;inset-block:0;inset-inline-start:0;background:#B8860B;border-radius:inherit}
+.capacity-caption{margin:4px 0 0;color:var(--muted);font-size:12px;font-weight:400;line-height:1.4}
+.capacity-caption .latin{font-feature-settings:"locl" 0}
 .session-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
-.badge{display:inline-flex;align-items:center;background:#B8860B;color:#1A1A1A;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
-@media (prefers-reduced-motion:no-preference){
-  .badge{animation:seat-pulse 2.2s ease-in-out infinite}
-  .session .left.live{animation:seat-shake 2.6s ease-in-out infinite}
-}
-@keyframes seat-pulse{0%,100%{opacity:1}50%{opacity:.72}}
-@keyframes seat-shake{
-  0%,72%,100%{transform:translate3d(0,0,0) rotate(0)}
-  76%{transform:translate3d(-4px,0,0) rotate(-2deg)}
-  80%{transform:translate3d(5px,0,0) rotate(2deg)}
-  84%{transform:translate3d(-5px,1px,0) rotate(-2deg)}
-  88%{transform:translate3d(4px,-1px,0) rotate(2deg)}
-  92%{transform:translate3d(-2px,0,0) rotate(-1deg)}
-  96%{transform:translate3d(0,0,0) rotate(0)}
-}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border-radius:999px;border:0;background:var(--ink);color:var(--on);font:inherit;font-weight:500;text-decoration:none;cursor:pointer}
 .btn:hover{background:var(--amber);color:var(--ink)}
 .btn:disabled{background:#E7E2D8;color:var(--muted);cursor:not-allowed}
@@ -114,17 +103,13 @@ footer a{color:var(--muted);text-decoration:none}
   <div class="wrap">
     <div class="session-head">
       <h1>سجّل اسمك للجلسة الجاية</h1>
-      <p class="badge" id="few-seats" hidden>باقي أماكن قليلة</p>
     </div>
     <p class="sub">18 و19 ديسمبر 2026 • <bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي.</p>
     <div class="sessions">
       <article class="session" data-session="2026-12-18">
         <h2>18 و19 ديسمبر 2026</h2>
         <p class="when"><span class="times"><span><bdi class="latin" dir="ltr">6:00–8:00</bdi> مساءً بتوقيت عمّان والرياض</span><span> • <bdi class="latin" dir="ltr">7:00–9:00</bdi> مساءً بتوقيت دبي</span></span></p>
-        <p class="seats" hidden>
-          <b class="left" dir="ltr"></b>
-          <span class="seats-label">مقعد متبقي</span>
-        </p>
+        <div class="seats" hidden></div>
         <button class="btn session-go" type="button">احجز مقعدك</button>
       </article>
     </div>
@@ -231,14 +216,34 @@ footer a{color:var(--muted);text-decoration:none}
   var label = button.querySelector(".btn-label");
   var whenAmman = "6:00–8:00";
   var whenDubai = "7:00–9:00";
+  function seatsLeftLabel(n) {
+    if (n === 0) return "اكتمل العدد";
+    if (n === 1) return "مقعد متبقي بهالدفعة";
+    if (n === 2) return "مقعدين متبقيين بهالدفعة";
+    if (n >= 3 && n <= 10) return "مقاعد متبقية بهالدفعة";
+    return "مقعد متبقي بهالدفعة";
+  }
+  function westernDigits(tag, className, value) {
+    var node = document.createElement(tag);
+    node.className = className;
+    node.dir = "ltr";
+    node.lang = "en";
+    node.textContent = String(value);
+    return node;
+  }
   function makeCard(row) {
     var full = row.full || row.seatsLeft === 0;
+    var left = row.seatsLeft;
+    var capacity = row.capacity;
+    var booked = Math.max(0, capacity - left);
     var card = document.createElement("article");
     var title = document.createElement("h2");
     var when = document.createElement("p");
-    var seats = document.createElement("p");
-    var count = document.createElement("b");
+    var seats = document.createElement("div");
     var seatsLabel = document.createElement("span");
+    var meter = document.createElement("div");
+    var fill = document.createElement("span");
+    var caption = document.createElement("p");
     var btn = document.createElement("button");
     card.className = "session" + (full ? " is-full" : "");
     card.setAttribute("data-session", row.id);
@@ -265,17 +270,32 @@ footer a{color:var(--muted);text-decoration:none}
     times.appendChild(lineTwo);
     when.appendChild(times);
     seats.className = "seats";
-    count.className = "left live";
-    count.dir = "ltr";
-    count.textContent = String(row.seatsLeft) + "/" + String(row.capacity);
+    if (left > 0) seats.appendChild(westernDigits("b", "left", left));
     seatsLabel.className = "seats-label";
-    seatsLabel.textContent = "مقعد متبقي";
+    seatsLabel.textContent = seatsLeftLabel(left);
+    meter.className = "capacity";
+    meter.dir = "rtl";
+    meter.setAttribute("role", "meter");
+    meter.setAttribute("aria-valuemin", "0");
+    meter.setAttribute("aria-valuemax", String(capacity));
+    meter.setAttribute("aria-valuenow", String(booked));
+    meter.setAttribute("aria-label", booked + " من " + capacity + " محجوز");
+    fill.className = "capacity-fill";
+    fill.style.inlineSize = (capacity > 0 ? (booked / capacity) * 100 : 0) + "%";
+    meter.appendChild(fill);
+    caption.className = "capacity-caption";
+    caption.setAttribute("aria-hidden", "true");
+    caption.appendChild(westernDigits("bdi", "latin", booked));
+    caption.appendChild(document.createTextNode(" من "));
+    caption.appendChild(westernDigits("bdi", "latin", capacity));
+    caption.appendChild(document.createTextNode(" محجوز"));
     btn.className = "btn session-go";
     btn.type = "button";
     btn.disabled = full;
     btn.textContent = full ? "مكتمل العدد" : "احجز مقعدك";
-    seats.appendChild(count);
     seats.appendChild(seatsLabel);
+    seats.appendChild(meter);
+    seats.appendChild(caption);
     card.appendChild(title);
     card.appendChild(when);
     card.appendChild(seats);
@@ -286,7 +306,6 @@ footer a{color:var(--muted);text-decoration:none}
     if (!list || !list.length) return;
     var root = document.querySelector(".sessions");
     var select = document.getElementById("session");
-    var badge = document.getElementById("few-seats");
     var sub = document.querySelector("main .sub");
     var previous = form.elements.session.value;
     var open = null;
@@ -310,7 +329,6 @@ footer a{color:var(--muted);text-decoration:none}
     select.appendChild(wait);
     if (previous === "waitlist") select.value = "waitlist";
     else if (open) select.value = open.id;
-    if (badge) badge.hidden = !(open && open.seatsLeft > 0 && open.seatsLeft <= 5);
     if (open && sub) sub.textContent = open.label + " • 6:00–8:00 مساءً بتوقيت عمّان والرياض • 7:00–9:00 مساءً بتوقيت دبي";
     applySessionMode();
   }
@@ -323,10 +341,8 @@ footer a{color:var(--muted);text-decoration:none}
     });
   }
   loadSeats().catch(function () {
-    var badge = document.getElementById("few-seats");
     var seats = document.querySelectorAll(".seats");
     var i;
-    if (badge) badge.hidden = true;
     for (i = 0; i < seats.length; i++) seats[i].hidden = true;
   });
   function sessionIsWaitlist() {
