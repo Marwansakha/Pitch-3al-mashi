@@ -21,7 +21,7 @@ vm.runInContext(
   context
 );
 
-const grokSlugs = ["grok-for-managers", "grok-bot-series-2", "grok-bot-series-3"];
+const grokSlugs = ["grok-for-managers", "grok-bot-series-2", "grok-bot-series-3", "grok-bot-connect-tools"];
 assert.equal(videos.some((video) => video.slug === "grok-bot-series-1"), false);
 
 for (const slug of grokSlugs) {
