@@ -10,6 +10,24 @@
   },
   "videos": [
     {
+      "slug": "grok-bot-connect-tools",
+      "title": "كيف تشبك أدوات على جروك بوت",
+      "titleEn": "How to connect tools to Grok Bot",
+      "thumbnail": "/links/thumbs/grok-bot-connect-tools.jpg",
+      "date": "2026-11-24",
+      "postedAt": "2026-11-24T18:09:50+03:00",
+      "tags": [
+        "AI",
+        "AI Agents",
+        "Grok Bot"
+      ],
+      "description": "فيديو قصير عن تشبيك الأدوات والموصلات على Grok Bot.",
+      "descriptionEn": "A short video on connecting tools and connectors to Grok Bot.",
+      "url": "https://x.ai/bot",
+      "workshopUrl": "/grok-workshop",
+      "videoUrl": "https://www.instagram.com/reel/DgIPod5Nx2S/"
+    },
+    {
       "slug": "invest-or-not-3",
       "title": "بتستثمر ولا ما بتستثمر؟",
       "titleEn": "Invest, or not?",
