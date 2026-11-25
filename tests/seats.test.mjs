@@ -59,4 +59,37 @@ assert.equal(offeredSessions(catalog, bothFull)[2].seeded, 0);
 assert.equal(offeredSessions(catalog, bothFull)[2].label, "1 و2 يناير 2027");
 assert.equal(book(rolled, filled, { sessionId: "2027-02-05", name: "بعيد", email: "far@example.com" }).error, "inactive");
 
+const perSession = [
+  { id: "2026-12-18", label: "18 و19 ديسمبر 2026", capacity: 24, seeded: 4, active: true },
+  { id: "2026-12-25", label: "25 و26 ديسمبر 2026", capacity: 20, seeded: 0, active: true }
+];
+const perBookings = [];
+for (let i = 0; i < 16; i++) perBookings.push({ sessionId: "2026-12-18", email: "dec18-" + i + "@example.com", name: "A" + i });
+for (let i = 0; i < 3; i++) perBookings.push({ sessionId: "2026-12-25", email: "dec25-" + i + "@example.com", name: "B" + i });
+const openBoth = offeredSessions(perSession, perBookings, 20);
+assert.deepEqual(openBoth.map((session) => session.id), ["2026-12-18", "2026-12-25"]);
+assert.equal(seatsLeft(openBoth[0], perBookings), 4);
+assert.equal(seatsLeft(openBoth[1], perBookings), 17);
+assert.equal(openBoth[0].capacity, 24);
+assert.equal(openBoth[1].capacity, 20);
+assert.equal(book(openBoth, perBookings, { sessionId: "2026-12-18", name: "جديد", email: "new18@example.com" }).ok, true);
+assert.equal(book(openBoth, perBookings, { sessionId: "2026-12-25", name: "جديد", email: "new25@example.com" }).ok, true);
+
+const bothFilled = perBookings.slice();
+for (let i = 0; i < 4; i++) bothFilled.push({ sessionId: "2026-12-18", email: "fill18-" + i + "@example.com", name: "F" + i });
+for (let i = 0; i < 17; i++) bothFilled.push({ sessionId: "2026-12-25", email: "fill25-" + i + "@example.com", name: "G" + i });
+const third = offeredSessions(perSession, bothFilled, 20);
+assert.equal(third[2].id, "2027-01-01");
+assert.equal(third[2].capacity, 20);
+assert.equal(third[2].seeded, 0);
+assert.equal(third[2].label, "1 و2 يناير 2027");
+
+const only18 = [{ id: "2026-12-18", label: "18 و19 ديسمبر 2026", capacity: 24, seeded: 4, active: true }];
+const laterBookings = [];
+for (let i = 0; i < 3; i++) laterBookings.push({ sessionId: "2026-12-25", email: "later-" + i + "@example.com", name: "L" + i });
+const shownLater = offeredSessions(only18, laterBookings, 20);
+const dec25 = shownLater.find((session) => session.id === "2026-12-25");
+assert.equal(dec25.capacity, 20);
+assert.equal(seatsLeft(dec25, laterBookings), 17);
+
 console.log("seat math passed");

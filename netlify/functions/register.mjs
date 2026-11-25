@@ -19,23 +19,24 @@ async function catalog(request) {
     if (!res.ok) throw new Error("sessions");
     return res.json();
   });
-  const capacity = data.capacity || 20;
-  return data.sessions.map((session) => ({
+  const defaultCapacity = data.capacity || 20;
+  const sessions = data.sessions.map((session) => ({
     id: session.id,
     label: session.label,
     seeded: session.seeded || 0,
-    capacity,
+    capacity: session.capacity || defaultCapacity,
     active: session.active !== false
   }));
+  return { defaultCapacity, sessions };
 }
 
 async function loadBookings(store) {
   return (await store.get(key(), { type: "json" })) || [];
 }
 
-function summary(sessions, bookings) {
+function summary(sessions, bookings, defaultCapacity) {
   return {
-    sessions: offeredSessions(sessions, bookings).map((session) => {
+    sessions: offeredSessions(sessions, bookings, defaultCapacity).map((session) => {
       const left = seatsLeft(session, bookings);
       return { id: session.id, label: session.label, seatsLeft: left, capacity: session.capacity, full: left === 0 };
     })
@@ -44,12 +45,14 @@ function summary(sessions, bookings) {
 
 export default async function handler(request) {
   if (request.method === "OPTIONS") return reply({ ok: true });
-  let sessions;
+  let catalogData;
   try {
-    sessions = await catalog(request);
+    catalogData = await catalog(request);
   } catch (error) {
     return reply({ error: "sessions" }, 500);
   }
+  const sessions = catalogData.sessions;
+  const defaultCapacity = catalogData.defaultCapacity;
   let store;
   try {
     store = getStore({ name: STORE, consistency: "strong" });
@@ -59,7 +62,7 @@ export default async function handler(request) {
 
   if (request.method === "GET") {
     try {
-      return reply(summary(sessions, await loadBookings(store)));
+      return reply(summary(sessions, await loadBookings(store), defaultCapacity));
     } catch (error) {
       return reply({ error: "store" }, 500);
     }
@@ -84,7 +87,7 @@ export default async function handler(request) {
   if (body.action === "release") {
     const next = releaseTests(bookings, body.sessionId || "");
     await store.setJSON(key(), next);
-    return reply(summary(sessions, next));
+    return reply(summary(sessions, next, defaultCapacity));
   }
 
   const entry = {
@@ -99,16 +102,16 @@ export default async function handler(request) {
     return reply({ error: "fields" }, 400);
   }
 
-  const offered = offeredSessions(sessions, bookings);
+  const offered = offeredSessions(sessions, bookings, defaultCapacity);
   const result = book(offered, bookings, entry);
   if (!result.ok) {
-    return reply(Object.assign({}, result, { sessions: summary(sessions, bookings).sessions }), result.error === "full" ? 409 : 400);
+    return reply(Object.assign({}, result, { sessions: summary(sessions, bookings, defaultCapacity).sessions }), result.error === "full" ? 409 : 400);
   }
   await store.setJSON(key(), result.bookings);
   return reply({
     ok: true,
     waitlist: Boolean(result.waitlist),
     seatsLeft: result.seatsLeft,
-    sessions: summary(sessions, result.bookings).sessions
+    sessions: summary(sessions, result.bookings, defaultCapacity).sessions
   });
 }

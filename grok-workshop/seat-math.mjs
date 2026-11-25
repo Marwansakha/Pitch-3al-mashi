@@ -36,28 +36,41 @@ export function weekendLabel(fridayId) {
   return startDay + " " + startMonth + " " + startYear + " و" + endDay + " " + endMonth + " " + endYear;
 }
 
-export function offeredSessions(sessions, bookings) {
-  const base = sessions.find((session) => session.active !== false);
-  if (!base) return [];
-  const offered = [];
-  let current = {
-    id: base.id,
-    label: base.label,
-    seeded: base.seeded || 0,
-    capacity: base.capacity,
+function isDateId(id) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(id);
+}
+
+function sessionFromCatalog(session, fallback) {
+  return {
+    id: session.id,
+    label: session.label,
+    seeded: session.seeded || 0,
+    capacity: session.capacity || fallback,
     active: true
   };
+}
+
+export function offeredSessions(sessions, bookings, defaultCapacity) {
+  const base = sessions.find((session) => session.active !== false);
+  if (!base) return [];
+  const fallback = defaultCapacity || base.capacity || 20;
+  const catalog = new Map(sessions.map((session) => [session.id, session]));
+  const hasLater = (id) => {
+    const time = parseISO(id);
+    const laterSession = sessions.some((session) => session.active !== false && isDateId(session.id) && parseISO(session.id) > time);
+    if (laterSession) return true;
+    return bookings.some((row) => row.sessionId !== "waitlist" && isDateId(row.sessionId) && parseISO(row.sessionId) > time);
+  };
+  const offered = [];
+  let current = sessionFromCatalog(base, fallback);
   for (let step = 0; step < 104; step++) {
     offered.push(current);
-    if (seatsLeft(current, bookings) > 0) break;
+    if (seatsLeft(current, bookings) > 0 && !hasLater(current.id)) break;
     const id = addDays(current.id, 7);
-    current = {
-      id,
-      label: weekendLabel(id),
-      seeded: 0,
-      capacity: current.capacity,
-      active: true
-    };
+    const next = catalog.get(id);
+    current = next && next.active !== false
+      ? sessionFromCatalog(next, fallback)
+      : { id, label: weekendLabel(id), seeded: 0, capacity: fallback, active: true };
   }
   return offered;
 }

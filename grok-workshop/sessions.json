@@ -4,8 +4,9 @@
   "format": "أونلاين",
   "timezone": "7:00–9:00 مساءً بتوقيت دبي",
   "sessions": [
-    { "id": "2026-12-18", "label": "18 و19 ديسمبر 2026", "seeded": 4, "active": true },
+    { "id": "2026-12-18", "label": "18 و19 ديسمبر 2026", "seeded": 4, "capacity": 24, "active": true },
     { "id": "2026-12-19", "label": "السبت 19 ديسمبر 2026", "seeded": 0, "active": false },
+    { "id": "2026-12-25", "label": "25 و26 ديسمبر 2026", "seeded": 0, "capacity": 20, "active": true },
     { "id": "2027-01-02", "label": "الجمعة 2 يناير 2027", "seeded": 0, "active": false },
     { "id": "2027-01-16", "label": "الجمعة 16 يناير 2027", "seeded": 0, "active": false },
     { "id": "2027-01-30", "label": "الجمعة 30 يناير 2027", "seeded": 0, "active": false }
