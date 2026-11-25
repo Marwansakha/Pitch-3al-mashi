@@ -77,6 +77,7 @@ assert.equal(register.includes("seat-shake"), false);
 assert.equal(register.includes("seat-pulse"), false);
 assert.equal(register.includes("أماكن قليلة"), false);
 assert.match(register, /مكتمل العدد/);
+assert.match(register, /التسجيل مغلق/);
 assert.match(register, /function seatsLeftLabel/);
 assert.match(register, /مقعد متبقي بهالدفعة/);
 assert.match(register, /مقعدين متبقيين بهالدفعة/);

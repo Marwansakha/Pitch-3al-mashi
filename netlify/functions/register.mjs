@@ -25,6 +25,7 @@ async function catalog(request) {
     label: session.label,
     seeded: session.seeded || 0,
     capacity: session.capacity || defaultCapacity,
+    closed: Boolean(session.closed),
     active: session.active !== false
   }));
   return { defaultCapacity, sessions };
@@ -37,8 +38,9 @@ async function loadBookings(store) {
 function summary(sessions, bookings, defaultCapacity) {
   return {
     sessions: offeredSessions(sessions, bookings, defaultCapacity).map((session) => {
-      const left = seatsLeft(session, bookings);
-      return { id: session.id, label: session.label, seatsLeft: left, capacity: session.capacity, full: left === 0 };
+      const closed = Boolean(session.closed);
+      const left = closed ? 0 : seatsLeft(session, bookings);
+      return { id: session.id, label: session.label, seatsLeft: left, capacity: session.capacity, full: left === 0, closed };
     })
   };
 }
