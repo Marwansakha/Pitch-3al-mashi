@@ -232,8 +232,9 @@ footer a{color:var(--muted);text-decoration:none}
     return node;
   }
   function makeCard(row) {
-    var full = row.full || row.seatsLeft === 0;
-    var left = row.seatsLeft;
+    var closed = Boolean(row.closed);
+    var full = closed || row.full || row.seatsLeft === 0;
+    var left = closed ? 0 : row.seatsLeft;
     var capacity = row.capacity;
     var booked = Math.max(0, capacity - left);
     var card = document.createElement("article");
@@ -272,7 +273,7 @@ footer a{color:var(--muted);text-decoration:none}
     seats.className = "seats";
     if (left > 0) seats.appendChild(westernDigits("b", "left", left));
     seatsLabel.className = "seats-label";
-    seatsLabel.textContent = seatsLeftLabel(left);
+    seatsLabel.textContent = closed ? "التسجيل مغلق" : seatsLeftLabel(left);
     meter.className = "capacity";
     meter.dir = "rtl";
     meter.setAttribute("role", "meter");
@@ -292,7 +293,7 @@ footer a{color:var(--muted);text-decoration:none}
     btn.className = "btn session-go";
     btn.type = "button";
     btn.disabled = full;
-    btn.textContent = full ? "مكتمل العدد" : "احجز مقعدك";
+    btn.textContent = closed ? "التسجيل مغلق" : full ? "مكتمل العدد" : "احجز مقعدك";
     seats.appendChild(seatsLabel);
     seats.appendChild(meter);
     seats.appendChild(caption);
@@ -314,7 +315,7 @@ footer a{color:var(--muted);text-decoration:none}
     select.textContent = "";
     for (i = 0; i < list.length; i++) {
       var row = list[i];
-      var full = row.full || row.seatsLeft === 0;
+      var full = row.closed || row.full || row.seatsLeft === 0;
       root.appendChild(makeCard(row));
       if (full) continue;
       open = row;
