@@ -83,8 +83,9 @@ function see(shot, box) {
   return `<a class="see" href="#shot-${shot}" data-shot="${shot}" data-x="${box[0]}" data-y="${box[1]}" data-w="${box[2]}" data-h="${box[3]}" aria-label="See screenshot">${seeIcon}</a>`;
 }
 
-function statCard(figure, label, seeHtml, wide) {
-  return `<article class="stat${wide ? " wide" : ""}">
+function statCard(figure, label, seeHtml, wide, liveKey) {
+  const key = liveKey ? ` data-live-key="${esc(liveKey)}"` : "";
+  return `<article class="stat${wide ? " wide" : ""}"${key}>
     ${seeHtml || ""}
     <p class="figure">${figure}</p>
     <p class="note">${esc(label)}</p>
@@ -148,12 +149,12 @@ function insightsSection(data) {
     </div>
     <div class="panel" role="tabpanel" id="panel-reach" aria-labelledby="tab-reach">
       <div class="stat-grid">
-        ${statCard(exact(data.views, { metric: "views" }), "Views in the last 30 days", see("8", [0.025, 0.181, 0.36, 0.115]), false)}
-        ${statCard(exact(data.viewers, { metric: "viewers" }), "Viewers", see("8", [0.39, 0.181, 0.34, 0.115]), false)}
-        ${statCard(exact(data.reelsViews, { metric: "reelsViews" }), "Reel views", see("6", [0.02, 0.2, 0.96, 0.17]), false)}
-        ${statCard(exact(data.storiesViews, { metric: "storiesViews" }), "Story views", see("6", [0.02, 0.2, 0.96, 0.17]), false)}
-        ${statCard(exact(data.reelsInteractions, { metric: "reelsInteractions" }), "Reel interactions", see("5", [0.02, 0.391, 0.96, 0.17]), false)}
-        <article class="stat wide">
+        ${statCard(exact(data.views, { metric: "views" }), "Views in the last 30 days", see("8", [0.025, 0.181, 0.36, 0.115]), false, "views")}
+        ${statCard(exact(data.viewers, { metric: "viewers" }), "Viewers", see("8", [0.39, 0.181, 0.34, 0.115]), false, "viewers")}
+        ${statCard(exact(data.reelsViews, { metric: "reelsViews" }), "Reel views", see("6", [0.02, 0.2, 0.96, 0.17]), false, "reelsViews")}
+        ${statCard(exact(data.storiesViews, { metric: "storiesViews" }), "Story views", see("6", [0.02, 0.2, 0.96, 0.17]), false, "storiesViews")}
+        ${statCard(exact(data.reelsInteractions, { metric: "reelsInteractions" }), "Reel interactions", see("5", [0.02, 0.391, 0.96, 0.17]), false, "reelsInteractions")}
+        <article class="stat wide" data-live-key="nonFollowerViews followerViews">
           ${see("7", [0.02, 0.175, 0.96, 0.13])}
           <div class="pair">
             <div>
@@ -170,8 +171,8 @@ function insightsSection(data) {
             <span class="split-fol" style="--w:${folShare.toFixed(2)}%"></span>
           </div>
         </article>
-        ${statCard(exact(data.profileVisits, { metric: "profileVisits" }), "Profile visits", see("5", [0.02, 0.59, 0.96, 0.27]), false)}
-        ${statCard(exact(data.bioLinkTaps, { metric: "bioLinkTaps" }), "Bio link taps", see("5", [0.02, 0.59, 0.96, 0.27]), false)}
+        ${statCard(exact(data.profileVisits, { metric: "profileVisits" }), "Profile visits", see("5", [0.02, 0.59, 0.96, 0.27]), false, "profileVisits")}
+        ${statCard(exact(data.bioLinkTaps, { metric: "bioLinkTaps" }), "Bio link taps", see("5", [0.02, 0.59, 0.96, 0.27]), false, "bioLinkTaps")}
       </div>
     </div>
     <div class="panel" role="tabpanel" id="panel-audience" aria-labelledby="tab-audience" hidden>
@@ -179,22 +180,25 @@ function insightsSection(data) {
         <article class="stat wide">
           ${see("4", [0.02, 0.17, 0.96, 0.36])}
           <div class="trio">
-            <div>
+            <div data-live-key="followers">
               <p class="figure">${exact(data.followers, { metric: "followers" })}</p>
               <p class="note">Followers</p>
             </div>
-            <div>
+            <div data-live-key="growthPct">
               <p class="figure">${exact(data.growthPct, { percent: true, prefix: "+", metric: "growthPct" })}</p>
               <p class="note">Growth since Oct 25</p>
             </div>
-            <div>
+            <div data-live-key="netFollowers">
               <p class="figure">${exact(data.netFollowers, { prefix: "+", metric: "netFollowers" })}</p>
               <p class="note">Net new followers</p>
             </div>
           </div>
-          ${growthChart(data.growth)}
+          <div class="shot-backed">
+            <p class="insights-note">From the ${esc(data.screenshotsTaken || "26 Nov 2026")} screenshots</p>
+            ${growthChart(data.growth)}
+          </div>
         </article>
-        <article class="stat wide">
+        <article class="stat wide" data-live-key="gender">
           <div class="stat-top"><p class="kicker">Gender</p>${see("3", [0.02, 0.15, 0.96, 0.18])}</div>
           <div class="gender-layout">
             <svg class="donut" viewBox="0 0 120 120" aria-hidden="true">
@@ -206,7 +210,7 @@ function insightsSection(data) {
             </div>
           </div>
         </article>
-        <article class="stat wide">
+        <article class="stat wide" data-live-key="age">
           <div class="stat-top"><p class="kicker">Age</p>${see("3", [0.02, 0.36, 0.96, 0.42])}</div>
           ${barList(data.age, "percent", "age")}
         </article>
@@ -214,15 +218,15 @@ function insightsSection(data) {
     </div>
     <div class="panel" role="tabpanel" id="panel-where" aria-labelledby="tab-where" hidden>
       <div class="stat-grid">
-        <article class="stat wide">
+        <article class="stat wide" data-live-key="countries">
           <div class="stat-top"><p class="kicker">Top countries</p>${see("2", [0.02, 0.2, 0.96, 0.3])}</div>
           ${barList(data.countries, "max", "countries")}
         </article>
-        <article class="stat wide">
+        <article class="stat wide" data-live-key="cities">
           <div class="stat-top"><p class="kicker">Top cities</p>${see("1", [0.02, 0.24, 0.96, 0.3])}</div>
           ${barList(data.cities, "max", "cities")}
         </article>
-        <article class="stat wide">
+        <article class="stat wide" data-live-key="languages">
           <div class="stat-top"><p class="kicker">Languages</p>${see("2", [0.02, 0.52, 0.96, 0.18])}</div>
           ${barList(data.languages, "percent", "languages")}
         </article>

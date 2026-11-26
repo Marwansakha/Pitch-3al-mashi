@@ -13,9 +13,10 @@ assert.match(fn, /"latest"/);
 assert.match(fn, /max-age=300/);
 assert.match(fn, /404/);
 assert.match(script, /NETLIFY_AUTH_TOKEN/);
-assert.match(script, /loquacious-cobbler-451547/);
+assert.match(script, /NETLIFY_SITE_ID/);
+assert.match(script, /c065d51a-130f-4cc6-9c4c-cbb863bd2e9f/);
+assert.equal(script.includes("loquacious-cobbler-451547"), false);
 assert.equal(script.includes("console.log(token"), false);
-assert.equal(/Bearer \$\{?token/.test(script) || script.includes('"Bearer " + token'), true);
 
 assert.equal(validateMetrics(null), "JSON must be an object");
 assert.match(validateMetrics({ updatedAt: "nope", metrics: {} }), /ISO/);

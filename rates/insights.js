@@ -136,12 +136,89 @@
     });
   }
 
+  function hasMetric(metrics, key) {
+    return Object.prototype.hasOwnProperty.call(metrics, key) && metrics[key] != null && metrics[key] !== "";
+  }
+
+  function ammanYMD(date) {
+    var parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Amman",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(date);
+    var pick = function (type) {
+      return Number(parts.filter(function (part) { return part.type === type; })[0].value);
+    };
+    return { y: pick("year"), m: pick("month"), d: pick("day") };
+  }
+
+  function shiftDays(ymd, days) {
+    var date = new Date(Date.UTC(ymd.y, ymd.m - 1, ymd.d));
+    date.setUTCDate(date.getUTCDate() + days);
+    return { y: date.getUTCFullYear(), m: date.getUTCMonth() + 1, d: date.getUTCDate() };
+  }
+
+  function formatYMD(ymd, withYear) {
+    var options = { timeZone: "UTC", day: "numeric", month: "short" };
+    if (withYear) options.year = "numeric";
+    return new Intl.DateTimeFormat("en-GB", options).format(new Date(Date.UTC(ymd.y, ymd.m - 1, ymd.d)));
+  }
+
+  function pickInstant(payload, names) {
+    var sources = [payload, payload.metrics || {}];
+    for (var s = 0; s < sources.length; s++) {
+      for (var i = 0; i < names.length; i++) {
+        var value = sources[s] && sources[s][names[i]];
+        if (!value) continue;
+        var date = new Date(value);
+        if (!Number.isNaN(date.getTime())) return date;
+      }
+    }
+    return null;
+  }
+
+  function rangeText(payload) {
+    var start = pickInstant(payload, ["windowStart", "since", "periodStart"]);
+    var end = pickInstant(payload, ["windowEnd", "until", "periodEnd"]);
+    var startYmd = start ? ammanYMD(start) : null;
+    var endYmd = end ? ammanYMD(end) : null;
+    if (!endYmd && payload.updatedAt) {
+      var updated = new Date(payload.updatedAt);
+      if (!Number.isNaN(updated.getTime())) {
+        endYmd = ammanYMD(updated);
+        startYmd = shiftDays(endYmd, -30);
+      }
+    }
+    if (!startYmd || !endYmd) return "";
+    var startLabel = formatYMD(startYmd, startYmd.y !== endYmd.y);
+    return "last 30 days (" + startLabel + " – " + formatYMD(endYmd, true) + ")";
+  }
+
+  function hideMissing(metrics) {
+    root.querySelectorAll("[data-live-key]").forEach(function (el) {
+      var keys = el.getAttribute("data-live-key").split(/\s+/);
+      var present = keys.every(function (key) { return hasMetric(metrics, key); });
+      if (el.classList.contains("shot-backed")) {
+        el.hidden = false;
+        return;
+      }
+      el.hidden = !present;
+    });
+  }
+
   function applyLive(payload) {
     var metrics = payload && payload.metrics;
     if (!metrics || typeof metrics !== "object") return;
+    hideMissing(metrics);
+    var range = root.querySelector(".insights-title .range");
+    var label = rangeText(payload);
+    if (range && label) range.textContent = "· " + label;
     root.querySelectorAll("[data-metric]").forEach(function (el) {
       var key = el.dataset.metric;
-      if (!Object.prototype.hasOwnProperty.call(metrics, key)) return;
+      if (!hasMetric(metrics, key)) return;
+      var box = el.closest("[data-live-key]");
+      if (box && box.hidden) return;
       writeCount(el, metrics[key]);
     });
     ["gender", "age", "countries", "cities", "languages"].forEach(function (group) {

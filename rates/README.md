@@ -121,7 +121,7 @@ The JSON shape is:
 
 | Key | What it shows |
 | --- | --- |
-| `updatedAt` | ISO time. The page prints it as “Live numbers updated … (Amman time)”. |
+| `updatedAt` | ISO time. The page prints it as “Live numbers updated … (Amman time)”. The headline range is the 30 days ending on that instant in Amman, for example “last 30 days (27 Oct – 26 Nov 2026)”. Optional `windowStart` and `windowEnd` ISO strings, on the object or inside `metrics`, override that window. |
 | `views` | Views in the last 30 days. Integer, shown with commas. |
 | `viewers` | Viewers. Integer. |
 | `nonFollowerViews` | Views from non-followers. Integer. |
@@ -136,7 +136,9 @@ The JSON shape is:
 | `netFollowers` | Net new followers. Integer, shown as `+7,517`. |
 | `gender`, `age`, `countries`, `cities`, `languages` | Audience splits. Each is a list of `{ "label", "value" }`. `value` is a percentage such as `28.5`. Labels must match the ones already on the page. |
 
-Write a file in that shape, then update the blob. This is the refresh, meant to run about every 12 hours. It needs `NETLIFY_AUTH_TOKEN` in the environment and does not print that token. The site is `loquacious-cobbler-451547`.
+A headline the live object does not include is hidden, so an old embedded figure is not shown beside fresh ones. The screenshot gallery, and the follower-growth line marked as from the screenshots, stay.
+
+Write a file in that shape, then update the blob. This is the refresh, meant to run about every 12 hours. It needs `NETLIFY_AUTH_TOKEN` in the environment and does not print that token. The site id is `c065d51a-130f-4cc6-9c4c-cbb863bd2e9f`. Set `NETLIFY_SITE_ID` to use a different site.
 
 ```bash
 node scripts/update-creator-metrics.mjs path/to/metrics.json
