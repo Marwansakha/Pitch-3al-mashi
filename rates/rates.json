@@ -1,0 +1,187 @@
+{
+  "effective": "Jan 2026",
+  "pages": [
+    {
+      "slug": "",
+      "currency": "AED",
+      "storiesIncluded": true,
+      "metricsImage": "",
+      "items": [
+        {
+          "title": "Advertising Reel",
+          "detail": "Instagram",
+          "description": "A dedicated reel built around your product or service. Raw, native-feeling footage with light cuts and product screenshots only when required.",
+          "price": 5000,
+          "channels": "Instagram"
+        },
+        {
+          "title": "Advertising TikTok",
+          "detail": "",
+          "description": "A dedicated reel built around your product or service, published on TikTok.",
+          "price": 2000,
+          "channels": "TikTok"
+        },
+        {
+          "title": "Advertising Reel",
+          "detail": "Instagram + TikTok",
+          "description": "One dedicated reel published across both Instagram and TikTok for wider reach.",
+          "price": 6000,
+          "channels": "Instagram + TikTok"
+        },
+        {
+          "title": "Pitch 3al Mashi",
+          "detail": "founder or executive",
+          "description": "A founder or company executive pitching their business in my signature on-the-move format. Posted on Instagram, TikTok and LinkedIn.",
+          "price": 8000,
+          "channels": "IG · TikTok · LinkedIn"
+        }
+      ]
+    },
+    {
+      "slug": "kk",
+      "currency": "JOD",
+      "storiesIncluded": false,
+      "metricsImage": "",
+      "items": [
+        {
+          "title": "Advertising Reel",
+          "detail": "Instagram",
+          "description": "A dedicated reel built around your product or service. Raw, native-feeling footage with light cuts and product screenshots only when required.",
+          "price": 1500,
+          "channels": "Instagram"
+        },
+        {
+          "title": "Story",
+          "detail": "Instagram",
+          "description": "A single story, scoped and priced on its own.",
+          "price": 1000,
+          "channels": "Each"
+        }
+      ],
+      "bundle": {
+        "title": "1 reel + 2 stories",
+        "detail": "booked together",
+        "description": "One advertising reel and two stories, booked together.",
+        "price": 3000
+      },
+      "insights": {
+        "followers": 78936,
+        "growthPct": 12.2,
+        "netFollowers": 7517,
+        "views": 1820375,
+        "viewers": 723107,
+        "nonFollowerViews": 1547301,
+        "followerViews": 272124,
+        "reelsViews": "1.3M",
+        "storiesViews": "84K",
+        "reelsInteractions": "66K",
+        "profileVisits": "22K",
+        "bioLinkTaps": 746,
+        "gender": [
+          { "label": "Men", "value": 69.9 },
+          { "label": "Women", "value": 30.1 }
+        ],
+        "age": [
+          { "label": "18–24", "value": 10.4 },
+          { "label": "25–34", "value": 37.1 },
+          { "label": "35–44", "value": 30.8 },
+          { "label": "45–54", "value": 14.4 },
+          { "label": "55–64", "value": 4.8 }
+        ],
+        "countries": [
+          { "label": "Jordan", "value": 28.5 },
+          { "label": "Saudi Arabia", "value": 16.1 },
+          { "label": "UAE", "value": 9.3 },
+          { "label": "Egypt", "value": 4.2 },
+          { "label": "Palestine", "value": 3.9 }
+        ],
+        "cities": [
+          { "label": "Amman", "value": 21.7 },
+          { "label": "Riyadh", "value": 7.6 },
+          { "label": "Jeddah", "value": 3.8 },
+          { "label": "Dubai", "value": 3.6 },
+          { "label": "Abu Dhabi", "value": 2.6 }
+        ],
+        "languages": [
+          { "label": "Arabic", "value": 78.7 },
+          { "label": "English", "value": 16.1 }
+        ],
+        "growth": [0, 0.004, 0.09, 0.182, 0.25, 0.295, 0.338, 0.371, 0.402, 0.433, 0.505, 0.582, 0.668, 0.734, 0.835, 0.956, 0.998],
+        "shots": [
+          {
+            "id": "1",
+            "src": "/rates/insights/insight-1.webp",
+            "width": 1100,
+            "height": 2250,
+            "alt": "Instagram insights showing top cities and languages for the last 30 days",
+            "caption": "Top cities"
+          },
+          {
+            "id": "2",
+            "src": "/rates/insights/insight-2.webp",
+            "width": 1100,
+            "height": 2250,
+            "alt": "Instagram insights showing top countries and languages for the last 30 days",
+            "caption": "Top countries"
+          },
+          {
+            "id": "3",
+            "src": "/rates/insights/insight-3.webp",
+            "width": 1100,
+            "height": 2250,
+            "alt": "Instagram insights showing gender and age for the last 30 days",
+            "caption": "Gender and age"
+          },
+          {
+            "id": "4",
+            "src": "/rates/insights/insight-4.webp",
+            "width": 1100,
+            "height": 2250,
+            "alt": "Instagram insights showing followers and the 30-day growth line",
+            "caption": "Followers and growth"
+          },
+          {
+            "id": "5",
+            "src": "/rates/insights/insight-5.webp",
+            "width": 1100,
+            "height": 2089,
+            "alt": "Instagram insights showing interactions and profile activity for the last 30 days",
+            "caption": "Interactions and profile activity"
+          },
+          {
+            "id": "6",
+            "src": "/rates/insights/insight-6.webp",
+            "width": 1100,
+            "height": 2250,
+            "alt": "Instagram insights showing views and interactions by content type",
+            "caption": "Views by content type"
+          },
+          {
+            "id": "7",
+            "src": "/rates/insights/insight-7.webp",
+            "width": 1100,
+            "height": 2250,
+            "alt": "Instagram insights showing follower and non-follower views",
+            "caption": "Follower and non-follower views"
+          },
+          {
+            "id": "8",
+            "src": "/rates/insights/insight-8.webp",
+            "width": 1100,
+            "height": 2250,
+            "alt": "Instagram insights showing views and viewers for the last 30 days",
+            "caption": "Views and viewers"
+          },
+          {
+            "id": "9",
+            "src": "/rates/insights/insight-9.webp",
+            "width": 1100,
+            "height": 1659,
+            "alt": "Instagram insights summary for the last 30 days",
+            "caption": "30-day summary"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -5,6 +5,7 @@ The site is a static page for Pitch على الماشي, plus a link-in-bio page
 - Homepage: `/`
 - Video links: `/bio` (Instagram or TikTok bio). Exact `/links` redirects to the homepage.
 - One video: `/bio/video-slug`. An older `/links/video-slug` link still opens that video.
+- Rate card: `/rates`. Private per-brand pages are generated from `rates/rates.json`. See `rates/README.md`. They are not linked from the other pages and they are not in the sitemap.
 
 ## Add a video to the link-in-bio page
 

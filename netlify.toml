@@ -1,6 +1,6 @@
 # Install the function dependency. The site itself is still the repo root.
 [build]
-  command = "npm ci --omit=dev"
+  command = "node rates/build.mjs && npm ci --omit=dev"
   publish = "."
 
 [functions]
@@ -89,3 +89,38 @@
   to = "/grok-workshop/register/index.html"
   status = 200
   force = true
+
+# The rate-card source is not part of the site. /rates and /rates/* stay
+# noindex, including every private per-brand page.
+[[redirects]]
+  from = "/rates/rates.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/rates/build.mjs"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/rates/README.md"
+  to = "/404"
+  status = 404
+  force = true
+
+[[headers]]
+  for = "/rates"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/rates/"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/rates/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
