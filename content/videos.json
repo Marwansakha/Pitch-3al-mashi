@@ -10,6 +10,22 @@
   },
   "videos": [
     {
+      "slug": "invest-or-not-4",
+      "title": "بتستثمر ولا ما بتستثمر؟ 💰",
+      "titleEn": "Invest, or not?",
+      "thumbnail": "/links/thumbs/invest-or-not-4.jpg",
+      "date": "2026-11-26",
+      "postedAt": "2026-11-26T19:23:00+03:00",
+      "tags": [
+        "Pitch 3al Mashi",
+        "Startups",
+        "Founders"
+      ],
+      "description": "حلقة ٣٨ من Pitch على الماشي.",
+      "descriptionEn": "Pitch 3al Mashi, episode 38.",
+      "videoUrl": "https://www.instagram.com/reel/DgNhiu-xKgL/"
+    },
+    {
       "slug": "mirofish-virtual-customers",
       "title": "من أفيد الأدوات 🫡",
       "titleEn": "One of the most useful tools",
