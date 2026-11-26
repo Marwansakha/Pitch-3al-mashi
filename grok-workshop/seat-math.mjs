@@ -36,28 +36,54 @@ export function weekendLabel(fridayId) {
   return startDay + " " + startMonth + " " + startYear + " و" + endDay + " " + endMonth + " " + endYear;
 }
 
-export function offeredSessions(sessions, bookings) {
-  const base = sessions.find((session) => session.active !== false);
-  if (!base) return [];
-  const offered = [];
-  let current = {
-    id: base.id,
-    label: base.label,
-    seeded: base.seeded || 0,
-    capacity: base.capacity,
+function isDateId(id) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(id || ""));
+}
+
+function sessionFromCatalog(session, fallback) {
+  return {
+    id: session.id,
+    label: session.label,
+    seeded: session.seeded || 0,
+    capacity: session.capacity || fallback,
+    closed: Boolean(session.closed),
     active: true
   };
+}
+
+export function offeredSessions(sessions, bookings, defaultCapacity) {
+  const base = sessions.find((session) => session.active !== false);
+  if (!base) return [];
+  const fallback = defaultCapacity || base.capacity || 20;
+  const catalog = new Map(sessions.map((session) => [session.id, session]));
+  function hasLater(id) {
+    const laterCatalog = sessions.some((session) => session.active !== false && isDateId(session.id) && parseISO(session.id) > parseISO(id));
+    const laterBooked = (bookings || []).some((row) => {
+      const sessionId = row.sessionId;
+      if (!isDateId(sessionId) || sessionId === "waitlist") return false;
+      return parseISO(sessionId) > parseISO(id);
+    });
+    return laterCatalog || laterBooked;
+  }
+  const offered = [];
+  let current = sessionFromCatalog(base, fallback);
   for (let step = 0; step < 104; step++) {
     offered.push(current);
-    if (seatsLeft(current, bookings) > 0) break;
+    // A closed session stays visible but stops auto-rollover, so no later weekend opens on its own.
+    if (current.closed) break;
+    if (seatsLeft(current, bookings) > 0 && !hasLater(current.id)) break;
     const id = addDays(current.id, 7);
-    current = {
-      id,
-      label: weekendLabel(id),
-      seeded: 0,
-      capacity: current.capacity,
-      active: true
-    };
+    const existing = catalog.get(id);
+    current = existing && existing.active !== false
+      ? sessionFromCatalog(existing, fallback)
+      : {
+          id,
+          label: weekendLabel(id),
+          seeded: 0,
+          capacity: fallback,
+          closed: false,
+          active: true
+        };
   }
   return offered;
 }
@@ -83,6 +109,7 @@ export function book(sessions, bookings, entry) {
   }
   const session = sessions.find((item) => item.id === entry.sessionId);
   if (!session || session.active === false) return { error: "inactive" };
+  if (session.closed) return { error: "full", seatsLeft: 0, closed: true };
   if (bookings.some((item) => item.sessionId === session.id && item.email === email)) {
     return { error: "duplicate", seatsLeft: seatsLeft(session, bookings) };
   }
