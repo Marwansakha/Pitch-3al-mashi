@@ -20,6 +20,40 @@ function money(value) {
   return Number(value).toLocaleString("en-US");
 }
 
+function aboutCopy(page) {
+  if (page.description) return `<p class="prose">${esc(page.description)}</p>`;
+  return `<p class="prose">A technology operator and creator focused on how modern businesses actually scale — product, team, systems, and distribution.</p>
+      <p class="prose">In the regional ecosystem I’m known for breaking down the mechanics of scaling a business and for recommending the tools and platforms that genuinely move the needle for operators.</p>`;
+}
+
+function audienceCopy(page) {
+  if (page.audience) return `<p class="prose">${esc(page.audience)}</p>`;
+  return `<ul class="who">
+        <li>${icons.professionals}<span>Professionals</span></li>
+        <li>${icons.owners}<span>Business owners</span></li>
+        <li>${icons.entrepreneurs}<span>Entrepreneurs</span></li>
+        <li>${icons.investors}<span>Investors</span></li>
+      </ul>
+      <div class="stats">
+        <div>
+          <p class="kicker">Age</p>
+          <div class="stat-table">
+            <div class="stat-row"><span>24 &amp; under</span><b>11%</b></div>
+            <div class="stat-row"><span>25–34</span><b>38.6%</b></div>
+            <div class="stat-row"><span>35–44</span><b>30.2%</b></div>
+            <div class="stat-row"><span>45–65</span><b>20.2%</b></div>
+          </div>
+        </div>
+        <div>
+          <p class="kicker">Gender</p>
+          <div class="stat-table">
+            <div class="stat-row"><span>Men</span><b>66%</b></div>
+            <div class="stat-row"><span>Women</span><b>34%</b></div>
+          </div>
+        </div>
+      </div>`;
+}
+
 function pageUrl(slug) {
   return slug ? `https://marwandoesai.com/rates/${slug}` : "https://marwandoesai.com/rates";
 }
@@ -342,36 +376,12 @@ function render(page) {
     <section class="about" aria-labelledby="about-title">
       <p class="kicker">About</p>
       <h2 id="about-title">Builder<br><em><span class="amp">&amp;</span> operator.</em></h2>
-      <p class="roles">Founder — Creator — Speaker</p>
-      <p class="prose">A technology operator and creator focused on how modern businesses actually scale — product, team, systems, and distribution.</p>
-      <p class="prose">In the regional ecosystem I’m known for breaking down the mechanics of scaling a business and for recommending the tools and platforms that genuinely move the needle for operators.</p>
+      ${page.description ? "" : `<p class="roles">Founder — Creator — Speaker</p>`}
+      ${aboutCopy(page)}
     </section>
     <section class="audience" aria-labelledby="audience-title">
       <p class="kicker" id="audience-title">Audience</p>
-      <ul class="who">
-        <li>${icons.professionals}<span>Professionals</span></li>
-        <li>${icons.owners}<span>Business owners</span></li>
-        <li>${icons.entrepreneurs}<span>Entrepreneurs</span></li>
-        <li>${icons.investors}<span>Investors</span></li>
-      </ul>
-      <div class="stats">
-        <div>
-          <p class="kicker">Age</p>
-          <div class="stat-table">
-            <div class="stat-row"><span>24 &amp; under</span><b>11%</b></div>
-            <div class="stat-row"><span>25–34</span><b>38.6%</b></div>
-            <div class="stat-row"><span>35–44</span><b>30.2%</b></div>
-            <div class="stat-row"><span>45–65</span><b>20.2%</b></div>
-          </div>
-        </div>
-        <div>
-          <p class="kicker">Gender</p>
-          <div class="stat-table">
-            <div class="stat-row"><span>Men</span><b>66%</b></div>
-            <div class="stat-row"><span>Women</span><b>34%</b></div>
-          </div>
-        </div>
-      </div>
+      ${audienceCopy(page)}
     </section>
     </div>
     <div class="col-b">

@@ -37,6 +37,8 @@ Edit `rates/rates.json` and add an object to `pages`:
 | `slug` | URL segment, `/rates/acme`. Lowercase letters, numbers, and hyphens. Not the brand name. |
 | `currency` | Shown beside each price, the same way AED is shown on `/rates`. The intro line uses it too. |
 | `storiesIncluded` | `true` keeps “Stories are included:” in the usage text. `false` removes that sentence and leaves the rest. |
+| `description` | Optional. Replaces the default about paragraphs and the “Founder — Creator — Speaker” line. Leave it out to keep the standard card. |
+| `audience` | Optional. Replaces the default audience list and age and gender table. Leave it out to keep the standard card. |
 | `items` | Line items. `detail` is the italic line under the title. `channels` is the small label under the price (`Each` for a per-story price). |
 | `bundle` | Optional. Rendered as the last row. Leave it out when there is no bundle. |
 | `metricsImage` | Optional path to one screenshot. Empty means the section is omitted. |
@@ -58,7 +60,9 @@ Name the file with the slug or another neutral word. The path is in the HTML, so
 
 When `metricsImage` is empty and there is no `insights` object, visitors see no metrics section and no placeholder.
 
-The `kk` page does not use `metricsImage`. Its `insights` object drives the interactive section (followers, reach, audience, countries, cities, languages) and the dashboard screenshots `rates/insights/insight-1.webp` through `insight-9.webp`. To refresh a screenshot, replace that file, crop the phone status bar off first, and keep the alt text in `rates.json` free of any brand name. Then run the build again.
+The `mm` page does not use `metricsImage`. Its `insights` object drives the interactive section (followers, reach, audience, countries, cities, languages) and the dashboard screenshots `rates/insights/insight-1.webp` through `insight-9.webp`. To refresh a screenshot, replace that file, crop the phone status bar off first, and keep the alt text in `rates.json` free of any brand name. Then run the build again.
+
+Internal only, not for the page: brand `mm` is Knorr (FMCG). The name stays in this file. It must not appear in the title, headings, body, or alt text of `/rates/mm/`.
 
 `screenshotsTaken` on an `insights` object, such as `"26 Nov 2026"`, prints “Screenshots taken the morning of 26 Nov 2026” beside the gallery.
 
