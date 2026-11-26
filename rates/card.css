@@ -406,12 +406,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
   letter-spacing: 0.01em;
   color: var(--muted);
 }
-.insights-lead {
-  margin: 0 0 16px;
+.insights-lead, .insights-note, .live-note {
+  margin: 0 0 12px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 14.5px;
   max-width: 40em;
 }
+.live-note { margin-top: 8px; }
 
 .tablist {
   display: flex;

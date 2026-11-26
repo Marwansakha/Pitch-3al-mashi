@@ -50,14 +50,19 @@
   function runCount(el) {
     if (el.dataset.done) return;
     el.dataset.done = "1";
+    var token = (el._token = (el._token || 0) + 1);
     var target = Number(el.dataset.count);
     var decimals = Number(el.dataset.decimals || 0);
     var prefix = el.dataset.prefix || "";
     var suffix = el.dataset.suffix || "";
-    if (reduced || !Number.isFinite(target)) return;
+    if (reduced || !Number.isFinite(target)) {
+      if (el.dataset.text) el.textContent = el.dataset.text;
+      return;
+    }
     var start = performance.now();
     var duration = 1100;
     function frame(now) {
+      if (el._token !== token) return;
       var t = Math.min(1, (now - start) / duration);
       var eased = 1 - Math.pow(1 - t, 3);
       if (t >= 1) {
@@ -69,6 +74,127 @@
     }
     requestAnimationFrame(frame);
   }
+
+  function writeCount(el, raw) {
+    var prefix = el.dataset.prefix || "";
+    var suffix = el.dataset.suffix || "";
+    var count = 0;
+    var decimals = 0;
+    var text = "";
+    if (typeof raw === "string" && /^[+-]?[\d.]+[KMB%]$/i.test(raw.trim())) {
+      var match = raw.trim().match(/^([+-]?)([\d.]+)([KMB%])$/i);
+      var sign = prefix || match[1];
+      decimals = match[2].indexOf(".") >= 0 ? 1 : 0;
+      suffix = match[3] === "%" ? "%" : match[3].toUpperCase();
+      count = Number(match[2]);
+      var body = count.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      text = sign + body + suffix;
+      prefix = sign;
+    } else if (suffix === "%" && typeof raw === "number") {
+      count = Math.round(raw * 10) / 10;
+      decimals = 1;
+      text = prefix + count.toFixed(1) + "%";
+    } else if (typeof raw === "number") {
+      count = Math.abs(raw);
+      decimals = 0;
+      suffix = "";
+      text = prefix + count.toLocaleString("en-US");
+    } else {
+      return;
+    }
+    el.dataset.count = String(count);
+    el.dataset.decimals = String(decimals);
+    if (prefix) el.dataset.prefix = prefix;
+    if (suffix) el.dataset.suffix = suffix;
+    else delete el.dataset.suffix;
+    el.dataset.text = text;
+    el.textContent = text;
+    el._token = (el._token || 0) + 1;
+  }
+
+  function updateBars(group, parts) {
+    if (!Array.isArray(parts)) return;
+    var rows = root.querySelectorAll('[data-metric-group="' + group + '"]');
+    if (!rows.length) return;
+    var scale = rows[0].getAttribute("data-scale") || "percent";
+    var max = 100;
+    if (scale === "max") {
+      max = 0;
+      parts.forEach(function (part) { max = Math.max(max, Number(part.value) || 0); });
+    }
+    parts.forEach(function (part) {
+      var row = null;
+      rows.forEach(function (candidate) {
+        if (candidate.getAttribute("data-metric-label") === part.label) row = candidate;
+      });
+      if (!row) return;
+      var value = Number(part.value);
+      var fill = row.querySelector(".bar-fill");
+      if (fill && max) fill.style.setProperty("--w", ((value / max) * 100).toFixed(2) + "%");
+      var label = row.querySelector(".bar-val");
+      if (label && Number.isFinite(value)) label.textContent = value.toFixed(1) + "%";
+    });
+  }
+
+  function applyLive(payload) {
+    var metrics = payload && payload.metrics;
+    if (!metrics || typeof metrics !== "object") return;
+    root.querySelectorAll("[data-metric]").forEach(function (el) {
+      var key = el.dataset.metric;
+      if (!Object.prototype.hasOwnProperty.call(metrics, key)) return;
+      writeCount(el, metrics[key]);
+    });
+    ["gender", "age", "countries", "cities", "languages"].forEach(function (group) {
+      updateBars(group, metrics[group]);
+    });
+    if (Array.isArray(metrics.gender)) {
+      var men = metrics.gender.filter(function (part) { return part.label === "Men"; })[0];
+      var arc = root.querySelector(".donut-arc");
+      if (men && arc) arc.style.setProperty("--men", String(men.value));
+    }
+    var non = Number(metrics.nonFollowerViews);
+    var fol = Number(metrics.followerViews);
+    if (non > 0 && fol > 0) {
+      var total = non + fol;
+      var nonBar = root.querySelector(".split-non");
+      var folBar = root.querySelector(".split-fol");
+      if (nonBar) nonBar.style.setProperty("--w", ((non / total) * 100).toFixed(2) + "%");
+      if (folBar) folBar.style.setProperty("--w", ((fol / total) * 100).toFixed(2) + "%");
+    }
+    var note = root.querySelector(".live-note");
+    var stamp = ammanStamp(payload.updatedAt);
+    if (note && stamp) {
+      note.hidden = false;
+      note.textContent = "Live numbers updated " + stamp + " (Amman time)";
+    }
+    root.querySelectorAll(".count").forEach(function (el) { delete el.dataset.done; });
+    panels.forEach(function (panel) {
+      if (panel.hidden) return;
+      panel.querySelectorAll(".count").forEach(runCount);
+    });
+  }
+
+  function ammanStamp(iso) {
+    var date = new Date(iso);
+    if (!iso || Number.isNaN(date.getTime())) return "";
+    return new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Amman",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    }).format(date);
+  }
+
+  fetch("/.netlify/functions/creator-metrics", { headers: { accept: "application/json" } })
+    .then(function (response) {
+      if (!response.ok) throw new Error("missing");
+      return response.json();
+    })
+    .then(applyLive)
+    .catch(function () {});
 
   function reveal(panel) {
     panel.classList.add("is-in");

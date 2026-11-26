@@ -50,16 +50,18 @@ function count(value, options = {}) {
     `data-decimals="${decimals}"`,
     `data-text="${esc(shown)}"`,
     prefix ? `data-prefix="${esc(prefix)}"` : "",
-    suffix ? `data-suffix="${esc(suffix)}"` : ""
+    suffix ? `data-suffix="${esc(suffix)}"` : "",
+    options.metric ? `data-metric="${esc(options.metric)}"` : ""
   ].filter(Boolean).join(" ");
   return `<span class="count" ${attrs}>${esc(shown)}</span>`;
 }
 
 function exact(raw, options = {}) {
   const prefix = options.prefix || "";
+  const metric = options.metric || "";
   if (options.percent) {
     const rounded = Math.round(Number(raw) * 10) / 10;
-    return count(rounded, { decimals: 1, prefix, suffix: "%", text: `${prefix}${rounded.toFixed(1)}%` });
+    return count(rounded, { decimals: 1, prefix, suffix: "%", text: `${prefix}${rounded.toFixed(1)}%`, metric });
   }
   if (typeof raw === "string" && /^[+-]?[\d.]+[KMB]$/i.test(raw.trim())) {
     const match = raw.trim().match(/^([+-]?)([\d.]+)([KMB])$/i);
@@ -68,11 +70,11 @@ function exact(raw, options = {}) {
     const decimals = match[2].includes(".") ? 1 : 0;
     const rounded = Number(match[2]);
     const body = rounded.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-    return count(rounded, { decimals, prefix: sign, suffix, text: `${sign}${body}${suffix}` });
+    return count(rounded, { decimals, prefix: sign, suffix, text: `${sign}${body}${suffix}`, metric });
   }
   const n = Math.abs(Number(raw));
   const text = `${prefix}${n.toLocaleString("en-US")}`;
-  return count(n, { decimals: 0, prefix, text });
+  return count(n, { decimals: 0, prefix, text, metric });
 }
 
 const seeIcon = `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.3" fill="currentColor"/><path d="M4.8 16.2 9 12.6l2.8 2.3 3-2.8 3.6 3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
@@ -89,11 +91,11 @@ function statCard(figure, label, seeHtml, wide) {
   </article>`;
 }
 
-function barList(parts, scale) {
+function barList(parts, scale, group) {
   const max = scale === "max" ? Math.max(...parts.map((part) => part.value)) : 100;
   const rows = parts.map((part) => {
     const width = (part.value / max) * 100;
-    return `<div class="bar-row">
+    return `<div class="bar-row" data-metric-group="${esc(group)}" data-metric-label="${esc(part.label)}" data-scale="${scale}">
       <span class="bar-label">${esc(part.label)}</span>
       <span class="bar-track"><span class="bar-fill" style="--w:${width.toFixed(2)}%"></span></span>
       <span class="bar-val">${Number(part.value).toFixed(1)}%</span>
@@ -138,6 +140,7 @@ function insightsSection(data) {
 
   return `<section class="insights" aria-labelledby="insights-title">
     <h2 id="insights-title" class="insights-title"><span class="mark">Instagram insights </span><span class="range">· last 30 days (26 Oct – 24 Nov 2026)</span></h2>
+    <p class="live-note" hidden></p>
     <div class="tablist" role="tablist" aria-label="Insight groups">
       <button type="button" role="tab" id="tab-reach" aria-controls="panel-reach" aria-selected="true">Reach</button>
       <button type="button" role="tab" id="tab-audience" aria-controls="panel-audience" aria-selected="false" tabindex="-1">Audience</button>
@@ -145,20 +148,20 @@ function insightsSection(data) {
     </div>
     <div class="panel" role="tabpanel" id="panel-reach" aria-labelledby="tab-reach">
       <div class="stat-grid">
-        ${statCard(exact(data.views), "Views in the last 30 days", see("8", [0.025, 0.181, 0.36, 0.115]), false)}
-        ${statCard(exact(data.viewers), "Viewers", see("8", [0.39, 0.181, 0.34, 0.115]), false)}
-        ${statCard(exact(data.reelsViews), "Reel views", see("6", [0.02, 0.2, 0.96, 0.17]), false)}
-        ${statCard(exact(data.storiesViews), "Story views", see("6", [0.02, 0.2, 0.96, 0.17]), false)}
-        ${statCard(exact(data.reelsInteractions), "Reel interactions", see("5", [0.02, 0.391, 0.96, 0.17]), false)}
+        ${statCard(exact(data.views, { metric: "views" }), "Views in the last 30 days", see("8", [0.025, 0.181, 0.36, 0.115]), false)}
+        ${statCard(exact(data.viewers, { metric: "viewers" }), "Viewers", see("8", [0.39, 0.181, 0.34, 0.115]), false)}
+        ${statCard(exact(data.reelsViews, { metric: "reelsViews" }), "Reel views", see("6", [0.02, 0.2, 0.96, 0.17]), false)}
+        ${statCard(exact(data.storiesViews, { metric: "storiesViews" }), "Story views", see("6", [0.02, 0.2, 0.96, 0.17]), false)}
+        ${statCard(exact(data.reelsInteractions, { metric: "reelsInteractions" }), "Reel interactions", see("5", [0.02, 0.391, 0.96, 0.17]), false)}
         <article class="stat wide">
           ${see("7", [0.02, 0.175, 0.96, 0.13])}
           <div class="pair">
             <div>
-              <p class="figure">${exact(data.nonFollowerViews)}</p>
+              <p class="figure">${exact(data.nonFollowerViews, { metric: "nonFollowerViews" })}</p>
               <p class="note">Views from non-followers</p>
             </div>
             <div>
-              <p class="figure">${exact(data.followerViews)}</p>
+              <p class="figure">${exact(data.followerViews, { metric: "followerViews" })}</p>
               <p class="note">Views from followers</p>
             </div>
           </div>
@@ -167,8 +170,8 @@ function insightsSection(data) {
             <span class="split-fol" style="--w:${folShare.toFixed(2)}%"></span>
           </div>
         </article>
-        ${statCard(exact(data.profileVisits), "Profile visits", see("5", [0.02, 0.59, 0.96, 0.27]), false)}
-        ${statCard(exact(data.bioLinkTaps), "Bio link taps", see("5", [0.02, 0.59, 0.96, 0.27]), false)}
+        ${statCard(exact(data.profileVisits, { metric: "profileVisits" }), "Profile visits", see("5", [0.02, 0.59, 0.96, 0.27]), false)}
+        ${statCard(exact(data.bioLinkTaps, { metric: "bioLinkTaps" }), "Bio link taps", see("5", [0.02, 0.59, 0.96, 0.27]), false)}
       </div>
     </div>
     <div class="panel" role="tabpanel" id="panel-audience" aria-labelledby="tab-audience" hidden>
@@ -177,15 +180,15 @@ function insightsSection(data) {
           ${see("4", [0.02, 0.17, 0.96, 0.36])}
           <div class="trio">
             <div>
-              <p class="figure">${exact(data.followers)}</p>
+              <p class="figure">${exact(data.followers, { metric: "followers" })}</p>
               <p class="note">Followers</p>
             </div>
             <div>
-              <p class="figure">${exact(data.growthPct, { percent: true, prefix: "+" })}</p>
+              <p class="figure">${exact(data.growthPct, { percent: true, prefix: "+", metric: "growthPct" })}</p>
               <p class="note">Growth since Oct 25</p>
             </div>
             <div>
-              <p class="figure">${exact(data.netFollowers, { prefix: "+" })}</p>
+              <p class="figure">${exact(data.netFollowers, { prefix: "+", metric: "netFollowers" })}</p>
               <p class="note">Net new followers</p>
             </div>
           </div>
@@ -199,13 +202,13 @@ function insightsSection(data) {
               <circle class="donut-arc" cx="60" cy="60" r="46" pathLength="100" style="--men:${men}"></circle>
             </svg>
             <div class="gender-copy">
-              ${barList(data.gender, "percent")}
+              ${barList(data.gender, "percent", "gender")}
             </div>
           </div>
         </article>
         <article class="stat wide">
           <div class="stat-top"><p class="kicker">Age</p>${see("3", [0.02, 0.36, 0.96, 0.42])}</div>
-          ${barList(data.age, "percent")}
+          ${barList(data.age, "percent", "age")}
         </article>
       </div>
     </div>
@@ -213,21 +216,22 @@ function insightsSection(data) {
       <div class="stat-grid">
         <article class="stat wide">
           <div class="stat-top"><p class="kicker">Top countries</p>${see("2", [0.02, 0.2, 0.96, 0.3])}</div>
-          ${barList(data.countries, "max")}
+          ${barList(data.countries, "max", "countries")}
         </article>
         <article class="stat wide">
           <div class="stat-top"><p class="kicker">Top cities</p>${see("1", [0.02, 0.24, 0.96, 0.3])}</div>
-          ${barList(data.cities, "max")}
+          ${barList(data.cities, "max", "cities")}
         </article>
         <article class="stat wide">
           <div class="stat-top"><p class="kicker">Languages</p>${see("2", [0.02, 0.52, 0.96, 0.18])}</div>
-          ${barList(data.languages, "percent")}
+          ${barList(data.languages, "percent", "languages")}
         </article>
       </div>
     </div>
     <div class="gallery-head">
       <div>
         <p class="kicker">Screenshots</p>
+        ${data.screenshotsTaken ? `<p class="insights-note">Screenshots taken the morning of ${esc(data.screenshotsTaken)}</p>` : ""}
         <p class="insights-lead">Swipe through the dashboard for the same 30 days.</p>
       </div>
       <div class="gallery-nav">

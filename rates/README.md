@@ -59,3 +59,85 @@ Name the file with the slug or another neutral word. The path is in the HTML, so
 When `metricsImage` is empty and there is no `insights` object, visitors see no metrics section and no placeholder.
 
 The `kk` page does not use `metricsImage`. Its `insights` object drives the interactive section (followers, reach, audience, countries, cities, languages) and the dashboard screenshots `rates/insights/insight-1.webp` through `insight-9.webp`. To refresh a screenshot, replace that file, crop the phone status bar off first, and keep the alt text in `rates.json` free of any brand name. Then run the build again.
+
+`screenshotsTaken` on an `insights` object, such as `"26 Nov 2026"`, prints “Screenshots taken the morning of 26 Nov 2026” beside the gallery.
+
+## Live headline numbers
+
+The page embeds the numbers from `rates.json` and shows those if nothing newer is available. A refresh replaces them without editing the page.
+
+`GET /.netlify/functions/creator-metrics` reads the Netlify Blobs store `creator-metrics`, key `latest`. The response is cached for about five minutes (`Cache-Control: public, max-age=300`). A missing blob returns 404, and the page keeps the embedded numbers.
+
+The JSON shape is:
+
+```json
+{
+  "updatedAt": "2026-11-26T05:30:00.000Z",
+  "metrics": {
+    "views": 1820375,
+    "viewers": 723107,
+    "nonFollowerViews": 1547301,
+    "followerViews": 272124,
+    "reelsViews": "1.3M",
+    "storiesViews": "84K",
+    "reelsInteractions": "66K",
+    "profileVisits": "22K",
+    "bioLinkTaps": 746,
+    "followers": 78936,
+    "growthPct": 12.2,
+    "netFollowers": 7517,
+    "gender": [
+      { "label": "Men", "value": 69.9 },
+      { "label": "Women", "value": 30.1 }
+    ],
+    "age": [
+      { "label": "18–24", "value": 10.4 },
+      { "label": "25–34", "value": 37.1 },
+      { "label": "35–44", "value": 30.8 },
+      { "label": "45–54", "value": 14.4 },
+      { "label": "55–64", "value": 4.8 }
+    ],
+    "countries": [
+      { "label": "Jordan", "value": 28.5 },
+      { "label": "Saudi Arabia", "value": 16.1 },
+      { "label": "UAE", "value": 9.3 },
+      { "label": "Egypt", "value": 4.2 },
+      { "label": "Palestine", "value": 3.9 }
+    ],
+    "cities": [
+      { "label": "Amman", "value": 21.7 },
+      { "label": "Riyadh", "value": 7.6 },
+      { "label": "Jeddah", "value": 3.8 },
+      { "label": "Dubai", "value": 3.6 },
+      { "label": "Abu Dhabi", "value": 2.6 }
+    ],
+    "languages": [
+      { "label": "Arabic", "value": 78.7 },
+      { "label": "English", "value": 16.1 }
+    ]
+  }
+}
+```
+
+| Key | What it shows |
+| --- | --- |
+| `updatedAt` | ISO time. The page prints it as “Live numbers updated … (Amman time)”. |
+| `views` | Views in the last 30 days. Integer, shown with commas. |
+| `viewers` | Viewers. Integer. |
+| `nonFollowerViews` | Views from non-followers. Integer. |
+| `followerViews` | Views from followers. Integer. |
+| `reelsViews` | Reel views. A number, or Instagram’s rounded string such as `"1.3M"`. |
+| `storiesViews` | Story views. A number, or a string such as `"84K"`. |
+| `reelsInteractions` | Reel interactions. A number, or a string such as `"66K"`. |
+| `profileVisits` | Profile visits. A number, or a string such as `"22K"`. |
+| `bioLinkTaps` | Bio link taps. Integer. |
+| `followers` | Followers. Integer. |
+| `growthPct` | Growth since the comparison date. Number, shown as `+12.2%`. |
+| `netFollowers` | Net new followers. Integer, shown as `+7,517`. |
+| `gender`, `age`, `countries`, `cities`, `languages` | Audience splits. Each is a list of `{ "label", "value" }`. `value` is a percentage such as `28.5`. Labels must match the ones already on the page. |
+
+Write a file in that shape, then update the blob. This is the refresh, meant to run about every 12 hours. It needs `NETLIFY_AUTH_TOKEN` in the environment and does not print that token. The site is `loquacious-cobbler-451547`.
+
+```bash
+node scripts/update-creator-metrics.mjs path/to/metrics.json
+```
