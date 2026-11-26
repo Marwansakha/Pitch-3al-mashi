@@ -1,6 +1,6 @@
 # Install the function dependency. The site itself is still the repo root.
 [build]
-  command = "npm ci --omit=dev"
+  command = "node rates/build.mjs && npm ci --omit=dev"
   publish = "."
 
 [functions]
@@ -89,3 +89,70 @@
   to = "/grok-workshop/register/index.html"
   status = 200
   force = true
+
+# The rate-card source is not part of the site. /rates and /rates/* stay
+# noindex, including every private per-brand page.
+[[redirects]]
+  from = "/rates/rates.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/rates/build.mjs"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/rates/README.md"
+  to = "/404"
+  status = 404
+  force = true
+
+# rates.marwandoesai.com is the same site. These rules match that host only,
+# so marwandoesai.com/bio, /grok-workshop, and the rest are unchanged.
+# / and /mm stay rewrites (200). Real files such as /rates/card.css,
+# /rates/insights/*, favicon, and /.netlify/functions/creator-metrics
+# are not single-segment brand paths, so they are served as themselves.
+# The rules are not a splat, and they are listed after /bio and the workshop.
+[[redirects]]
+  from = "https://rates.marwandoesai.com"
+  to = "/rates/index.html"
+  status = 200
+  force = true
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
+[[redirects]]
+  from = "https://rates.marwandoesai.com/"
+  to = "/rates/index.html"
+  status = 200
+  force = true
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
+[[redirects]]
+  from = "https://rates.marwandoesai.com/:slug"
+  to = "/rates/:slug/index.html"
+  status = 200
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
+[[redirects]]
+  from = "https://rates.marwandoesai.com/:slug/"
+  to = "/rates/:slug/index.html"
+  status = 200
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
+[[headers]]
+  for = "/rates"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/rates/"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/rates/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
