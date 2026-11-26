@@ -42,7 +42,9 @@ assert.match(standard, /Founder — Creator — Speaker/);
 assert.match(mm, /real interviews about how they built what they have/);
 assert.match(mm, /everyday money and life lessons in Jordanian Arabic/);
 assert.match(mm, /88% are 25 or older/);
-assert.match(mm, /Jordan is the biggest market, led by Amman/);
+assert.match(mm, /My audience is spread across Jordan, the UAE and KSA, with Amman, Riyadh, Dubai, Abu Dhabi and Jeddah as the top cities\./);
+assert.equal(mm.includes("biggest market"), false);
+assert.equal(standard.includes("biggest market"), false);
 assert.equal(/entrepreneurs/i.test(mm), false);
 assert.equal(mm.includes("Founder — Creator — Speaker"), false);
 assert.equal(/founders audience/i.test(mm), false);
@@ -109,9 +111,10 @@ assert.equal(/\bmm\b/i.test(visible(mm)), false, "slug leaked outside the URL");
 assert.equal(/knorr/i.test(mm), false);
 assert.equal(toml.includes("/rates/kk"), false);
 assert.equal(sitemap.includes("/rates/mm"), false);
-assert.match(toml, /from = "https:\/\/rates\.marwandoesai\.com\/"[\s\S]*to = "\/rates\/index\.html"[\s\S]*status = 200[\s\S]*force = true[\s\S]*Host = \["rates\.marwandoesai\.com"\]/);
-assert.match(toml, /from = "https:\/\/rates\.marwandoesai\.com\/:slug\/"[\s\S]*to = "\/rates\/:slug\/index\.html"[\s\S]*status = 200[\s\S]*Host = \["rates\.marwandoesai\.com"\]/);
-assert.equal(toml.includes("https://rates.marwandoesai.com/*"), false);
+assert.equal(toml.includes("Host ="), false);
+assert.equal(toml.includes("https://rates.marwandoesai.com"), false);
+assert.equal(toml.includes("conditions ="), false);
+assert.match(toml, /netlify\/edge-functions\/rates-host\.mjs/);
 
 for (let i = 1; i <= 9; i += 1) {
   const file = path.join(root, "rates/insights", `insight-${i}.webp`);
