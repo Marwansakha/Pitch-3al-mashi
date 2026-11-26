@@ -109,6 +109,9 @@ assert.equal(/\bmm\b/i.test(visible(mm)), false, "slug leaked outside the URL");
 assert.equal(/knorr/i.test(mm), false);
 assert.equal(toml.includes("/rates/kk"), false);
 assert.equal(sitemap.includes("/rates/mm"), false);
+assert.match(toml, /from = "https:\/\/rates\.marwandoesai\.com\/"[\s\S]*to = "\/rates\/index\.html"[\s\S]*status = 200[\s\S]*force = true[\s\S]*Host = \["rates\.marwandoesai\.com"\]/);
+assert.match(toml, /from = "https:\/\/rates\.marwandoesai\.com\/:slug\/"[\s\S]*to = "\/rates\/:slug\/index\.html"[\s\S]*status = 200[\s\S]*Host = \["rates\.marwandoesai\.com"\]/);
+assert.equal(toml.includes("https://rates.marwandoesai.com/*"), false);
 
 for (let i = 1; i <= 9; i += 1) {
   const file = path.join(root, "rates/insights", `insight-${i}.webp`);

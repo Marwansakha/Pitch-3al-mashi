@@ -110,6 +110,38 @@
   status = 404
   force = true
 
+# rates.marwandoesai.com is the same site. These rules match that host only,
+# so marwandoesai.com/bio, /grok-workshop, and the rest are unchanged.
+# / and /mm stay rewrites (200). Real files such as /rates/card.css,
+# /rates/insights/*, favicon, and /.netlify/functions/creator-metrics
+# are not single-segment brand paths, so they are served as themselves.
+# The rules are not a splat, and they are listed after /bio and the workshop.
+[[redirects]]
+  from = "https://rates.marwandoesai.com"
+  to = "/rates/index.html"
+  status = 200
+  force = true
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
+[[redirects]]
+  from = "https://rates.marwandoesai.com/"
+  to = "/rates/index.html"
+  status = 200
+  force = true
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
+[[redirects]]
+  from = "https://rates.marwandoesai.com/:slug"
+  to = "/rates/:slug/index.html"
+  status = 200
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
+[[redirects]]
+  from = "https://rates.marwandoesai.com/:slug/"
+  to = "/rates/:slug/index.html"
+  status = 200
+  conditions = {Host = ["rates.marwandoesai.com"]}
+
 [[headers]]
   for = "/rates"
   [headers.values]

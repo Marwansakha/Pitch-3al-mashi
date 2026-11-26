@@ -1,6 +1,6 @@
 # Rate card
 
-`/rates` is the standard card (AED, effective Jan 2026). A private page for one brand is `/rates/<slug>`.
+`/rates` is the standard card (AED, effective Jan 2026). A private page for one brand is [https://rates.marwandoesai.com/<slug>/](https://rates.marwandoesai.com/<slug>/). The same page is also at `https://marwandoesai.com/rates/<slug>/`. The standard card is [https://rates.marwandoesai.com/](https://rates.marwandoesai.com/) and `https://marwandoesai.com/rates/`. Styles, photos, screenshots, and `/.netlify/functions/creator-metrics` stay on root paths, so they load on both hosts.
 
 Every rate page, including `/rates` and `/rates/*`, sends `noindex` (a meta tag and an `X-Robots-Tag` header) and is left out of `sitemap.xml`. Do not link a private page from the homepage, the bio, the workshop, or the standard card. The brand name does not appear on the page: not in the title, headings, description, or alt text. The slug is the only identifier. Keep it neutral.
 
@@ -34,7 +34,7 @@ Edit `rates/rates.json` and add an object to `pages`:
 
 | Field | What it does |
 | --- | --- |
-| `slug` | URL segment, `/rates/acme`. Lowercase letters, numbers, and hyphens. Not the brand name. |
+| `slug` | URL segment. The link to send is `https://rates.marwandoesai.com/acme/`. `https://marwandoesai.com/rates/acme/` opens the same page. Lowercase letters, numbers, and hyphens. Not the brand name. |
 | `currency` | Shown beside each price, the same way AED is shown on `/rates`. The intro line uses it too. |
 | `storiesIncluded` | `true` keeps “Stories are included:” in the usage text. `false` removes that sentence and leaves the rest. |
 | `description` | Optional. Replaces the default about paragraphs and the “Founder — Creator — Speaker” line. Leave it out to keep the standard card. |
