@@ -58,4 +58,4 @@ Name the file with the slug or another neutral word. The path is in the HTML, so
 
 When `metricsImage` is empty and there is no `insights` object, visitors see no metrics section and no placeholder.
 
-The `kk` page does not use `metricsImage`. Its `insights` object drives the interactive section (followers, reach, audience, countries, cities, languages) and the proof screenshots `rates/insights/insight-1.webp` through `insight-9.webp`. To refresh a screenshot, replace that file, crop the phone status bar off first, and keep the alt text in `rates.json` free of any brand name. Then run the build again.
+The `kk` page does not use `metricsImage`. Its `insights` object drives the interactive section (followers, reach, audience, countries, cities, languages) and the dashboard screenshots `rates/insights/insight-1.webp` through `insight-9.webp`. To refresh a screenshot, replace that file, crop the phone status bar off first, and keep the alt text in `rates.json` free of any brand name. Then run the build again.

@@ -60,8 +60,12 @@
     function frame(now) {
       var t = Math.min(1, (now - start) / duration);
       var eased = 1 - Math.pow(1 - t, 3);
+      if (t >= 1) {
+        el.textContent = el.dataset.text || (prefix + format(target, decimals) + suffix);
+        return;
+      }
       el.textContent = prefix + format(target * eased, decimals) + suffix;
-      if (t < 1) requestAnimationFrame(frame);
+      requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
   }
@@ -123,7 +127,7 @@
 
   function openShot(source, full) {
     var shot = source.getAttribute("data-shot");
-    var figure = document.getElementById("proof-" + shot);
+    var figure = document.getElementById("shot-" + shot);
     if (!figure) return;
     var thumb = figure.querySelector("img");
     var box = focusBox(source, full);
@@ -170,7 +174,7 @@
     if (lastFocus) lastFocus.focus();
   }
 
-  root.querySelectorAll(".proof").forEach(function (link) {
+  root.querySelectorAll(".see").forEach(function (link) {
     link.addEventListener("click", function (event) {
       event.preventDefault();
       openShot(link, false);
