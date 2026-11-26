@@ -37,6 +37,13 @@ assert.equal(Object.hasOwn(leads, "workshopUrl"), false);
 assert.equal(context.workshopHref(leads), "");
 assert.equal(context.isGrokEntry(leads), false);
 
+const mirofish = videos.find((video) => video.slug === "mirofish-virtual-customers");
+assert.ok(mirofish);
+assert.equal(mirofish.videoUrl, "https://www.instagram.com/reel/DgLGASkRaQW/");
+assert.equal(Object.hasOwn(mirofish, "workshopUrl"), false);
+assert.equal(context.workshopHref(mirofish), "");
+assert.equal(context.isGrokEntry(mirofish), false);
+
 const taggedOnly = { slug: "future-reel", tags: ["Grok"] };
 const botTagged = { slug: "future-bot", tags: ["AI", "Grok Bot"] };
 const slugOnly = { slug: "using-grok-at-work", tags: ["AI tools"] };

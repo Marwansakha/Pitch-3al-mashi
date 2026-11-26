@@ -10,6 +10,30 @@
   },
   "videos": [
     {
+      "slug": "mirofish-virtual-customers",
+      "title": "من أفيد الأدوات 🫡",
+      "titleEn": "One of the most useful tools",
+      "thumbnail": "/links/thumbs/mirofish-virtual-customers.jpg",
+      "date": "2026-11-25",
+      "postedAt": "2026-11-25T20:44:56+03:00",
+      "tags": [
+        "AI tools",
+        "MiroFish",
+        "Startups"
+      ],
+      "description": "MiroFish: أداة مفتوحة المصدر بتسوّي عملاء افتراضيين لفكرتك، بتخليهم يتفاعلوا، وبتعطيك تقرير قبل ما تضيع وقت وفلوس.",
+      "descriptionEn": "MiroFish, an open-source tool that builds virtual customers for your idea, lets them interact, and reports back before you spend time and money.",
+      "url": "https://mirofish.ai/",
+      "links": [
+        {
+          "label": "المصدر المفتوح",
+          "labelEn": "Open source",
+          "url": "https://github.com/666ghj/MiroFish"
+        }
+      ],
+      "videoUrl": "https://www.instagram.com/reel/DgLGASkRaQW/"
+    },
+    {
       "slug": "grok-bot-connect-tools",
       "title": "كيف تشبك أدوات على جروك بوت",
       "titleEn": "How to connect tools to Grok Bot",
