@@ -11,22 +11,22 @@
   "videos": [
     {
       "slug": "mirofish-howto",
-      "title": "كيف تخلي ألف شخص يناقشوا فكرتك؟",
-      "titleEn": "How do you get a thousand people to debate your idea?",
+      "title": "كيف تشغّل MiroFish خطوة بخطوة",
+      "titleEn": "How to set up and run MiroFish",
       "thumbnail": "/links/thumbs/mirofish-howto.jpg",
       "date": "2026-11-28",
-      "postedAt": "2026-11-28T18:54:37+03:00",
+      "postedAt": "2026-11-28T18:54:00+03:00",
       "tags": [
         "AI tools",
         "MiroFish",
-        "Startups"
+        "Claude Code"
       ],
-      "description": "البرومبت اللي بتركّب MiroFish على لابتوبك من الصفر، وكتيّب بيشرح مفتاح OpenAI ومفتاح Zep وأول تشغيل.",
-      "descriptionEn": "The prompt that sets MiroFish up on your laptop from zero, plus a booklet for the OpenAI key, the Zep key, and the first run.",
+      "description": "شرح إعداد MiroFish: مفتاح OpenAI ومفتاح Zep، التشغيل على جهازك، محاكاة صغيرة، ثم التقرير.",
+      "descriptionEn": "Setting up MiroFish: your OpenAI and Zep keys, running it locally, a small first simulation, then the report.",
       "links": [
         {
-          "label": "الكتيّب",
-          "labelEn": "Booklet",
+          "label": "دليل الإعداد (PDF)",
+          "labelEn": "Setup booklet (PDF)",
           "url": "/mirofish-howto/mirofish-setup-guide.pdf"
         },
         {
@@ -35,7 +35,7 @@
           "url": "/mirofish-howto"
         }
       ],
-      "prompt": "You are setting up MiroFish (https://github.com/666ghj/MiroFish) on my laptop from zero. I'm not technical, so do every step yourself, explain briefly what you're doing, and only stop when MiroFish is open and ready in my browser.\n\n1. Detect my operating system (Mac or Windows) and use the right commands for it.\n2. Check for git, Node.js (v18 or newer), Python (3.11 or 3.12) and uv. Install anything missing using the normal installer for my system (Homebrew on Mac, winget on Windows). Ask me before installing anything system-wide.\n3. Clone the repo into a folder called \"mirofish\" in my home folder, and go into it.\n4. Copy .env.example to .env.\n5. Ask me for my two keys, one at a time, and write them into .env:\n- LLM_API_KEY = my OpenAI key, with LLM_BASE_URL = https://api.openai.com/v1 and LLM_MODEL_NAME = a low-cost OpenAI model\n- ZEP_API_KEY = my Zep key\nNever show my keys back to me, never log them, and never commit or upload them anywhere.\n6. Read the README and install all dependencies for both the frontend and the backend, using the commands it recommends.\n7. Start the app (backend and frontend) the way the README says, and keep it running.\n8. Check that both are actually up. If anything fails, read the error, fix it, and try again until it works.\n9. Open the MiroFish page in my default browser for me.\n10. Finish with a short summary:\n- the link I should open (localhost)\n- how long the first run should take\n- how many personas it will use the first time",
+      "prompt": "Set up MiroFish (https://github.com/666ghj/MiroFish) so it runs locally on my computer. Follow the official README and `.env.example`. Do not invent commands, environment-variable names, ports, or model IDs.\n\n1. Check what is already installed: `git`, Node.js 18+ (with npm), Python 3.11 or 3.12 (not 3.13), and `uv`. Install anything missing, but ask me before any system-wide install.\n\n2. Clone the official repo into this folder, or into a `MiroFish` subfolder if this folder is not empty:\n\n   `git clone https://github.com/666ghj/MiroFish.git`\n\n3. From the repo root, copy the example env file:\n\n   `cp .env.example .env`\n\n   On Windows: `copy .env.example .env`\n\n4. Configure only these required values in `.env` for a first run:\n\n   - `LLM_API_KEY` = my OpenAI API key\n   - `LLM_BASE_URL` = `https://api.openai.com/v1`\n   - `LLM_MODEL_NAME` = `gpt-4o-mini` unless I name another model\n   - `ZEP_API_KEY` = my Zep Cloud API key\n\n   Ask me for the two keys. Write them only into `.env`. Never print, repeat, log, or screenshot the key values. Never commit `.env`.\n\n   Do not set `ZEP_API_URL` (the current official mainline rejects it and talks to Zep Cloud only).\n\n   If I am not using a second \"boost\" LLM, delete the `LLM_BOOST_API_KEY`, `LLM_BOOST_BASE_URL`, and `LLM_BOOST_MODEL_NAME` lines instead of leaving placeholders.\n\n5. From the repo root, install dependencies with `npm run setup:all`, then start both services with `npm run dev`. (`setup:all` only installs; it does not start the app.)\n\n6. If anything fails, read the error, fix it, and try again. Useful checks:\n\n   - Python must be 3.11 or 3.12, not 3.13.\n   - Open the app at `http://localhost:3000`.\n   - The backend API is `http://localhost:5001`. A 404 at `http://localhost:5001/` is expected; the health check is `http://localhost:5001/health`.\n\n7. When it is running, give me:\n\n   - the browser link: `http://localhost:3000`\n   - how to stop it: `Ctrl+C` in that terminal\n   - how to start it again later: `npm run dev` from the repo root\n   - a first-run reminder: start with a short seed file (`.pdf`, `.md`, or `.txt` — not a scanned or image-only PDF), about 30 rounds and under 40, finish one full workflow, then scale up. The official UI is Chinese or English. After the simulation, read the report in the UI; a full Markdown copy is also saved under `backend/uploads/reports/<report_id>/full_report.md`.\n\nDo not publish the app, do not expose it to the public internet, and do not create any other project.",
       "videoUrl": "https://www.instagram.com/reel/DgSnkd7thzc/"
     },
     {
