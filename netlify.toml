@@ -93,6 +93,14 @@
   status = 200
   force = true
 
+# The MiroFish how-to is a real file. Force the bare path so
+# /mirofish-howto returns 200, same as /mirofish-howto/.
+[[redirects]]
+  from = "/mirofish-howto"
+  to = "/mirofish-howto/index.html"
+  status = 200
+  force = true
+
 # The rate-card source is not part of the site. /rates and /rates/* stay
 # noindex, including every private per-brand page.
 [[redirects]]

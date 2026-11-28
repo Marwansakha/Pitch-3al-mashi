@@ -10,6 +10,35 @@
   },
   "videos": [
     {
+      "slug": "mirofish-howto",
+      "title": "كيف تخلي ألف شخص يناقشوا فكرتك؟",
+      "titleEn": "How do you get a thousand people to debate your idea?",
+      "thumbnail": "/links/thumbs/mirofish-howto.jpg",
+      "date": "2026-11-28",
+      "postedAt": "2026-11-28T18:54:37+03:00",
+      "tags": [
+        "AI tools",
+        "MiroFish",
+        "Startups"
+      ],
+      "description": "البرومبت اللي بتركّب MiroFish على لابتوبك من الصفر، وكتيّب بيشرح مفتاح OpenAI ومفتاح Zep وأول تشغيل.",
+      "descriptionEn": "The prompt that sets MiroFish up on your laptop from zero, plus a booklet for the OpenAI key, the Zep key, and the first run.",
+      "links": [
+        {
+          "label": "الكتيّب",
+          "labelEn": "Booklet",
+          "url": "/mirofish-howto/mirofish-setup-guide.pdf"
+        },
+        {
+          "label": "صفحة البرومبت",
+          "labelEn": "Prompt page",
+          "url": "/mirofish-howto"
+        }
+      ],
+      "prompt": "You are setting up MiroFish (https://github.com/666ghj/MiroFish) on my laptop from zero. I'm not technical, so do every step yourself, explain briefly what you're doing, and only stop when MiroFish is open and ready in my browser.\n\n1. Detect my operating system (Mac or Windows) and use the right commands for it.\n2. Check for git, Node.js (v18 or newer), Python (3.11 or 3.12) and uv. Install anything missing using the normal installer for my system (Homebrew on Mac, winget on Windows). Ask me before installing anything system-wide.\n3. Clone the repo into a folder called \"mirofish\" in my home folder, and go into it.\n4. Copy .env.example to .env.\n5. Ask me for my two keys, one at a time, and write them into .env:\n- LLM_API_KEY = my OpenAI key, with LLM_BASE_URL = https://api.openai.com/v1 and LLM_MODEL_NAME = a low-cost OpenAI model\n- ZEP_API_KEY = my Zep key\nNever show my keys back to me, never log them, and never commit or upload them anywhere.\n6. Read the README and install all dependencies for both the frontend and the backend, using the commands it recommends.\n7. Start the app (backend and frontend) the way the README says, and keep it running.\n8. Check that both are actually up. If anything fails, read the error, fix it, and try again until it works.\n9. Open the MiroFish page in my default browser for me.\n10. Finish with a short summary:\n- the link I should open (localhost)\n- how long the first run should take\n- how many personas it will use the first time",
+      "videoUrl": "https://www.instagram.com/reel/DgSnkd7thzc/"
+    },
+    {
       "slug": "invest-or-not-4",
       "title": "بتستثمر ولا ما بتستثمر؟ 💰",
       "titleEn": "Invest, or not?",
