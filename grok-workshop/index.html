@@ -268,6 +268,41 @@ footer a:hover{color:var(--ink)}
   .agenda-progress,.card .bar,.pill-task::after{transform:none}
   .pill-done,.outcomes li,.reveal{opacity:1;transform:none}
 }
+
+/* Free setup toolkit (book preview) */
+.tk-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:32px 48px;align-items:center}
+.tk-list{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:10px}
+.tk-list li{display:flex;gap:10px;align-items:flex-start;color:var(--ink2)}
+.tk-list .icon{color:var(--amber);margin-top:3px}
+.tk-note{margin:0 0 18px;color:var(--muted);font-size:15px}
+.tk-book{position:relative;width:min(100%,400px);margin-inline:auto;outline:none}
+.tk-book:focus-visible{outline:2px solid var(--amber);outline-offset:8px;border-radius:6px}
+.tk-stage{position:relative;aspect-ratio:210/297;perspective:1800px}
+.tk-stage::before,.tk-stage::after{content:"";position:absolute;inset:0;background:#FFFcf8;border:1px solid var(--line);border-radius:3px 10px 10px 3px;z-index:0}
+.tk-stage::before{transform:translate(-6px,6px)}
+.tk-stage::after{transform:translate(-12px,12px);opacity:.6}
+.tk-page{position:absolute;inset:0;z-index:1;margin:0;display:none;border-radius:3px 10px 10px 3px;overflow:hidden;background:#F8F6F1;box-shadow:0 18px 40px rgba(26,26,26,.16),inset -10px 0 18px -14px rgba(26,26,26,.35)}
+.tk-page.on{display:block}
+.tk-page img{width:100%;height:100%;object-fit:cover;display:block}
+.tk-page button.tk-open{all:unset;position:absolute;inset:0;cursor:zoom-in}
+.tk-page button.tk-open:focus-visible{outline:2px solid var(--amber);outline-offset:-4px}
+.js-anim .tk-page.in-next{animation:tkNext .55s var(--ease)}
+.js-anim .tk-page.in-prev{animation:tkPrev .55s var(--ease)}
+@keyframes tkNext{from{transform:rotateY(-75deg);transform-origin:right center;opacity:.3}to{transform:none;transform-origin:right center;opacity:1}}
+@keyframes tkPrev{from{transform:rotateY(75deg);transform-origin:left center;opacity:.3}to{transform:none;transform-origin:left center;opacity:1}}
+.tk-ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.tk-ctrl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);display:grid;place-content:center;cursor:pointer}
+.tk-ctrl button:hover{background:var(--amber)}
+.tk-ctrl button:disabled{opacity:.35;cursor:default;background:var(--bg)}
+.tk-ind{min-width:64px;text-align:center;font-weight:500;color:var(--muted)}
+.tk-ind bdi{font-family:"DM Sans","IBM Plex Sans Arabic",sans-serif}
+.tk-tag{display:block;text-align:center;margin-top:6px;color:var(--muted);font-size:14px}
+.tk-zoom{position:fixed;inset:0;z-index:50;background:rgba(26,26,26,.86);display:none;overflow:auto;padding:56px 16px 24px}
+.tk-zoom.on{display:block}
+.tk-zoom img{width:clamp(720px,100%,860px);max-width:none;height:auto;margin:0 auto;border-radius:6px;background:#fff}
+.tk-zoom .close{position:fixed;top:12px;inset-inline-end:12px;width:44px;height:44px;border-radius:50%;border:0;background:var(--on);color:var(--ink);font:inherit;font-size:22px;cursor:pointer}
+@media (max-width:900px){.tk-grid{grid-template-columns:1fr}.tk-book{width:min(100%,340px)}}
+@media (prefers-reduced-motion:reduce){.tk-page.in-next,.tk-page.in-prev{animation:none!important}}
 </style>
 </head>
 <body>
@@ -376,6 +411,58 @@ footer a:hover{color:var(--ink)}
       </div>
       <p class="note">الفكرة مش إنك تستبدل حدا. الفكرة إنك تعطي فريقك وقته للشغل اللي بيفرق.</p>
     </div>
+  </section>
+
+  <section class="band" id="toolkit" style="padding-top:0" aria-labelledby="tk-title">
+    <div class="wrap tk-grid">
+      <div>
+        <p class="pill">مجانًا مع الورشة</p>
+        <h2 id="tk-title" class="reveal">عدّة الإعداد المجانية، بتوصلك بعد الورشة</h2>
+        <p class="sub reveal">دليل من 23 صفحة بيكمّل معك بعد الورشة خطوة بخطوة، عشان تبني على اللي بنيناه لحالك.</p>
+        <ul class="tk-list reveal">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9 16l10-9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>أول بوت بنص ساعة، ورسالة أولى جاهزة تلصقها</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9 16l10-9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>روتينات جاهزة بمواعيدها، وفريق بوتات بيرجع لبوت رئيسي</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9 16l10-9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>16 قاعدة ذهبية للأمان والموافقات، من الفريق اللي بشتغل معه كل يوم</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9 16l10-9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>12 قالب جاهز للنسخ، وخطة لأول 7 أيام وأول 30 يوم</span></li>
+        </ul>
+        <p class="tk-note">قلّب الدليل: الغلاف والفهرس مفتوحين، وباقي الصفحات بتفتح بعد الورشة.</p>
+        <a class="btn" href="/grok-workshop/register">احجز مقعدك</a>
+      </div>
+      <div class="tk-book" data-tk tabindex="0" role="region" aria-roledescription="كتاب" aria-label="معاينة دليل الإعداد. استخدم الأسهم لتقليب الصفحات">
+        <div class="tk-stage">
+          <figure class="tk-page on" data-n="1"><img src="/grok-workshop/toolkit/page-01.jpg" width="760" height="1075" alt="غلاف الدليل: دليل إعداد وتشغيل البوتات، Grok Bot Setup Toolkit، مع مروان أبو سخا"><button class="tk-open" type="button" data-large="/grok-workshop/toolkit/page-01-large.jpg" aria-label="كبّر الغلاف"></button></figure>
+          <figure class="tk-page" data-n="2"><img data-src="/grok-workshop/toolkit/page-02.jpg" width="760" height="1075" alt="فهرس الدليل: شو هو Grok Bot، أول نص ساعة، صمّم البوت صح، وصّل أدواتك، الذاكرة، المهارات، الروتينات، فريق البوتات، الكمبيوتر المشترك، الموافقات والأمان، القواعد الذهبية، صوت واجتماعات وصفحات، برومبتات بتشتغل، قوالب جاهزة، نصائح وأخطاء شائعة، خطة 7 و30 يوم، قائمة التحقق"><button class="tk-open" type="button" data-large="/grok-workshop/toolkit/page-02-large.jpg" aria-label="كبّر الفهرس"></button></figure>
+          <figure class="tk-page" data-n="3"><img data-src="/grok-workshop/toolkit/locked-03.jpg" width="760" height="1075" alt="صفحة 3 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="4"><img data-src="/grok-workshop/toolkit/locked-04.jpg" width="760" height="1075" alt="صفحة 4 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="5"><img data-src="/grok-workshop/toolkit/locked-05.jpg" width="760" height="1075" alt="صفحة 5 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="6"><img data-src="/grok-workshop/toolkit/locked-06.jpg" width="760" height="1075" alt="صفحة 6 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="7"><img data-src="/grok-workshop/toolkit/locked-07.jpg" width="760" height="1075" alt="صفحة 7 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="8"><img data-src="/grok-workshop/toolkit/locked-08.jpg" width="760" height="1075" alt="صفحة 8 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="9"><img data-src="/grok-workshop/toolkit/locked-09.jpg" width="760" height="1075" alt="صفحة 9 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="10"><img data-src="/grok-workshop/toolkit/locked-10.jpg" width="760" height="1075" alt="صفحة 10 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="11"><img data-src="/grok-workshop/toolkit/locked-11.jpg" width="760" height="1075" alt="صفحة 11 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="12"><img data-src="/grok-workshop/toolkit/locked-12.jpg" width="760" height="1075" alt="صفحة 12 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="13"><img data-src="/grok-workshop/toolkit/locked-13.jpg" width="760" height="1075" alt="صفحة 13 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="14"><img data-src="/grok-workshop/toolkit/locked-14.jpg" width="760" height="1075" alt="صفحة 14 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="15"><img data-src="/grok-workshop/toolkit/locked-15.jpg" width="760" height="1075" alt="صفحة 15 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="16"><img data-src="/grok-workshop/toolkit/locked-16.jpg" width="760" height="1075" alt="صفحة 16 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="17"><img data-src="/grok-workshop/toolkit/locked-17.jpg" width="760" height="1075" alt="صفحة 17 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="18"><img data-src="/grok-workshop/toolkit/locked-18.jpg" width="760" height="1075" alt="صفحة 18 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="19"><img data-src="/grok-workshop/toolkit/locked-19.jpg" width="760" height="1075" alt="صفحة 19 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="20"><img data-src="/grok-workshop/toolkit/locked-20.jpg" width="760" height="1075" alt="صفحة 20 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="21"><img data-src="/grok-workshop/toolkit/locked-21.jpg" width="760" height="1075" alt="صفحة 21 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="22"><img data-src="/grok-workshop/toolkit/locked-22.jpg" width="760" height="1075" alt="صفحة 22 من الدليل، بتظهر بعد الورشة"></figure>
+          <figure class="tk-page" data-n="23"><img data-src="/grok-workshop/toolkit/locked-23.jpg" width="760" height="1075" alt="صفحة 23 من الدليل، بتظهر بعد الورشة"></figure>
+        </div>
+        <div class="tk-ctrl">
+          <button type="button" data-tk-prev aria-label="الصفحة السابقة"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+          <span class="tk-ind" aria-live="polite"><bdi dir="ltr" data-tk-ind>1 / 23</bdi></span>
+          <button type="button" data-tk-next aria-label="الصفحة التالية"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>
+        <span class="tk-tag">اسحب أو اضغط الأسهم لتقلّب · اضغط على الصفحة المفتوحة لتكبّرها</span>
+      </div>
+    </div>
+    <div class="tk-zoom" data-tk-zoom role="dialog" aria-modal="true" aria-label="الصفحة مكبّرة"><button class="close" type="button" aria-label="سكّر">×</button><img alt=""></div>
   </section>
 
   <section class="band" style="padding-top:0" aria-labelledby="out-title">
@@ -609,6 +696,65 @@ footer a:hover{color:var(--ink)}
       render(data && find(data.currency) ? data.currency : rates.base);
     }).catch(function () {});
   }).catch(function () {});
+})();
+</script>
+<script>
+(function () {
+  var book = document.querySelector("[data-tk]");
+  if (!book) return;
+  var pages = book.querySelectorAll(".tk-page");
+  var ind = book.querySelector("[data-tk-ind]");
+  var prev = book.querySelector("[data-tk-prev]");
+  var next = book.querySelector("[data-tk-next]");
+  var zoom = document.querySelector("[data-tk-zoom]");
+  var cur = 0, total = pages.length;
+  function load(i) {
+    if (i < 0 || i >= total) return;
+    var img = pages[i].querySelector("img[data-src]");
+    if (img) { img.src = img.getAttribute("data-src"); img.removeAttribute("data-src"); }
+  }
+  function show(i, dir) {
+    if (i < 0 || i >= total || i === cur) return;
+    load(i); load(i + 1);
+    pages[cur].classList.remove("on", "in-next", "in-prev");
+    var p = pages[i];
+    p.classList.remove("in-next", "in-prev");
+    p.classList.add("on");
+    void p.offsetWidth;
+    p.classList.add(dir > 0 ? "in-next" : "in-prev");
+    cur = i;
+    ind.textContent = (i + 1) + " / " + total;
+    prev.disabled = i === 0;
+    next.disabled = i === total - 1;
+  }
+  prev.addEventListener("click", function () { show(cur - 1, -1); });
+  next.addEventListener("click", function () { show(cur + 1, 1); });
+  book.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { e.preventDefault(); show(cur + 1, 1); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); show(cur - 1, -1); }
+  });
+  var sx = null, sy = null;
+  book.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  book.addEventListener("touchend", function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) { if (dx > 0) show(cur + 1, 1); else show(cur - 1, -1); }
+    sx = null;
+  }, { passive: true });
+  var opens = book.querySelectorAll(".tk-open");
+  for (var k = 0; k < opens.length; k++) {
+    opens[k].addEventListener("click", function () {
+      zoom.querySelector("img").src = this.getAttribute("data-large");
+      zoom.querySelector("img").alt = this.parentNode.querySelector("img").alt;
+      zoom.classList.add("on");
+      zoom.querySelector(".close").focus();
+    });
+  }
+  function closeZoom() { zoom.classList.remove("on"); book.focus(); }
+  zoom.addEventListener("click", function (e) { if (e.target === zoom || e.target.classList.contains("close")) closeZoom(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && zoom.classList.contains("on")) closeZoom(); });
+  prev.disabled = true;
+  load(1);
 })();
 </script>
 </body>
