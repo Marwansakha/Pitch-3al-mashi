@@ -72,16 +72,16 @@ const toml = fs.readFileSync(path.join(root, "netlify.toml"), "utf8");
 const rules = parseRedirects(toml);
 const pathRules = rules.filter((rule) => !rule.from.includes("://"));
 
-const linksExact = pathRules.findIndex((rule) => rule.from === "/links" && rule.force && rule.status === 301 && rule.to === "/");
-const linksSlash = pathRules.findIndex((rule) => rule.from === "/links/" && rule.force && rule.status === 301 && rule.to === "/");
+const linksExact = pathRules.findIndex((rule) => rule.from === "/links" && rule.force && rule.status === 301 && rule.to === "/bio");
+const linksSlash = pathRules.findIndex((rule) => rule.from === "/links/" && rule.force && rule.status === 301 && rule.to === "/bio");
 const bio = pathRules.findIndex((rule) => rule.from === "/bio" && rule.status === 200 && rule.to === "/links/index.html");
 const bioSlash = pathRules.findIndex((rule) => rule.from === "/bio/" && rule.status === 200 && rule.to === "/links/index.html");
 const bioSplat = pathRules.findIndex((rule) => rule.from === "/bio/*" && rule.status === 200 && rule.to === "/links/index.html" && !rule.force);
 const linksSplat = pathRules.findIndex((rule) => rule.from === "/links/*" && rule.status === 200 && rule.to === "/links/index.html" && !rule.force);
 
-assert.ok(linksExact >= 0, "exact /links redirects home and is forced");
-assert.ok(linksSlash > linksExact, "/links/ is forced home after the exact rule");
-assert.ok(bio > linksSlash && bioSlash > bio && bioSplat > bioSlash, "/bio rules follow the homepage redirects");
+assert.ok(linksExact >= 0, "exact /links redirects to /bio and is forced");
+assert.ok(linksSlash > linksExact, "/links/ redirects to /bio after the exact rule");
+assert.ok(bio > linksSlash && bioSlash > bio && bioSplat > bioSlash, "/bio rules follow the /links redirects");
 assert.ok(linksSplat > bioSplat, "/links/* is last so it cannot catch /bio or exact /links first");
 
 const videos = JSON.parse(fs.readFileSync(path.join(root, "content/videos.json"), "utf8")).videos;
@@ -98,20 +98,19 @@ function expectServe(pathname, filename) {
   assert.notEqual(result.rewrite, "/links/");
 }
 
-function expectHomeRedirect(pathname) {
+function expectBioRedirect(pathname) {
   const direct = rules.filter((rule) => !rule.from.includes("://")).find((rule) => matches(rule.from, pathname));
   assert.ok(direct, "no rule for " + pathname);
-  assert.equal(direct.to, "/");
+  assert.equal(direct.to, "/bio");
   assert.equal(direct.status, 301);
   assert.equal(direct.force, true);
-  const home = resolvePath(rules, "/");
-  assert.equal(home.status, 200);
-  assert.ok(home.file.endsWith("/index.html") || home.file.endsWith("index.html"));
-  assert.equal(home.file.includes(`${path.sep}links${path.sep}`), false);
+  const grid = resolvePath(rules, pathname);
+  assert.equal(grid.status, 200);
+  assert.ok(grid.file.endsWith("links/index.html"), pathname + " followed to " + grid.file);
 }
 
-expectHomeRedirect("/links");
-expectHomeRedirect("/links/");
+expectBioRedirect("/links");
+expectBioRedirect("/links/");
 expectServe("/", "index.html");
 expectServe("/bio", "links/index.html");
 expectServe("/bio/", "links/index.html");
@@ -182,15 +181,15 @@ async function request(pathname, redirect) {
 
 const links = await request("/links", "manual");
 assert.equal(links.status, 301);
-assert.equal(links.location, "/");
+assert.equal(links.location, "/bio");
 const linksSlashRes = await request("/links/", "manual");
 assert.equal(linksSlashRes.status, 301);
-assert.equal(linksSlashRes.location, "/");
+assert.equal(linksSlashRes.location, "/bio");
 const followed = await request("/links", "follow");
 assert.equal(followed.status, 200);
-assert.ok(followed.url.endsWith("/"));
-assert.ok(followed.text.includes("Pitch على الماشي"));
-assert.equal(followed.text.includes("مروان أبو سخا | الروابط"), false);
+assert.ok(followed.url.endsWith("/bio"));
+assert.ok(followed.text.includes("مروان أبو سخا | الروابط"));
+assert.ok(followed.text.includes("content/videos.json"));
 
 const bioPage = await request("/bio", "manual");
 assert.equal(bioPage.status, 200);

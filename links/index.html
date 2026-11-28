@@ -485,7 +485,7 @@ footer a:hover{color:var(--ink)}
   }
   function basePath() {
     var path = location.pathname;
-    // Older shared links use /links/<slug>. Bare /links redirects home, so
+    // Older shared links use /links/<slug>. Bare /links redirects to /bio, so
     // that form is only used when a slug is already in the path.
     if (path.indexOf("/links/") === 0 && path !== "/links/") return "/links";
     return "/bio";

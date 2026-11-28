@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>كيف تشغّل MiroFish: الدليل والبرومبت | مروان أبو سخا</title>
+<meta name="description" content="دليل PDF بالعربي وبرومبت جاهز لـ Claude Code لتشغيل MiroFish على جهازك: المفتاحان، التركيب، ثم محاكاة صغيرة وتقرير.">
+<meta property="og:title" content="كيف تشغّل MiroFish: الدليل والبرومبت | مروان أبو سخا">
+<meta property="og:description" content="دليل PDF بالعربي وبرومبت جاهز لـ Claude Code لتشغيل MiroFish على جهازك.">
+<meta property="og:image" content="https://marwandoesai.com/links/thumbs/mirofish-howto.jpg">
+<meta property="og:url" content="https://marwandoesai.com/mirofish-howto">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://marwandoesai.com/mirofish-howto">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F5F3EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3EE;--ink:#1A1A1A;--ink2:#3A3835;--muted:#5C5852;--line:rgba(26,26,26,.15);--amber:#B8860B;--on:#F5F3EE;--card:#FFFCF8;--ease:cubic-bezier(.2,.7,.2,1);color-scheme:light;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","DM Sans",Tahoma,sans-serif;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:var(--amber);color:var(--ink)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px}
+.latin{font-family:"DM Sans","IBM Plex Sans Arabic",sans-serif;direction:ltr;unicode-bidi:isolate}
+.serif{font-family:"DM Serif Display","DM Sans",serif;font-weight:400;letter-spacing:-.03em}
+header.top{border-bottom:1px solid var(--line);padding:14px 0;padding-top:max(14px,env(safe-area-inset-top))}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:700;text-decoration:none;font-size:16px}
+.back{font-size:14px;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--ink)}
+.hero{padding:44px 0 26px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--amber);margin:0 0 10px}
+h1{font-size:clamp(30px,7vw,46px);line-height:1.2;margin:0 0 14px;text-wrap:balance}
+h1 .en{display:block;font-size:.62em;color:var(--amber);margin-top:6px;direction:ltr;text-align:right}
+.lede{font-size:18px;color:var(--ink2);margin:0 0 6px;max-width:34em}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;font:inherit;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);transition:transform .2s var(--ease),background .2s var(--ease),color .2s var(--ease)}
+.btn.primary{background:var(--ink);color:var(--on)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary:hover{background:#000}
+.btn.ghost:hover{background:var(--ink);color:var(--on)}
+section{padding:30px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(22px,4.6vw,28px);line-height:1.3;margin:0 0 14px}
+p{margin:0 0 12px;color:var(--ink2)}
+.notes{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.notes li{background:var(--card);border:1px solid var(--line);border-inline-start:4px solid var(--amber);border-radius:10px;padding:14px 16px;color:var(--ink2)}
+.notes strong{color:var(--ink);display:block;margin-bottom:2px}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:10px}
+ol.steps li{counter-increment:s;display:flex;gap:14px;align-items:baseline;color:var(--ink2)}
+ol.steps li::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--on);display:grid;place-items:center;font:600 14px "DM Sans",sans-serif;transform:translateY(4px)}
+.promptbox{background:#1A1916;color:#F3EDE3;border-radius:14px;overflow:hidden;margin-top:6px}
+.promptbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(243,237,227,.14);font-size:14px;color:#CFC6B4}
+.copy{min-height:40px;padding:0 18px;border-radius:999px;border:1.5px solid #E0A540;background:#E0A540;color:#1A1A1A;font:600 14px/1 "IBM Plex Sans Arabic","DM Sans",sans-serif;cursor:pointer}
+.copy:hover{background:#F0B555}
+.copy[data-done="1"]{background:#F3EDE3;border-color:#F3EDE3}
+pre{margin:0;padding:16px;direction:ltr;text-align:left;unicode-bidi:isolate;font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;max-height:420px;overflow:auto;-webkit-overflow-scrolling:touch}
+.small{font-size:14px;color:var(--muted)}
+code{direction:ltr;unicode-bidi:isolate;font:.88em ui-monospace,Menlo,Consolas,monospace;background:rgba(26,26,26,.07);padding:1px 6px;border-radius:5px}
+footer{padding:28px 0 calc(40px + env(safe-area-inset-bottom));border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+@media (max-width:520px){.btn{width:100%}body{font-size:16.5px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/bio">مروان أبو سخا</a>
+  <a class="back" href="/bio">‹ كل الفيديوهات</a>
+</div></header>
+<main class="wrap">
+  <div class="hero">
+    <p class="eyebrow">دليل الإعداد</p>
+    <h1 class="serif">كيف تشغّل ميرو فيش<span class="en latin">MiroFish</span></h1>
+    <p class="lede">دليل PDF بالعربي وبرومبت جاهز لـ Claude Code، من المفتاحين لحد أول محاكاة وتقرير.</p>
+    <div class="actions">
+      <a class="btn primary" href="/mirofish-howto/mirofish-setup-guide.pdf" download>تنزيل الدليل (PDF)</a>
+      <a class="btn ghost" href="#prompt">انسخ البرومبت</a>
+    </div>
+  </div>
+
+  <section aria-labelledby="notes">
+    <h2 id="notes">ثلاث نقاط قبل ما تبدأ</h2>
+    <ul class="notes">
+      <li><strong>مفتاح OpenAI سرّي ومدفوع.</strong>رصيد الـ API منفصل عن اشتراك ChatGPT، واشتراك Plus ما بغطيه. ولا تلصق المفتاح بأي شات أو منشور.</li>
+      <li><strong>مفتاح Zep مجاني.</strong>هو ذاكرة الشخصيات. الخطة المجانية فيها 10,000 رصيد بالشهر.</li>
+      <li><strong>ابدأ بمحاكاة صغيرة.</strong>الاستهلاك عالي، فجرّب ملف قصير وأقل من 40 جولة. والنتيجة فرضيات تختبرها، مش إثبات إنه السوق بدّه فكرتك.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="how">
+    <h2 id="how">الخطوات باختصار</h2>
+    <ol class="steps">
+      <li><span>اعمل مفتاح OpenAI من <span class="latin">platform.openai.com</span> واشحن رصيد الـ API.</span></li>
+      <li><span>اعمل مفتاح Zep المجاني من <span class="latin">app.getzep.com</span>.</span></li>
+      <li><span>افتح Claude Code على اللابتوب والصق البرومبت تحت. بطلب منك المفتاحين وبحطهم بملف <code>.env</code> فقط.</span></li>
+      <li><span>افتح <code>http://localhost:3000</code>، وابدأ بملف قصير وعدد جولات قليل.</span></li>
+      <li><span>ارفع فكرتك والسوق المستهدف، شغّل المحاكاة، واقرأ التقرير.</span></li>
+    </ol>
+  </section>
+
+  <section id="prompt" aria-labelledby="ptitle">
+    <h2 id="ptitle">برومبت Claude Code</h2>
+    <p>انسخه والصقه في Claude Code. لا تكتب مفاتيحك بالشات؛ لما يطلبها ضعها بملف <code>.env</code> فقط.</p>
+    <div class="promptbox">
+      <div class="promptbar"><span>البرومبت (بالإنجليزي)</span><button class="copy" id="copyBtn" type="button">انسخ البرومبت</button></div>
+      <pre id="promptText">Set up MiroFish (https://github.com/666ghj/MiroFish) so it runs locally on my computer. Follow the official README and `.env.example`. Do not invent commands, environment-variable names, ports, or model IDs.
+
+1. Check what is already installed: `git`, Node.js 18+ (with npm), Python 3.11 or 3.12 (not 3.13), and `uv`. Install anything missing, but ask me before any system-wide install.
+
+2. Clone the official repo into this folder, or into a `MiroFish` subfolder if this folder is not empty:
+
+   `git clone https://github.com/666ghj/MiroFish.git`
+
+3. From the repo root, copy the example env file:
+
+   `cp .env.example .env`
+
+   On Windows: `copy .env.example .env`
+
+4. Configure only these required values in `.env` for a first run:
+
+   - `LLM_API_KEY` = my OpenAI API key
+   - `LLM_BASE_URL` = `https://api.openai.com/v1`
+   - `LLM_MODEL_NAME` = `gpt-4o-mini` unless I name another model
+   - `ZEP_API_KEY` = my Zep Cloud API key
+
+   Ask me for the two keys. Write them only into `.env`. Never print, repeat, log, or screenshot the key values. Never commit `.env`.
+
+   Do not set `ZEP_API_URL` (the current official mainline rejects it and talks to Zep Cloud only).
+
+   If I am not using a second &quot;boost&quot; LLM, delete the `LLM_BOOST_API_KEY`, `LLM_BOOST_BASE_URL`, and `LLM_BOOST_MODEL_NAME` lines instead of leaving placeholders.
+
+5. From the repo root, install dependencies with `npm run setup:all`, then start both services with `npm run dev`. (`setup:all` only installs; it does not start the app.)
+
+6. If anything fails, read the error, fix it, and try again. Useful checks:
+
+   - Python must be 3.11 or 3.12, not 3.13.
+   - Open the app at `http://localhost:3000`.
+   - The backend API is `http://localhost:5001`. A 404 at `http://localhost:5001/` is expected; the health check is `http://localhost:5001/health`.
+
+7. When it is running, give me:
+
+   - the browser link: `http://localhost:3000`
+   - how to stop it: `Ctrl+C` in that terminal
+   - how to start it again later: `npm run dev` from the repo root
+   - a first-run reminder: start with a short seed file (`.pdf`, `.md`, or `.txt` — not a scanned or image-only PDF), about 30 rounds and under 40, finish one full workflow, then scale up. The official UI is Chinese or English. After the simulation, read the report in the UI; a full Markdown copy is also saved under `backend/uploads/reports/&lt;report_id&gt;/full_report.md`.
+
+Do not publish the app, do not expose it to the public internet, and do not create any other project.</pre>
+    </div>
+    <p class="small" style="margin-top:12px">المشروع الرسمي: <a class="latin" href="https://github.com/666ghj/MiroFish" rel="noopener">github.com/666ghj/MiroFish</a>. الواجهة بالصينية أو الإنجليزية فقط.</p>
+  </section>
+</main>
+<footer><div class="wrap">Marwan Does AI · <a class="latin" href="/">marwandoesai.com</a></div></footer>
+<script>
+(function(){
+  var btn=document.getElementById("copyBtn"),pre=document.getElementById("promptText");
+  function done(){btn.textContent="تم النسخ";btn.setAttribute("data-done","1");setTimeout(function(){btn.textContent="انسخ البرومبت";btn.removeAttribute("data-done")},2200)}
+  function fallback(){var t=document.createElement("textarea");t.value=pre.textContent;t.setAttribute("readonly","");t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy");done()}catch(e){}document.body.removeChild(t)}
+  btn.addEventListener("click",function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(pre.textContent).then(done,fallback)}else{fallback()}
+  });
+})();
+</script>
+</body>
+</html>

@@ -38,20 +38,21 @@
 # rates.marwandoesai.com is routed in netlify/edge-functions/rates-host.mjs.
 # A Host condition never matches, so it is not used.
 
-# The video grid lives at /bio. Exact /links and /links/ go to the homepage.
+# The video grid lives at /bio. Exact /links and /links/ go there.
 # force is required because /links/index.html exists and would otherwise win.
 # These two rules are exact, so /links/<slug> is not redirected.
-# They are listed before the splat rules, and they do not point at /bio,
-# so /bio is never rewritten to /links and then sent home.
+# They are listed before the splat rules. /bio rewrites to the grid file,
+# so the redirect does not loop, and real files such as /links/thumbs/*
+# are still served by the unforced /links/* rule below.
 [[redirects]]
   from = "/links"
-  to = "/"
+  to = "/bio"
   status = 301
   force = true
 
 [[redirects]]
   from = "/links/"
-  to = "/"
+  to = "/bio"
   status = 301
   force = true
 
@@ -90,6 +91,14 @@
 [[redirects]]
   from = "/grok-workshop/register"
   to = "/grok-workshop/register/index.html"
+  status = 200
+  force = true
+
+# The MiroFish how-to is a real file. Force the bare path so
+# /mirofish-howto returns 200, same as /mirofish-howto/.
+[[redirects]]
+  from = "/mirofish-howto"
+  to = "/mirofish-howto/index.html"
   status = 200
   force = true
 
