@@ -151,7 +151,7 @@ assert.equal(register.includes("مقعد بس"), false);
 assert.equal(register.includes('class="left">11<'), false);
 assert.match(register, /rates\.json/);
 assert.equal(home.includes("/grok-workshop"), false);
-assert.match(toml, /from = "\/links"\s+to = "\/"\s+status = 301\s+force = true/);
+assert.match(toml, /from = "\/links"\s+to = "\/bio"\s+status = 301\s+force = true/);
 assert.match(toml, /from = "\/bio"\s+to = "\/links\/index\.html"\s+status = 200/);
 assert.equal(links.includes('href="/links"'), false);
 
