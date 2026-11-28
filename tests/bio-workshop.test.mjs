@@ -60,8 +60,16 @@ assert.deepEqual(withField, grokSlugs.slice().sort());
 
 assert.match(html, /ورشة /);
 assert.match(html, /Grok workshop/);
-assert.match(html, /card-workshop/);
+assert.equal(html.includes("card-workshop"), false);
+assert.equal(html.includes("has-workshop"), false);
+assert.match(html, /workshopAnchor\(workshop, "btn workshop"\)/);
 assert.match(html, /btn workshop/);
+assert.match(html, /\.grid\{[^}]*direction:ltr/);
+assert.match(html, /وفر ساعتين من يومك/);
+assert.match(html, /سجّل بالورشة/);
+assert.match(html, /href="\/grok-workshop\/"/);
+assert.match(html, /grok-bot-mark\.svg/);
+assert.equal(data.profile.photo, "/links/marwan.jpg");
 assert.match(html, /#F5F3EE/);
 assert.match(html, /#1A1A1A/);
 assert.match(html, /#B8860B/);
